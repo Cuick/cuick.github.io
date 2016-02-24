@@ -3,7 +3,13 @@
   
   <url>
     <loc>http://cuick.github.io/</loc>
+    <lastmod>2016-02-24T03:57:16+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/abc/</loc>
+    <lastmod>2016-02-24T03:57:16+08:00</lastmod>
   </url>
   
 </urlset>
