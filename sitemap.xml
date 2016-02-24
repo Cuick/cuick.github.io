@@ -3,13 +3,28 @@
   
   <url>
     <loc>http://cuick.github.io/</loc>
-    <lastmod>2016-02-24T03:57:16+08:00</lastmod>
+    <lastmod>2016-02-24T04:04:29+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/ghi/</loc>
+    <lastmod>2016-02-24T04:04:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/def/</loc>
+    <lastmod>2016-02-24T04:04:23+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://cuick.github.io/abc/</loc>
     <lastmod>2016-02-24T03:57:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/post/first/</loc>
+    <lastmod>2016-02-24T03:57:07+08:00</lastmod>
   </url>
   
 </urlset>
