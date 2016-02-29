@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>崔程凯</title>
-    <link>http://cuick.github.io/</link>
-    <description>Recent content on 崔程凯</description>
+    <title>Twisteds on 崔程凯</title>
+    <link>http://cuick.github.io/twisted/</link>
+    <description>Recent content in Twisteds on 崔程凯</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 27 Feb 2016 22:17:23 +0800</lastBuildDate>
-    <atom:link href="http://cuick.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://cuick.github.io/twisted/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Twisted学习笔记1</title>
@@ -89,23 +89,6 @@ reactor.run()&lt;/p&gt;
 &lt;li&gt;Protocol实例是存储协议状态与间断性接收并累积数据的地方（由于我们是通过异步I/O方式以任意大小来接收数据的）。&lt;/li&gt;
 &lt;li&gt;Protocol实例如何得知它为哪条连接服务呢？如果你阅读IProtocol定义会发现一个makeConnection函数。这是一个回调函数，Twisted会在调用它时传递给其一个也是仅有的一个参数，即就是Transport实例。这个Transport实例就代表Protocol将要使用的连接。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>notes</title>
-      <link>http://cuick.github.io/notes/notes/</link>
-      <pubDate>Fri, 26 Feb 2016 14:39:49 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/notes/notes/</guid>
-      <description>
-
-&lt;h4 id=&#34;知识点:db235fc914867ffea6b540c8732499d5&#34;&gt;知识点&lt;/h4&gt;
-
-&lt;p&gt;1.Markdown&lt;br /&gt;
-2.llvm&lt;br /&gt;
-3.python:&lt;br /&gt;
-  optparse 处理命令行参数&lt;/p&gt;
 </description>
     </item>
     

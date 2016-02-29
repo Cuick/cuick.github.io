@@ -94,6 +94,35 @@
                 <header class="post-header">
                     
                     <h1 class="post-title">
+                      <a href="/twisted/101/">Twisted学习笔记1</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>27</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Feb</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+            </p>
+            <article class="post-summary">
+                  网络编程 socket select poll epoll greenlet gevent gevent是基于协程的高性能Python网络库，相比Twisted、Stackless等，gevent使用libev事件循环，因此速度很快、性能很好，使用greenlet提供高层的同步API，因此非常轻量。 http://www.elias.cn/Python/PyConcurrency http://blog.csdn.net/yueguanghaidao/ Reactor 一个真正reactor模式的实现是需要实现循环独立抽象出来并具有如下的功能： 监视一系列与你I/O操作相关的文件描述符（description) 不停地向你汇报那些准备好I/O操作的文件描述符 一个设计优秀的reactor模式实现需要做到： 处理所有不同系统会出现的I/O事件 提供优雅的抽象来帮助你在使用reactor时少花些心思去考虑它的存在 提供你可以在抽象层外（treactor实现）使用的公共协议实现。 reactor特性 Twisted的reactor只有通过调用reactor.run()来启动。 reactor循环是在其开始的进程中运行，也就是运行在主进程中。 一旦启动，就会一直运行下去。reactor就会在程序的控制下（或者具体在一个启动它的线程的控制下）。 reactor循环并不会消耗任何CPU的资源。 并不需要显式的创建reactor，只需要引入就OK了。 使用twisted.internet.pollreactor中的系统调用来poll 来代替select方法 from twited.internet import pollreactor pollreactor.install() from twisted.internet import reactor reactor.run() Twisted 注意点： 在一个回调函数执行过程中，实际上Twisted的循环是被有效地阻塞在我们的代码上的。因此，因此我们应该确保回调函数不要浪费时间（尽快返回）。 很多标准的Python方法没有办法转换为非阻塞方式。例如，os.system中的很多方法会在子进程完成前一直处于阻塞状态。这也就是它工作的方式。所以当你使用Twisted时，避开使用os.system。 Transports 一个Twisted的Transport代表一个可以收发字节的单条连接。对于我们的诗歌下载客户端而言，就是对一条TCP连接的抽象。 ransport抽象可以代表任何这样的连接并为其代表的连接处理具体的异步I/O操作细节。 Protocols 一个具体的Twisted的Protocol的实现应该对应一个具体网络协议的实现，像FTP、IMAP或其它我们自己规定的协议。 每一个Twisted的Protocols类实例都为一个具体的连接提供协议解析。 Protocol实例是存储协议状态与间断性接收并累积数据的地方（由于我们是通过异步I/O方式以任意大小来接收数据的）。 Protocol实例如何得知它为哪条连接服务呢？如果你阅读IProtocol定义会发现一个makeConnection函数。这是一个回调函数，Twisted会在调用它时传递给其一个也是仅有的一个参数，即就是Transport实例。这个Transport实例就代表Protocol将要使用的连接。
+              </article>
+              <div class="read-more-link">
+                  <a href="/twisted/101/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
                       <a href="/notes/notes/">notes</a>
                   </h1>
               </header>
