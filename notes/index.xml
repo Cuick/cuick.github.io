@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes on 崔程凯</title>
+    <title>Notes on </title>
     <link>http://cuick.github.io/notes/</link>
-    <description>Recent content in Notes on 崔程凯</description>
+    <description>Recent content in Notes on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 26 Feb 2016 14:39:49 +0800</lastBuildDate>
@@ -11,13 +11,13 @@
     
     <item>
       <title>notes</title>
-      <link>http://cuick.github.io/notes/notes/</link>
+      <link>http://cuick.github.io/notes/101/</link>
       <pubDate>Fri, 26 Feb 2016 14:39:49 +0800</pubDate>
       
-      <guid>http://cuick.github.io/notes/notes/</guid>
+      <guid>http://cuick.github.io/notes/101/</guid>
       <description>
 
-&lt;h4 id=&#34;知识点:db235fc914867ffea6b540c8732499d5&#34;&gt;知识点&lt;/h4&gt;
+&lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
 
 &lt;p&gt;1.Markdown&lt;br /&gt;
 2.llvm&lt;br /&gt;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rust on </title>
+    <link>http://cuick.github.io/categories/rust/</link>
+    <description>Recent content in Rust on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Jan 1970 00:00:01 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/categories/rust/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>MENU</title>
+      <link>http://cuick.github.io/menu/101/</link>
+      <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/menu/101/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;点击上面的标签，打开相关文章列表&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Markdown&lt;/li&gt;
+&lt;li&gt;llvm&lt;/li&gt;
+&lt;li&gt;python:
+
+&lt;ul&gt;
+&lt;li&gt;optparse 处理命令行参数&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;toml:&lt;a href=&#34;https://segmentfault.com/a/1190000000477752&#34;&gt;https://segmentfault.com/a/1190000000477752&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
