@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>K&#39;s blog!</title>
     <link>http://cuick.github.io/</link>
-    <description>Recent content on </description>
+    <description>Recent content on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Mar 2016 17:26:29 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Hugo</title>
-      <link>http://cuick.github.io/hugo/101/</link>
+      <title>Hugo基本操作命令</title>
+      <link>http://cuick.github.io/hugo/hugo_command/</link>
       <pubDate>Thu, 03 Mar 2016 17:26:29 +0800</pubDate>
       
-      <guid>http://cuick.github.io/hugo/101/</guid>
+      <guid>http://cuick.github.io/hugo/hugo_command/</guid>
       <description>
 
 &lt;h2 id=&#34;注意点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;注意点&lt;/h2&gt;
@@ -39,16 +39,20 @@ hugo &amp;ndash;theme=hugo-redlounge &amp;ndash;baseUrl=&amp;ldquo;&lt;a href=&#
     </item>
     
     <item>
-      <title>Markdown笔记</title>
-      <link>http://cuick.github.io/markdown/101/</link>
+      <title>Markdown快速入门</title>
+      <link>http://cuick.github.io/markdown/markdown_stu/</link>
       <pubDate>Thu, 03 Mar 2016 16:57:08 +0800</pubDate>
       
-      <guid>http://cuick.github.io/markdown/101/</guid>
+      <guid>http://cuick.github.io/markdown/markdown_stu/</guid>
       <description>
 
 &lt;h1 id=&#34;教程地址:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;教程地址&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wowubuntu.com/markdown/&#34;&gt;http://wowubuntu.com/markdown/&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;因为本站就是用markdown编辑，所以，本文是从教程地址直接复制文章过来，然后以markdown的code方式显示出来， 直接在编辑文章处删除相关注释，就可查看例子效果&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;段落、标题、区块代码
 
@@ -281,10 +285,10 @@ you&#39;ve got to put paragraph tags in your blockquotes:&amp;lt;/p&amp;gt;
     
     <item>
       <title>Twisted学习笔记</title>
-      <link>http://cuick.github.io/twisted/spf13-vim-3-0-release-and-new-website/</link>
+      <link>http://cuick.github.io/twisted/twisted_basic/</link>
       <pubDate>Sat, 27 Feb 2016 22:17:23 +0800</pubDate>
       
-      <guid>http://cuick.github.io/twisted/spf13-vim-3-0-release-and-new-website/</guid>
+      <guid>http://cuick.github.io/twisted/twisted_basic/</guid>
       <description>
 
 &lt;h1 id=&#34;网络编程:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;网络编程&lt;/h1&gt;
@@ -401,28 +405,35 @@ reactor.run()&lt;/p&gt;&lt;/li&gt;
     
     <item>
       <title>notes</title>
-      <link>http://cuick.github.io/notes/101/</link>
+      <link>http://cuick.github.io/notes/notes_stu/</link>
       <pubDate>Fri, 26 Feb 2016 14:39:49 +0800</pubDate>
       
-      <guid>http://cuick.github.io/notes/101/</guid>
+      <guid>http://cuick.github.io/notes/notes_stu/</guid>
       <description>
 
 &lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
 
-&lt;p&gt;1.Markdown&lt;br /&gt;
-2.llvm&lt;br /&gt;
-3.python:&lt;br /&gt;
-  optparse 处理命令行参数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Markdown&lt;/li&gt;
+&lt;li&gt;llvm&lt;/li&gt;
+&lt;li&gt;python:
+
+&lt;ul&gt;
+&lt;li&gt;optparse 处理命令行参数&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
     <item>
       <title>MENU</title>
-      <link>http://cuick.github.io/menu/101/</link>
+      <link>http://cuick.github.io/menu/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
       
-      <guid>http://cuick.github.io/menu/101/</guid>
-      <description>&lt;p&gt;&lt;em&gt;点击上面的标签，打开相关文章列表&lt;/em&gt;&lt;/p&gt;
+      <guid>http://cuick.github.io/menu/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;点击上面的标签，打开相关文章列表&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Erlang on </title>
+    <title>Erlang on K&#39;s blog!</title>
     <link>http://cuick.github.io/categories/erlang/</link>
-    <description>Recent content in Erlang on </description>
+    <description>Recent content in Erlang on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 01 Jan 1970 00:00:01 +0800</lastBuildDate>
@@ -11,11 +11,13 @@
     
     <item>
       <title>MENU</title>
-      <link>http://cuick.github.io/menu/101/</link>
+      <link>http://cuick.github.io/menu/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
       
-      <guid>http://cuick.github.io/menu/101/</guid>
-      <description>&lt;p&gt;&lt;em&gt;点击上面的标签，打开相关文章列表&lt;/em&gt;&lt;/p&gt;
+      <guid>http://cuick.github.io/menu/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;点击上面的标签，打开相关文章列表&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

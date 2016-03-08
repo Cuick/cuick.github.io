@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Markdowns on </title>
+    <title>Markdowns on K&#39;s blog!</title>
     <link>http://cuick.github.io/markdown/</link>
-    <description>Recent content in Markdowns on </description>
+    <description>Recent content in Markdowns on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Mar 2016 16:57:08 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/markdown/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Markdown笔记</title>
-      <link>http://cuick.github.io/markdown/101/</link>
+      <title>Markdown快速入门</title>
+      <link>http://cuick.github.io/markdown/markdown_stu/</link>
       <pubDate>Thu, 03 Mar 2016 16:57:08 +0800</pubDate>
       
-      <guid>http://cuick.github.io/markdown/101/</guid>
+      <guid>http://cuick.github.io/markdown/markdown_stu/</guid>
       <description>
 
 &lt;h1 id=&#34;教程地址:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;教程地址&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wowubuntu.com/markdown/&#34;&gt;http://wowubuntu.com/markdown/&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;因为本站就是用markdown编辑，所以，本文是从教程地址直接复制文章过来，然后以markdown的code方式显示出来， 直接在编辑文章处删除相关注释，就可查看例子效果&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;段落、标题、区块代码
 

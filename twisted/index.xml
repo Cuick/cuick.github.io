@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Twisteds on </title>
+    <title>Twisteds on K&#39;s blog!</title>
     <link>http://cuick.github.io/twisted/</link>
-    <description>Recent content in Twisteds on </description>
+    <description>Recent content in Twisteds on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 27 Feb 2016 22:17:23 +0800</lastBuildDate>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Twisted学习笔记</title>
-      <link>http://cuick.github.io/twisted/spf13-vim-3-0-release-and-new-website/</link>
+      <link>http://cuick.github.io/twisted/twisted_basic/</link>
       <pubDate>Sat, 27 Feb 2016 22:17:23 +0800</pubDate>
       
-      <guid>http://cuick.github.io/twisted/spf13-vim-3-0-release-and-new-website/</guid>
+      <guid>http://cuick.github.io/twisted/twisted_basic/</guid>
       <description>
 
 &lt;h1 id=&#34;网络编程:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;网络编程&lt;/h1&gt;
