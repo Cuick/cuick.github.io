@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Menu Menu Menu on K&#39;s blog!</title>
+    <link>http://cuick.github.io/series/menu-menu-menu/</link>
+    <description>Recent content in Menu Menu Menu on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Mar 2016 17:26:29 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/series/menu-menu-menu/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo基本操作命令</title>
+      <link>http://cuick.github.io/hugo/hugo_command/</link>
+      <pubDate>Thu, 03 Mar 2016 17:26:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/hugo/hugo_command/</guid>
+      <description>
+
+&lt;h2 id=&#34;注意点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;注意点&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;创建一个新的文档后，默认是draft属性是true&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;常用命令:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;常用命令&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;本地执行&lt;br /&gt;
+hugo server &amp;ndash;theme=hugo-redlounge &amp;ndash;buildDrafts&lt;/li&gt;
+&lt;li&gt;创建一个文档&lt;br /&gt;
+hugo new hugo/101.md&lt;/li&gt;
+&lt;li&gt;创建一个项目&lt;br /&gt;
+hugo new site blols&lt;/li&gt;
+&lt;li&gt;生成静态网站&lt;br /&gt;
+hugo &amp;ndash;theme=hugo-redlounge &amp;ndash;baseUrl=&amp;ldquo;&lt;a href=&#34;http://cuick.github.io/&amp;quot;&#34;&gt;http://cuick.github.io/&amp;quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MENU</title>
+      <link>http://cuick.github.io/menu/</link>
+      <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/menu/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;点击上面的标签，打开相关文章列表&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
