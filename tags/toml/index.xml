@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on K&#39;s blog!</title>
-    <link>http://cuick.github.io/tags/hugo/</link>
-    <description>Recent content in Hugo on K&#39;s blog!</description>
+    <title>Toml on K&#39;s blog!</title>
+    <link>http://cuick.github.io/tags/toml/</link>
+    <description>Recent content in Toml on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Mar 2016 17:26:29 +0800</lastBuildDate>
-    <atom:link href="http://cuick.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://cuick.github.io/tags/toml/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo 文章配置toml</title>
@@ -44,35 +44,6 @@ noauthor = true&lt;/li&gt;
 &lt;li&gt;topics = [ &amp;ldquo;Development&amp;rdquo;, &amp;ldquo;Go&amp;rdquo; ]&lt;/li&gt;
 &lt;li&gt;description = &amp;ldquo;description.&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hugo基本操作命令</title>
-      <link>http://cuick.github.io/hugo/hugo_command/</link>
-      <pubDate>Thu, 03 Mar 2016 17:26:29 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/hugo/hugo_command/</guid>
-      <description>
-
-&lt;h2 id=&#34;注意点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;注意点&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;创建一个新的文档后，默认是draft属性是true&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;常用命令:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;常用命令&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;本地执行&lt;br /&gt;
-hugo server &amp;ndash;theme=hugo-redlounge &amp;ndash;buildDrafts&lt;/li&gt;
-&lt;li&gt;创建一个文档&lt;br /&gt;
-hugo new hugo/101.md&lt;/li&gt;
-&lt;li&gt;创建一个项目&lt;br /&gt;
-hugo new site blols&lt;/li&gt;
-&lt;li&gt;生成静态网站&lt;br /&gt;
-hugo &amp;ndash;theme=hugo-redlounge &amp;ndash;baseUrl=&amp;ldquo;&lt;a href=&#34;http://cuick.github.io/&amp;quot;&#34;&gt;http://cuick.github.io/&amp;quot;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

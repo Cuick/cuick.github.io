@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <title>
-    Linux // K&#39;s blog!
+    Djangos // K&#39;s blog!
   </title>
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -16,11 +16,11 @@
 <meta name="author" content="">
 <meta name="generator" content="Hugo 0.16-DEV" />
 
-  <meta property="og:title" content="Linux" />
+  <meta property="og:title" content="Djangos" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="http://cuick.github.io/categories/linux/" />
+<meta property="og:url" content="http://cuick.github.io/django/" />
 
 
   
@@ -42,7 +42,7 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="http://cuick.github.io/categories/linux/index.xml" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+  <link href="http://cuick.github.io/django/index.xml" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
 
     
   
@@ -74,9 +74,7 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/menu">MENU</a></li>
-        
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">NOTES</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
@@ -89,15 +87,7 @@
     <div class="social-buttons">
       
         
-        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
-        
-      
-        
         <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
-        
-      
-        
-        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
         
       
       
@@ -118,47 +108,35 @@
             <header class="post-header">
             
             <h1 class="post-title">
-              <a href="/menu/">MENU</a>
+              <a href="/django/101/">Django笔记(一)</a>
             </h1>
             </header>
             <p class="post-meta">
             	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>15</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
       				
       					
       				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
               
       				
       					<div class="post-categories">
 				        
       					
-					        <a class="post-category post-category-hugo" href="http://cuick.github.io/categories/hugo">Hugo</a>
-      					
-					        <a class="post-category post-category-markdown" href="http://cuick.github.io/categories/markdown">Markdown</a>
-      					
-					        <a class="post-category post-category-notes" href="http://cuick.github.io/categories/notes">Notes</a>
-      					
-					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">Python</a>
-      					
-					        <a class="post-category post-category-twisted" href="http://cuick.github.io/categories/twisted">Twisted</a>
-      					
-					        <a class="post-category post-category-erlang" href="http://cuick.github.io/categories/erlang">Erlang</a>
-      					
-					        <a class="post-category post-category-go" href="http://cuick.github.io/categories/go">Go</a>
-      					
-					        <a class="post-category post-category-linux" href="http://cuick.github.io/categories/linux">Linux</a>
-      					
-					        <a class="post-category post-category-rust" href="http://cuick.github.io/categories/rust">RUST</a>
-      					
-					        <a class="post-category post-category-vim" href="http://cuick.github.io/categories/vim">VIM</a>
+					        <a class="post-category post-category-django" href="http://cuick.github.io/categories/django">django</a>
       					
       					</div>
       				
             </p>
             <article class="post-summary">
-            	点击上面的标签，打开相关文章列表
+            	安装 同其他python模块的安装 sudo pip install Django==1.9.4 基本命令 1.新建一个 django projec: django-admin.py startproject project-name mysite ├── manage.py └── mysite ├── __init__.py ├── settings.py ├── urls.py └── wsgi.py 新建了一个 mysite 目录，其中还有一个 mysite 目录 一些项目的设置 settings.py 文件， 总的urls配置文件 urls.py 部署服务器时用到的 wsgi.py 文件， init.py 是python包的目录结构必须的，与调用有关。 2.新建 app: python manage.py startapp app-name django-admin.py startapp app-name app-name/ ├── __init__.py ├── admin.py ├── models.py ├── tests.py └── views.py 把我们新定义的app加到settings.py中的INSTALL_APPS中 修改 mysite/mysite/settings.py INSTALLED_APPS = ( 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
             </article>
 			<div class="read-more-link">
-				<a href="/menu/"><span class="read-more-slashes">//</span>Read More...</a>
+				<a href="/django/101/"><span class="read-more-slashes">//</span>Read More...</a>
 			</div>
           </section>
         

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Djangos on K&#39;s blog!</title>
+    <link>http://cuick.github.io/django/</link>
+    <description>Recent content in Djangos on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Mar 2016 22:06:53 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/django/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Django笔记(一)</title>
+      <link>http://cuick.github.io/django/101/</link>
+      <pubDate>Tue, 15 Mar 2016 22:06:53 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/django/101/</guid>
+      <description>
+
+&lt;h2 id=&#34;安装:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;同其他python模块的安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pip install Django==1.9.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;基本命令:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;基本命令&lt;/h2&gt;
+
+&lt;h4 id=&#34;1-新建一个-django-projec:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;1.新建一个 django projec:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;django-admin.py startproject project-name
+
+mysite
+├── manage.py
+└── mysite
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;新建了一个 mysite 目录，其中还有一个 mysite 目录&lt;br /&gt;
+一些项目的设置 settings.py 文件，&lt;br /&gt;
+总的urls配置文件 urls.py&lt;br /&gt;
+部署服务器时用到的 wsgi.py 文件，&lt;br /&gt;
+&lt;strong&gt;init&lt;/strong&gt;.py 是python包的目录结构必须的，与调用有关。&lt;/p&gt;
+
+&lt;h4 id=&#34;2-新建-app:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;2.新建 app:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;python manage.py startapp app-name
+django-admin.py startapp app-name
+app-name/
+├── __init__.py
+├── admin.py
+├── models.py
+├── tests.py
+└── views.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;把我们新定义的app加到settings.py中的INSTALL_APPS中&lt;br /&gt;
+修改 mysite/mysite/settings.py&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;INSTALLED_APPS = (
+    &#39;django.contrib.admin&#39;,
+    &#39;django.contrib.auth&#39;,
+    &#39;django.contrib.contenttypes&#39;,
+    &#39;django.contrib.sessions&#39;,
+    &#39;django.contrib.messages&#39;,
+    &#39;django.contrib.staticfiles&#39;,
+
+    &#39;myapp&#39;,
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用开发服务器:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

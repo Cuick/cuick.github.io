@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <title>
-    Hugos // K&#39;s blog!
+    Web // K&#39;s blog!
   </title>
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -16,11 +16,11 @@
 <meta name="author" content="">
 <meta name="generator" content="Hugo 0.16-DEV" />
 
-  <meta property="og:title" content="Hugos" />
+  <meta property="og:title" content="Web" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="http://cuick.github.io/hugo/" />
+<meta property="og:url" content="http://cuick.github.io/tags/web/" />
 
 
   
@@ -42,7 +42,7 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="http://cuick.github.io/hugo/index.xml" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+  <link href="http://cuick.github.io/tags/web/index.xml" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
 
     
   
@@ -108,13 +108,13 @@
             <header class="post-header">
             
             <h1 class="post-title">
-              <a href="/hugo/hugo_content_config/">Hugo 文章配置toml</a>
+              <a href="/django/101/">Django笔记(一)</a>
             </h1>
             </header>
             <p class="post-meta">
             	
 		          <span class="post-date">
-		            <span class="post-date-day"><sup>3</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+		            <span class="post-date-day"><sup>15</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
 		          </span>
       				
       				
@@ -127,52 +127,16 @@
       					<div class="post-categories">
 				        
       					
-					        <a class="post-category post-category-hugo" href="http://cuick.github.io/categories/hugo">Hugo</a>
+					        <a class="post-category post-category-django" href="http://cuick.github.io/categories/django">django</a>
       					
       					</div>
       				
             </p>
             <article class="post-summary">
-            	常用配置项 date = &ldquo;1970-01-01T00:00:01+08:00&rdquo; title = &ldquo;MENU&rdquo; 文章排序等级 weight = 999 series = [ &ldquo;hugo content config&rdquo; ] 分类 categories = [&ldquo;VIM&rdquo;] 标签 tags = [ &ldquo;Markdown&rdquo;, &ldquo;编程语言&rdquo;, &ldquo;Hugo&rdquo;, &ldquo;command&rdquo; , &ldquo;标记语言&rdquo;] 不显示写文章时间 nodate = true url里的name slug = &ldquo;menu&rdquo; 隐藏上下页 nopaging = true 隐藏读取时间 noread = true 显示作者 author = &ldquo;崔程凯&rdquo; 隐藏作者 noauthor = true topics = [ &ldquo;Development&rdquo;, &ldquo;Go&rdquo; ] description = &ldquo;description.&rdquo;
+            	安装 同其他python模块的安装 sudo pip install Django==1.9.4 基本命令 1.新建一个 django projec: django-admin.py startproject project-name mysite ├── manage.py └── mysite ├── __init__.py ├── settings.py ├── urls.py └── wsgi.py 新建了一个 mysite 目录，其中还有一个 mysite 目录 一些项目的设置 settings.py 文件， 总的urls配置文件 urls.py 部署服务器时用到的 wsgi.py 文件， init.py 是python包的目录结构必须的，与调用有关。 2.新建 app: python manage.py startapp app-name django-admin.py startapp app-name app-name/ ├── __init__.py ├── admin.py ├── models.py ├── tests.py └── views.py 把我们新定义的app加到settings.py中的INSTALL_APPS中 修改 mysite/mysite/settings.py INSTALLED_APPS = ( 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
             </article>
 			<div class="read-more-link">
-				<a href="/hugo/hugo_content_config/"><span class="read-more-slashes">//</span>Read More...</a>
-			</div>
-          </section>
-        
-          <section  class="post">
-            <header class="post-header">
-            
-            <h1 class="post-title">
-              <a href="/hugo/hugo_command/">Hugo基本操作命令</a>
-            </h1>
-            </header>
-            <p class="post-meta">
-            	
-		          <span class="post-date">
-		            <span class="post-date-day"><sup>3</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
-		          </span>
-      				
-      				
-      					
-      				
-              
-                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
-              
-      				
-      					<div class="post-categories">
-				        
-      					
-					        <a class="post-category post-category-hugo" href="http://cuick.github.io/categories/hugo">Hugo</a>
-      					
-      					</div>
-      				
-            </p>
-            <article class="post-summary">
-            	注意点 创建一个新的文档后，默认是draft属性是true 常用命令 本地执行 hugo server &ndash;theme=hugo-redlounge &ndash;buildDrafts 创建一个文档 hugo new hugo/101.md 创建一个项目 hugo new site blols 生成静态网站 hugo &ndash;theme=hugo-redlounge &ndash;baseUrl=&ldquo;http://cuick.github.io/&quot;
-            </article>
-			<div class="read-more-link">
-				<a href="/hugo/hugo_command/"><span class="read-more-slashes">//</span>Read More...</a>
+				<a href="/django/101/"><span class="read-more-slashes">//</span>Read More...</a>
 			</div>
           </section>
         

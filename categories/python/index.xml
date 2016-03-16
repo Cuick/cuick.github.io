@@ -10,7 +10,7 @@
     <atom:link href="http://cuick.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Twisted学习笔记</title>
+      <title>Twisted基础</title>
       <link>http://cuick.github.io/twisted/twisted_basic/</link>
       <pubDate>Sat, 27 Feb 2016 22:17:23 +0800</pubDate>
       
@@ -121,22 +121,23 @@ reactor.run()&lt;/p&gt;&lt;/li&gt;
 
 &lt;h3 id=&#34;deferred-以让程序员在使用回调时更简便:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Deferred-以让程序员在使用回调时更简便&lt;/h3&gt;
 
+&lt;ul&gt;
+&lt;li&gt;
+
 &lt;ol&gt;
 &lt;li&gt;我们不能忽视errback，在任何异步编程的API中都需要它。Deferred支持errbacks。&lt;/li&gt;
 &lt;li&gt;激活回调多次可能会导致很严重的问题。Deferred只能被激活一次，这就类似于同步编程中的try/except的处理方法。&lt;/li&gt;
 &lt;li&gt;含有回调的程序在重构时相当困难。有了deferred，我们就通过修改回调链来重构程序。&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>MENU</title>
-      <link>http://cuick.github.io/menu/</link>
-      <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/menu/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;点击上面的标签，打开相关文章列表&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;一个deferred有一个callback/errback对链，它们以添加到deferred中的顺序依次排列&lt;/li&gt;
+&lt;li&gt;stage 0，即第一对errback/callbac，会在deferred激活时调用，具体调用那个看激活deferred的方式，若是通过.errback激活，则调用errback；同样若是通过.callback激活则调用callback。（这里的errback/callback实际是指通过addBoth添加的函数）&lt;/li&gt;
+&lt;li&gt;如果stage N执行出现异常，则stage N+1的errback被调用，并且其参数即为stage N出现的异常&lt;/li&gt;
+&lt;li&gt;同样，如果stage N成功，即没有抛出异常，则N+1的callback被调用，其第一个参数为stage N的返回值。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;服务器用ServerFactory而不是ClientFactory, 这是因为服务器是要被动地监听连接状态而不是像客户端一样去主动的创建。使用listenTCP方法.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

@@ -19,6 +19,10 @@
 
 &lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
 
+&lt;blockquote&gt;
+&lt;p&gt;好机记性如烂笔头，随手记下的知识点&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;ol&gt;
 &lt;li&gt;Markdown&lt;/li&gt;
 &lt;li&gt;llvm&lt;/li&gt;
@@ -26,9 +30,11 @@
 
 &lt;ul&gt;
 &lt;li&gt;optparse 处理命令行参数&lt;/li&gt;
+&lt;li&gt;Eve框架&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;图标字体
 &lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;restful&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>

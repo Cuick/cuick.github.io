@@ -38,17 +38,5 @@ hugo &amp;ndash;theme=hugo-redlounge &amp;ndash;baseUrl=&amp;ldquo;&lt;a href=&#
 </description>
     </item>
     
-    <item>
-      <title>MENU</title>
-      <link>http://cuick.github.io/menu/</link>
-      <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/menu/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;点击上面的标签，打开相关文章列表&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
   </channel>
 </rss>

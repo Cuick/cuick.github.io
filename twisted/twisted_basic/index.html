@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <title>
-    Twisted学习笔记 // K&#39;s blog!
+    Twisted基础 // K&#39;s blog!
   </title>
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -16,7 +16,7 @@
 <meta name="author" content="">
 <meta name="generator" content="Hugo 0.16-DEV" />
 
-  <meta property="og:title" content="Twisted学习笔记" />
+  <meta property="og:title" content="Twisted基础" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
@@ -76,9 +76,7 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/menu">MENU</a></li>
-        
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">NOTES</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
@@ -91,15 +89,7 @@
     <div class="social-buttons">
       
         
-        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
-        
-      
-        
         <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
-        
-      
-        
-        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
         
       
       
@@ -144,7 +134,7 @@
 	    
   		<section class="post">
             <h1 class="post-title">
-              <a href="/twisted/twisted_basic/">Twisted学习笔记</a>
+              <a href="/twisted/twisted_basic/">Twisted基础</a>
             </h1>
             <h3 class="post-subtitle">
             	
@@ -279,11 +269,24 @@ reactor.run()</p></li>
 
 <h3 id="deferred-以让程序员在使用回调时更简便:e4b8a5905536b2b2540aab2195e920f5">Deferred-以让程序员在使用回调时更简便</h3>
 
+<ul>
+<li>
+
 <ol>
 <li>我们不能忽视errback，在任何异步编程的API中都需要它。Deferred支持errbacks。</li>
 <li>激活回调多次可能会导致很严重的问题。Deferred只能被激活一次，这就类似于同步编程中的try/except的处理方法。</li>
 <li>含有回调的程序在重构时相当困难。有了deferred，我们就通过修改回调链来重构程序。</li>
-</ol>
+</ol></li>
+
+<li><ol>
+<li>一个deferred有一个callback/errback对链，它们以添加到deferred中的顺序依次排列</li>
+<li>stage 0，即第一对errback/callbac，会在deferred激活时调用，具体调用那个看激活deferred的方式，若是通过.errback激活，则调用errback；同样若是通过.callback激活则调用callback。（这里的errback/callback实际是指通过addBoth添加的函数）</li>
+<li>如果stage N执行出现异常，则stage N+1的errback被调用，并且其参数即为stage N出现的异常</li>
+<li>同样，如果stage N成功，即没有抛出异常，则N+1的callback被调用，其第一个参数为stage N的返回值。</li>
+</ol></li>
+
+<li><p>服务器用ServerFactory而不是ClientFactory, 这是因为服务器是要被动地监听连接状态而不是像客户端一样去主动的创建。使用listenTCP方法.</p></li>
+</ul>
 
 	
 			
@@ -325,7 +328,7 @@ reactor.run()</p></li>
 <script type="text/javascript">
     var disqus_shortname = 'kooooook';
     var disqus_identifier = 'http:\/\/cuick.github.io\/twisted\/twisted_basic\/';
-    var disqus_title = 'Twisted学习笔记';
+    var disqus_title = 'Twisted基础';
     var disqus_url = 'http:\/\/cuick.github.io\/twisted\/twisted_basic\/';
 
     (function() {

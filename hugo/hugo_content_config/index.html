@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <title>
-    MENU // K&#39;s blog!
+    Hugo 文章配置toml // K&#39;s blog!
   </title>
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -11,16 +11,16 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-<meta name="description" content="spf13-vim is a cross platform distribution of vim plugins and resources for Vim.">
+<meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
 <meta name="generator" content="Hugo 0.16-DEV" />
 
-  <meta property="og:title" content="MENU" />
-<meta property="og:description" content="spf13-vim is a cross platform distribution of vim plugins and resources for Vim." />
+  <meta property="og:title" content="Hugo 文章配置toml" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="http://cuick.github.io/menu/" />
+<meta property="og:url" content="http://cuick.github.io/hugo/hugo_content_config/" />
 
 
   
@@ -76,9 +76,7 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/menu">MENU</a></li>
-        
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">NOTES</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
@@ -91,15 +89,7 @@
     <div class="social-buttons">
       
         
-        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
-        
-      
-        
         <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
-        
-      
-        
-        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
         
       
       
@@ -118,15 +108,28 @@
 
 		
 			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li><a href="#常用配置项:b66e25cf931c5c75968256c4152b6090">常用配置项</a></li>
+</ul>
+</nav>
+		    </div>
+		    
 	    
   		<section class="post">
             <h1 class="post-title">
-              <a href="/menu/">MENU</a>
+              <a href="/hugo/hugo_content_config/">Hugo 文章配置toml</a>
             </h1>
             <h3 class="post-subtitle">
             	
             </h3>
             
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>3</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+            	</span>
+            	
             
             	
             
@@ -137,24 +140,6 @@
 				
 					<a class="post-category post-category-hugo" href="http://cuick.github.io/categories/hugo">Hugo</a>
 				
-					<a class="post-category post-category-markdown" href="http://cuick.github.io/categories/markdown">Markdown</a>
-				
-					<a class="post-category post-category-notes" href="http://cuick.github.io/categories/notes">Notes</a>
-				
-					<a class="post-category post-category-python" href="http://cuick.github.io/categories/python">Python</a>
-				
-					<a class="post-category post-category-twisted" href="http://cuick.github.io/categories/twisted">Twisted</a>
-				
-					<a class="post-category post-category-erlang" href="http://cuick.github.io/categories/erlang">Erlang</a>
-				
-					<a class="post-category post-category-go" href="http://cuick.github.io/categories/go">Go</a>
-				
-					<a class="post-category post-category-linux" href="http://cuick.github.io/categories/linux">Linux</a>
-				
-					<a class="post-category post-category-rust" href="http://cuick.github.io/categories/rust">RUST</a>
-				
-					<a class="post-category post-category-vim" href="http://cuick.github.io/categories/vim">VIM</a>
-				
 				</div>
 			
 
@@ -162,24 +147,76 @@
 
 			
 
-            <ul>
-<li>点击上面的标签，打开相关文章列表</li>
+            
+
+<h1 id="常用配置项:b66e25cf931c5c75968256c4152b6090">常用配置项</h1>
+
+<ul>
+<li>date = &ldquo;1970-01-01T00:00:01+08:00&rdquo;</li>
+<li>title = &ldquo;MENU&rdquo;</li>
+<li>文章排序等级<br />
+weight = 999</li>
+<li>series = [ &ldquo;hugo content config&rdquo; ]</li>
+<li>分类<br />
+categories = [&ldquo;VIM&rdquo;]</li>
+<li>标签
+tags = [ &ldquo;Markdown&rdquo;, &ldquo;编程语言&rdquo;, &ldquo;Hugo&rdquo;, &ldquo;command&rdquo; , &ldquo;标记语言&rdquo;]</li>
+<li>不显示写文章时间<br />
+nodate = true</li>
+<li>url里的name<br />
+slug = &ldquo;menu&rdquo;</li>
+<li>隐藏上下页<br />
+nopaging = true</li>
+<li>隐藏读取时间<br />
+noread = true</li>
+<li>显示作者<br />
+author = &ldquo;崔程凯&rdquo;</li>
+<li>隐藏作者<br />
+noauthor = true</li>
+<li>topics = [ &ldquo;Development&rdquo;, &ldquo;Go&rdquo; ]</li>
+<li>description = &ldquo;description.&rdquo;</li>
 </ul>
 
 	
 			
 
 			
+				<div class="tags-list">
+					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
+					
+	                <a class="post-tag post-tag-hugo" href="http://cuick.github.io/tags/hugo">Hugo</a>,
+	                
+	                <a class="post-tag post-tag-toml" href="http://cuick.github.io/tags/toml">toml</a>,
+	                
+				</div>
+			
 
 			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/django/101/">Django笔记(一)</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/hugo/hugo_command/">Hugo基本操作命令</a>
+		            </div>
+		            
+	            </div>
+            
           </section>
           
           	<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'kooooook';
-    var disqus_identifier = 'http:\/\/cuick.github.io\/menu\/';
-    var disqus_title = 'MENU';
-    var disqus_url = 'http:\/\/cuick.github.io\/menu\/';
+    var disqus_identifier = 'http:\/\/cuick.github.io\/hugo\/hugo_content_config\/';
+    var disqus_title = 'Hugo 文章配置toml';
+    var disqus_url = 'http:\/\/cuick.github.io\/hugo\/hugo_content_config\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

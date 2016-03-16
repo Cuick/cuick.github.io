@@ -6,8 +6,116 @@
     <description>Recent content on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Mar 2016 17:26:29 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Mar 2016 22:06:53 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Django笔记(一)</title>
+      <link>http://cuick.github.io/django/101/</link>
+      <pubDate>Tue, 15 Mar 2016 22:06:53 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/django/101/</guid>
+      <description>
+
+&lt;h2 id=&#34;安装:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;同其他python模块的安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pip install Django==1.9.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;基本命令:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;基本命令&lt;/h2&gt;
+
+&lt;h4 id=&#34;1-新建一个-django-projec:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;1.新建一个 django projec:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;django-admin.py startproject project-name
+
+mysite
+├── manage.py
+└── mysite
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;新建了一个 mysite 目录，其中还有一个 mysite 目录&lt;br /&gt;
+一些项目的设置 settings.py 文件，&lt;br /&gt;
+总的urls配置文件 urls.py&lt;br /&gt;
+部署服务器时用到的 wsgi.py 文件，&lt;br /&gt;
+&lt;strong&gt;init&lt;/strong&gt;.py 是python包的目录结构必须的，与调用有关。&lt;/p&gt;
+
+&lt;h4 id=&#34;2-新建-app:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;2.新建 app:&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;python manage.py startapp app-name
+django-admin.py startapp app-name
+app-name/
+├── __init__.py
+├── admin.py
+├── models.py
+├── tests.py
+└── views.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;把我们新定义的app加到settings.py中的INSTALL_APPS中&lt;br /&gt;
+修改 mysite/mysite/settings.py&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;INSTALLED_APPS = (
+    &#39;django.contrib.admin&#39;,
+    &#39;django.contrib.auth&#39;,
+    &#39;django.contrib.contenttypes&#39;,
+    &#39;django.contrib.sessions&#39;,
+    &#39;django.contrib.messages&#39;,
+    &#39;django.contrib.staticfiles&#39;,
+
+    &#39;myapp&#39;,
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用开发服务器:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo 文章配置toml</title>
+      <link>http://cuick.github.io/hugo/hugo_content_config/</link>
+      <pubDate>Thu, 03 Mar 2016 17:26:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/hugo/hugo_content_config/</guid>
+      <description>
+
+&lt;h1 id=&#34;常用配置项:b66e25cf931c5c75968256c4152b6090&#34;&gt;常用配置项&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;date = &amp;ldquo;1970-01-01T00:00:01+08:00&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;title = &amp;ldquo;MENU&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;文章排序等级&lt;br /&gt;
+weight = 999&lt;/li&gt;
+&lt;li&gt;series = [ &amp;ldquo;hugo content config&amp;rdquo; ]&lt;/li&gt;
+&lt;li&gt;分类&lt;br /&gt;
+categories = [&amp;ldquo;VIM&amp;rdquo;]&lt;/li&gt;
+&lt;li&gt;标签
+tags = [ &amp;ldquo;Markdown&amp;rdquo;, &amp;ldquo;编程语言&amp;rdquo;, &amp;ldquo;Hugo&amp;rdquo;, &amp;ldquo;command&amp;rdquo; , &amp;ldquo;标记语言&amp;rdquo;]&lt;/li&gt;
+&lt;li&gt;不显示写文章时间&lt;br /&gt;
+nodate = true&lt;/li&gt;
+&lt;li&gt;url里的name&lt;br /&gt;
+slug = &amp;ldquo;menu&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;隐藏上下页&lt;br /&gt;
+nopaging = true&lt;/li&gt;
+&lt;li&gt;隐藏读取时间&lt;br /&gt;
+noread = true&lt;/li&gt;
+&lt;li&gt;显示作者&lt;br /&gt;
+author = &amp;ldquo;崔程凯&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;隐藏作者&lt;br /&gt;
+noauthor = true&lt;/li&gt;
+&lt;li&gt;topics = [ &amp;ldquo;Development&amp;rdquo;, &amp;ldquo;Go&amp;rdquo; ]&lt;/li&gt;
+&lt;li&gt;description = &amp;ldquo;description.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo基本操作命令</title>
@@ -284,7 +392,7 @@ you&#39;ve got to put paragraph tags in your blockquotes:&amp;lt;/p&amp;gt;
     </item>
     
     <item>
-      <title>Twisted学习笔记</title>
+      <title>Twisted基础</title>
       <link>http://cuick.github.io/twisted/twisted_basic/</link>
       <pubDate>Sat, 27 Feb 2016 22:17:23 +0800</pubDate>
       
@@ -395,11 +503,24 @@ reactor.run()&lt;/p&gt;&lt;/li&gt;
 
 &lt;h3 id=&#34;deferred-以让程序员在使用回调时更简便:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Deferred-以让程序员在使用回调时更简便&lt;/h3&gt;
 
+&lt;ul&gt;
+&lt;li&gt;
+
 &lt;ol&gt;
 &lt;li&gt;我们不能忽视errback，在任何异步编程的API中都需要它。Deferred支持errbacks。&lt;/li&gt;
 &lt;li&gt;激活回调多次可能会导致很严重的问题。Deferred只能被激活一次，这就类似于同步编程中的try/except的处理方法。&lt;/li&gt;
 &lt;li&gt;含有回调的程序在重构时相当困难。有了deferred，我们就通过修改回调链来重构程序。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;一个deferred有一个callback/errback对链，它们以添加到deferred中的顺序依次排列&lt;/li&gt;
+&lt;li&gt;stage 0，即第一对errback/callbac，会在deferred激活时调用，具体调用那个看激活deferred的方式，若是通过.errback激活，则调用errback；同样若是通过.callback激活则调用callback。（这里的errback/callback实际是指通过addBoth添加的函数）&lt;/li&gt;
+&lt;li&gt;如果stage N执行出现异常，则stage N+1的errback被调用，并且其参数即为stage N出现的异常&lt;/li&gt;
+&lt;li&gt;同样，如果stage N成功，即没有抛出异常，则N+1的callback被调用，其第一个参数为stage N的返回值。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;服务器用ServerFactory而不是ClientFactory, 这是因为服务器是要被动地监听连接状态而不是像客户端一样去主动的创建。使用listenTCP方法.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -413,6 +534,10 @@ reactor.run()&lt;/p&gt;&lt;/li&gt;
 
 &lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
 
+&lt;blockquote&gt;
+&lt;p&gt;好机记性如烂笔头，随手记下的知识点&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;ol&gt;
 &lt;li&gt;Markdown&lt;/li&gt;
 &lt;li&gt;llvm&lt;/li&gt;
@@ -420,22 +545,12 @@ reactor.run()&lt;/p&gt;&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;optparse 处理命令行参数&lt;/li&gt;
+&lt;li&gt;Eve框架&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;图标字体
 &lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;restful&lt;/li&gt;
 &lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>MENU</title>
-      <link>http://cuick.github.io/menu/</link>
-      <pubDate>Thu, 01 Jan 1970 00:00:01 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/menu/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;点击上面的标签，打开相关文章列表&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

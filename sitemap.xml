@@ -3,8 +3,18 @@
   
   <url>
     <loc>http://cuick.github.io/</loc>
-    <lastmod>2016-03-03T17:26:29+08:00</lastmod>
+    <lastmod>2016-03-15T22:06:53+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/django/101/</loc>
+    <lastmod>2016-03-15T22:06:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/hugo/hugo_content_config/</loc>
+    <lastmod>2016-03-03T17:26:29+08:00</lastmod>
   </url>
   
   <url>
@@ -25,11 +35,6 @@
   <url>
     <loc>http://cuick.github.io/notes/notes_stu/</loc>
     <lastmod>2016-02-26T14:39:49+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cuick.github.io/menu/</loc>
-    <lastmod>1970-01-01T00:00:01+08:00</lastmod>
   </url>
   
 </urlset>
