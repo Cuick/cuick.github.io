@@ -1,1 +1,1 @@
-# cuick.github.io
+# [myblog](cuick.github.io)
