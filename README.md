@@ -1,1 +1,1 @@
-# [myblog](cuick.github.io)
+# [myblog](index.html)
