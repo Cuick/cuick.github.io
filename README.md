@@ -1,1 +1,1 @@
-# https://cuick.github.io
+# cuick.github.io
