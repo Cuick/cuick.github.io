@@ -76,11 +76,17 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
         
       </ul>
     </nav>
@@ -89,7 +95,15 @@
     <div class="social-buttons">
       
         
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
         <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
         
       
       
@@ -125,6 +139,7 @@
 <li><a href="#failure:e4b8a5905536b2b2540aab2195e920f5">Failure</a></li>
 <li><a href="#关于回调:e4b8a5905536b2b2540aab2195e920f5">关于回调</a></li>
 <li><a href="#deferred-以让程序员在使用回调时更简便:e4b8a5905536b2b2540aab2195e920f5">Deferred-以让程序员在使用回调时更简便</a></li>
+<li><a href="#deferred进阶:e4b8a5905536b2b2540aab2195e920f5">Deferred进阶</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -288,6 +303,14 @@ reactor.run()</p></li>
 <li><p>服务器用ServerFactory而不是ClientFactory, 这是因为服务器是要被动地监听连接状态而不是像客户端一样去主动的创建。使用listenTCP方法.</p></li>
 </ul>
 
+<h3 id="deferred进阶:e4b8a5905536b2b2540aab2195e920f5">Deferred进阶</h3>
+
+<ul>
+<li>一个deferred的回调链中的一个回函数可以再返回了一个 deferred</li>
+<li>当内层deferrd被激活时，外层的deferred恢复其回调链的执行。当内层deferred回调执行成功，那么外层deferred会调用第N+1个callback回调。相反，如果内层deferred执行失败，那么外层deferred会调用第N+1个errback回调
+<img src="/twisted/deferred-111.png" alt="deferred" title="xxx" /></li>
+</ul>
+
 	
 			
 
@@ -299,7 +322,7 @@ reactor.run()</p></li>
 	                
 	                <a class="post-tag post-tag-python" href="http://cuick.github.io/tags/python">Python</a>,
 	                
-	                <a class="post-tag post-tag-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80" href="http://cuick.github.io/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a>,
+	                <a class="post-tag post-tag-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B" href="http://cuick.github.io/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B">异步编程</a>,
 	                
 				</div>
 			
@@ -346,7 +369,7 @@ reactor.run()</p></li>
 	<div class="pure-menu pure-menu-horizontal pure-menu-open">
 		<ul class="footer-menu">
 		
-			<li><a href="/notes">notes</a></li>
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
 		
 		</ul>
 	</div>

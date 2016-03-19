@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    异步编程 // K&#39;s blog!
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.16-DEV" />
+
+  <meta property="og:title" content="异步编程" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://cuick.github.io/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://cuick.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="http://cuick.github.io/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/index.xml" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+	
+
+    <h1 class="brand-title">崔程凯</h1>
+    <h2 class="brand-tagline">Do not cut down the tree that gives you shade.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
+        <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+      <a name="top"></a>
+      
+
+      <div class="posts">
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/twisted/twisted_basic/">Twisted基础</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>27</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Feb</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-twisted" href="http://cuick.github.io/categories/twisted">Twisted</a>
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">Python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<h1 id="网络编程:e4b8a5905536b2b2540aab2195e920f5">网络编程</h1>
+
+<ul>
+<li>socket</li>
+<li>select</li>
+<li>poll</li>
+<li>epoll</li>
+<li>greenlet</li>
+<li>gevent</li>
+<li>gevent是基于协程的高性能Python网络库，相比Twisted、Stackless等，gevent使用libev事件循环，因此速度很快、性能很好，使用greenlet提供高层的同步API，因此非常轻量。</li>
+<li><a href="http://www.elias.cn/Python/PyConcurrency">http://www.elias.cn/Python/PyConcurrency</a></li>
+<li><a href="http://blog.csdn.net/yueguanghaidao/">http://blog.csdn.net/yueguanghaidao/</a></li>
+</ul>
+
+<h1 id="twisted:e4b8a5905536b2b2540aab2195e920f5">Twisted</h1>
+
+<h3 id="twisted特点:e4b8a5905536b2b2540aab2195e920f5">twisted特点：</h3>
+
+<ol>
+<li>在一个回调函数执行过程中，实际上Twisted的循环是被有效地阻塞在我们的代码上的。因此，因此我们应该确保回调函数不要浪费时间（尽快返回）。</li>
+<li>很多标准的Python方法没有办法转换为非阻塞方式。例如，os.system中的很多方法会在子进程完成前一直处于阻塞状态。这也就是它工作的方式。所以当你使用Twisted时，避开使用os.system。</li>
+<li>我们为Twisted程序写的API必须是异步的</li>
+<li>不能将同步与异步代码混合起来使用</li>
+<li>我们可以在自己的代码中写回调函数，正如Twisted做的那样</li>
+<li>并且，我们需要写处理错误信息的回调函数</li>
+</ol>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/twisted/twisted_basic/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+      </div>
+
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2016. All rights reserved.</p>
+</div>
+    </div>
+  </div>
+  
+</body>
+</html>

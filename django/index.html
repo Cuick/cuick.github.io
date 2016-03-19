@@ -74,11 +74,17 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
         
       </ul>
     </nav>
@@ -87,7 +93,15 @@
     <div class="social-buttons">
       
         
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
         <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
         
       
       
@@ -133,7 +147,34 @@
       				
             </p>
             <article class="post-summary">
-            	安装 同其他python模块的安装 sudo pip install Django==1.9.4 基本命令 1.新建一个 django projec: django-admin.py startproject project-name mysite ├── manage.py └── mysite ├── __init__.py ├── settings.py ├── urls.py └── wsgi.py 新建了一个 mysite 目录，其中还有一个 mysite 目录 一些项目的设置 settings.py 文件， 总的urls配置文件 urls.py 部署服务器时用到的 wsgi.py 文件， init.py 是python包的目录结构必须的，与调用有关。 2.新建 app: python manage.py startapp app-name django-admin.py startapp app-name app-name/ ├── __init__.py ├── admin.py ├── models.py ├── tests.py └── views.py 把我们新定义的app加到settings.py中的INSTALL_APPS中 修改 mysite/mysite/settings.py INSTALLED_APPS = ( 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
+            	<h2 id="安装:e4b8a5905536b2b2540aab2195e920f5">安装</h2>
+
+<p>同其他python模块的安装</p>
+
+<pre><code>sudo pip install Django==1.9.4
+</code></pre>
+
+<h2 id="基本命令:e4b8a5905536b2b2540aab2195e920f5">基本命令</h2>
+
+<h4 id="1-新建一个-django-projec:e4b8a5905536b2b2540aab2195e920f5">1.新建一个 django projec:</h4>
+
+<pre><code>django-admin.py startproject project-name
+
+mysite
+├── manage.py
+└── mysite
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+</code></pre>
+
+<p>新建了一个 mysite 目录，其中还有一个 mysite 目录<br />
+一些项目的设置 settings.py 文件，<br />
+总的urls配置文件 urls.py<br />
+部署服务器时用到的 wsgi.py 文件，<br />
+<strong>init</strong>.py 是python包的目录结构必须的，与调用有关。</p>
+
             </article>
 			<div class="read-more-link">
 				<a href="/django/101/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -147,7 +188,7 @@
 	<div class="pure-menu pure-menu-horizontal pure-menu-open">
 		<ul class="footer-menu">
 		
-			<li><a href="/notes">notes</a></li>
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
 		
 		</ul>
 	</div>

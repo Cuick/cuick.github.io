@@ -139,6 +139,14 @@ reactor.run()&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;服务器用ServerFactory而不是ClientFactory, 这是因为服务器是要被动地监听连接状态而不是像客户端一样去主动的创建。使用listenTCP方法.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&#34;deferred进阶:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Deferred进阶&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一个deferred的回调链中的一个回函数可以再返回了一个 deferred&lt;/li&gt;
+&lt;li&gt;当内层deferrd被激活时，外层的deferred恢复其回调链的执行。当内层deferred回调执行成功，那么外层deferred会调用第N+1个callback回调。相反，如果内层deferred执行失败，那么外层deferred会调用第N+1个errback回调
+&lt;img src=&#34;http://cuick.github.io/twisted/deferred-111.png&#34; alt=&#34;deferred&#34; title=&#34;xxx&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

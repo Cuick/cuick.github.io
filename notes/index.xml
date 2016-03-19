@@ -6,8 +6,17 @@
     <description>Recent content in Notes on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Feb 2016 14:39:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Mar 2016 18:10:03 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>16年3月面试</title>
+      <link>http://cuick.github.io/notes/102/</link>
+      <pubDate>Fri, 18 Mar 2016 18:10:03 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/notes/102/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>notes</title>
@@ -20,7 +29,7 @@
 &lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;好机记性如烂笔头，随手记下的知识点&lt;/p&gt;
+&lt;p&gt;好机记性如烂笔头，随手记下学习的知识点,有必要的将来整理成博客。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;ol&gt;
@@ -31,11 +40,28 @@
 &lt;ul&gt;
 &lt;li&gt;optparse 处理命令行参数&lt;/li&gt;
 &lt;li&gt;Eve框架&lt;/li&gt;
+&lt;li&gt;getattr(),setattr(),delattr(),hasattr()&lt;/li&gt;
+&lt;li&gt;zope plone&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ajalt/fuckitpy&#34;&gt;https://github.com/ajalt/fuckitpy&lt;/a&gt; fuckitpy&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;图标字体
 &lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;restful&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h3 id=&#34;计划:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;计划&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;看完twisted&lt;/li&gt;
+&lt;li&gt;系统的学一下python基础&lt;/li&gt;
+&lt;li&gt;python库好好整理一下&lt;/li&gt;
+&lt;li&gt;学习django&lt;/li&gt;
+&lt;li&gt;单元测试&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;js&lt;/li&gt;
+&lt;li&gt;go erlang &amp;hellip;&lt;/li&gt;
+&lt;li&gt;设计模式&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    Gil // K&#39;s blog!
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.16-DEV" />
+
+  <meta property="og:title" content="Gil" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://cuick.github.io/tags/gil/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://cuick.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="http://cuick.github.io/tags/gil/index.xml" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+	
+
+    <h1 class="brand-title">崔程凯</h1>
+    <h2 class="brand-tagline">Do not cut down the tree that gives you shade.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
+        <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+      <a name="top"></a>
+      
+
+      <div class="posts">
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/python/102/">线程安全与GIL</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>19</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<h2 id="引入:b66e25cf931c5c75968256c4152b6090">引入</h2>
+
+<p>多核时代到来。为了更好利用多核，就要讲到进程与线程，区别在于是否共享资源，前者是独立的后这是共享的。<br />
+多线程环境最大的问题就是资源的竞争 死锁 数据修改。
+于是就有了线程安全的问题。</p>
+
+<h2 id="线程安全:b66e25cf931c5c75968256c4152b6090">线程安全</h2>
+
+<p>在多线程的环境下, 线程安全能够保证多个线程同时执行时程序依旧运行正确, 而且要保证对于共享的数据,可以由多个线程存取,但是同一时刻只能有一个线程进行存取.</p>
+
+<p>加锁可以保证存取操作的唯一性, 从而保证同一时刻只有一个线程对共享数据存取.</p>
+
+<p>通常加锁也有2种不同的粒度的锁:</p>
+
+<ul>
+<li>fine-grained(所谓的细粒度), 那么程序员需要自行地加,解锁来保证线程安全</li>
+<li>coarse-grained(所谓的粗粒度), 那么语言层面本身维护着一个全局的锁机制,用来保证线程安全</li>
+</ul>
+
+<p>前一种方式比较典型的是 java, Jython 等, 后一种方式比较典型的是 CPython (即Python).</p>
+
+<p>Python中的全局锁机制,便是 GIL (Global Interpreter Lock)</p>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/python/102/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+      </div>
+
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2016. All rights reserved.</p>
+</div>
+    </div>
+  </div>
+  
+</body>
+</html>
