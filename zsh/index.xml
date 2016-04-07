@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zshes on K&#39;s blog!</title>
+    <link>http://cuick.github.io/zsh/</link>
+    <description>Recent content in Zshes on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Apr 2016 23:03:29 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/zsh/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>my zshrc</title>
+      <link>http://cuick.github.io/zsh/101/</link>
+      <pubDate>Wed, 06 Apr 2016 23:03:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/zsh/101/</guid>
+      <description>&lt;p&gt;我的zsh配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export ZSH=$HOME/.oh-my-zsh
+export PATH=&amp;quot;/usr/local/bin/pypy-5.0.1-linux_x86_64-portable/bin&amp;quot;:$PATH
+ZSH_THEME=&amp;quot;af-magic&amp;quot;
+export PATH=$HOME/bin:/usr/local/mysql/bin:$PATH
+source $ZSH/oh-my-zsh.sh
+
+setopt extended_glob
+ TOKENS_FOLLOWED_BY_COMMANDS=(&#39;|&#39; &#39;||&#39; &#39;;&#39; &#39;&amp;amp;&#39; &#39;&amp;amp;&amp;amp;&#39; &#39;sudo&#39; &#39;do&#39; &#39;time&#39; &#39;strace&#39;)
+
+ recolor-cmd() {
+     region_highlight=()
+     colorize=true
+     start_pos=0
+     for arg in ${(z)BUFFER}; do
+         ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
+         ((end_pos=$start_pos+${#arg}))
+         if $colorize; then
+             colorize=false
+             res=$(LC_ALL=C builtin type $arg 2&amp;gt;/dev/null)
+             case $res in
+                 *&#39;reserved word&#39;*)   style=&amp;quot;fg=magenta,bold&amp;quot;;;
+                 *&#39;alias for&#39;*)       style=&amp;quot;fg=cyan,bold&amp;quot;;;
+                 *&#39;shell builtin&#39;*)   style=&amp;quot;fg=yellow,bold&amp;quot;;;
+                 *&#39;shell function&#39;*)  style=&#39;fg=green,bold&#39;;;
+                 *&amp;quot;$arg is&amp;quot;*)
+                     [[ $arg = &#39;sudo&#39; ]] &amp;amp;&amp;amp; style=&amp;quot;fg=red,bold&amp;quot; || style=&amp;quot;fg=blue,bold&amp;quot;;;
+                 *)                   style=&#39;none,bold&#39;;;
+             esac
+             region_highlight+=(&amp;quot;$start_pos $end_pos $style&amp;quot;)
+         fi
+         [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = &#39;yes&#39; ]] &amp;amp;&amp;amp; colorize=true
+         start_pos=$end_pos
+     done
+ }
+check-cmd-self-insert() { zle .self-insert &amp;amp;&amp;amp; recolor-cmd }
+ check-cmd-backward-delete-char() { zle .backward-delete-char &amp;amp;&amp;amp; recolor-cmd }
+
+ zle -N self-insert check-cmd-self-insert
+ zle -N backward-delete-char check-cmd-backward-delete-char
+
+function rtn
+{
+    cd ~/work/transfer/TTransfer/frameworks/runtime-src/proj.ios_mac
+    xcodebuild -project &amp;quot;TTransfer.xcodeproj&amp;quot; -configuration Debug -target &amp;quot;TTransfer Mac&amp;quot;
+    open ~/work/transfer/TTransfer/runtime/mac/TTransfer Mac.app/Contents/MacOS/TTransfer\ Mac
+    cd -
+}
+
+alias gp=&#39;git pull origin master:master&#39;
+alias gm=&#39;git merge origin master&#39;
+hash -d tv=~/work/traversing
+export LC_ALL=en_US.utf-8
+export LANG=&amp;quot;$LC_ALL&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

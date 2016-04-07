@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on K&#39;s blog!</title>
+    <link>http://cuick.github.io/tags/vim/</link>
+    <description>Recent content in Vim on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Apr 2016 23:03:29 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>my vimrc</title>
+      <link>http://cuick.github.io/vim/102/</link>
+      <pubDate>Wed, 06 Apr 2016 23:03:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/vim/102/</guid>
+      <description>&lt;p&gt;我的vim配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if !exists(&amp;quot;:DiffOrig&amp;quot;)
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+
+syntax on
+
+set t_Co=256
+set mouse=a
+
+set expandtab
+set sw=4
+set tabstop=4
+set softtabstop=4
+
+set nocompatible
+set rtp+=~/.vim/bundle/Vundle.vim
+
+set helplang=cn
+set nu
+set cindent
+set smartindent
+set showmatch
+set ignorecase smartcase
+set nowrapscan
+set incsearch
+set hlsearch
+set magic
+set sm
+set backspace=indent,eol,start
+set cmdheight=1
+
+set laststatus=2
+set autoread
+set list lcs=tab:&amp;gt;-,trail:-
+
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set fileformats=unix
+set encoding=utf-8
+
+call vundle#begin()
+Plugin &#39;gmarik/Vundle.vim&#39;
+Plugin &#39;kien/ctrlp.vim&#39;
+Plugin &#39;scrooloose/nerdtree&#39;
+Plugin &#39;airblade/vim-gitgutter&#39;
+Plugin &#39;Lokaltog/vim-easymotion&#39;
+Plugin &#39;altercation/vim-colors-solarized&#39;
+Plugin &#39;Valloric/YouCompleteMe&#39;
+Plugin &#39;Shougo/vimshell.vim&#39;
+Plugin &#39;scrooloose/syntastic&#39;
+Plugin &#39;Shougo/vimproc.vim&#39;
+Plugin &#39;vim-scripts/indentLine.vim&#39;
+Plugin &#39;terryma/vim-multiple-cursors&#39;
+Plugin &#39;tpope/vim-fugitive&#39;
+Plugin &#39;tpope/vim-git&#39;
+Plugin &#39;mileszs/ack.vim&#39;
+Plugin &#39;mattn/emmet-vim&#39;
+Plugin &#39;tpope/vim-surround&#39;
+Plugin &#39;sjl/badwolf&#39;
+Plugin &#39;gregsexton/gitv&#39;
+Plugin &#39;plasticboy/vim-markdown&#39;
+Plugin &#39;cespare/vim-toml&#39;
+call vundle#end()
+filetype plugin indent on
+
+call pathogen#infect()
+call pathogen#helptags()
+
+let mapleader=&amp;quot; &amp;quot;
+nnoremap &amp;lt;leader&amp;gt;jd :YcmCompleter GoTo&amp;lt;CR&amp;gt;
+
+execute pathogen#infect()
+let g:syntastic_python_checkers=[&#39;flake8&#39;]
+let g:ycm_show_diagnostics_ui = 0
+let g:syntastic_error_symbol = &amp;quot;✗&amp;quot;
+let g:syntastic_style_error_symbol = &amp;quot;✗=&amp;quot;
+let g:syntastic_warning_symbol = &amp;quot;⚠&amp;quot;
+let g:syntastic_style_error_symbol = &amp;quot;⚠=&amp;quot;
+let g:syntastic_auto_jump = 0
+
+colorscheme badwolf
+
+map &amp;lt;silent&amp;gt; &amp;lt;leader&amp;gt;ss :source ~/.vimrc&amp;lt;cr&amp;gt;
+map &amp;lt;silent&amp;gt; &amp;lt;leader&amp;gt;ee :e ~/.vimrc&amp;lt;cr&amp;gt;
+
+map  / &amp;lt;Plug&amp;gt;(easymotion-sn)
+omap / &amp;lt;Plug&amp;gt;(easymotion-tn)
+nmap s &amp;lt;Plug&amp;gt;(easymotion-s)
+
+map &amp;lt;Leader&amp;gt;l &amp;lt;Plug&amp;gt;(easymotion-lineforward)
+map &amp;lt;Leader&amp;gt;j &amp;lt;Plug&amp;gt;(easymotion-j)
+map &amp;lt;Leader&amp;gt;k &amp;lt;Plug&amp;gt;(easymotion-k)
+map &amp;lt;Leader&amp;gt;h &amp;lt;Plug&amp;gt;(easymotion-linebackward)
+map &amp;lt;Leader&amp;gt;s :vimgrep &amp;lt;c-r&amp;gt;&amp;lt;c-w&amp;gt; **/*.py  &amp;lt;cr&amp;gt;
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+let g:ycm_global_ycm_extra_conf = &#39;~/.ycm_extra_conf.py&#39;
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+nmap &amp;lt;c-p&amp;gt;&amp;lt;c-p&amp;gt; :CtrlPQuickfix&amp;lt;cr&amp;gt;
+nmap &amp;lt;c-o&amp;gt;&amp;lt;c-p&amp;gt; :CtrlPMRU&amp;lt;cr&amp;gt;
+
+map &amp;lt;leader&amp;gt;i :NERDTreeToggle &amp;lt;cr&amp;gt;
+let NERDTreeIgnore=[&#39;.pyc$&#39;, &#39;\~$&#39;]
+let g:NERDTreeQuitOnOpen = 1
+let g:vim_markdown_folding_disabled = 1
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>vim-markdown插件</title>
+      <link>http://cuick.github.io/vim/101/</link>
+      <pubDate>Wed, 06 Apr 2016 17:40:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/vim/101/</guid>
+      <description>&lt;p&gt;插件目录结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  |-- syntax
+  |   |-- mkd.vim
+  |-- ftdetect
+  |   |-- mkd.vim 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将两个 mkd.vim 分别复制到 $VIM 下对应的 syntax 和 ftdetect 文件夹中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp ./syntax/mkd.vim ~/.vim/syntax/
+cp ./ftdetect/mkd.vim ~/.vim/ftdetect/ 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

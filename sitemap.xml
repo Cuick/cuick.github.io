@@ -3,17 +3,77 @@
   
   <url>
     <loc>http://cuick.github.io/</loc>
-    <lastmod>2016-03-19T21:15:49+08:00</lastmod>
+    <lastmod>2016-04-07T14:55:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuick.github.io/python/102/</loc>
+    <loc>http://cuick.github.io/python/107_copy/</loc>
+    <lastmod>2016-04-07T14:55:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/python/106_list_tuple_set/</loc>
+    <lastmod>2016-04-07T14:55:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/python/105_string/</loc>
+    <lastmod>2016-04-07T09:55:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/vim/102/</loc>
+    <lastmod>2016-04-06T23:03:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/zsh/101/</loc>
+    <lastmod>2016-04-06T23:03:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/python/104_time/</loc>
+    <lastmod>2016-04-06T20:48:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/linux/notes_stu/</loc>
+    <lastmod>2016-04-06T18:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/vim/101/</loc>
+    <lastmod>2016-04-06T17:40:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/redis/101/</loc>
+    <lastmod>2016-04-06T16:44:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/windows/101/</loc>
+    <lastmod>2016-04-06T16:44:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/twisted/102/</loc>
+    <lastmod>2016-03-20T22:03:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/python/103_dict/</loc>
+    <lastmod>2016-03-20T17:57:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/python/102_gil/</loc>
     <lastmod>2016-03-19T21:15:49+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://cuick.github.io/python/101/</loc>
+    <loc>http://cuick.github.io/python/101_bibao/</loc>
     <lastmod>2016-03-19T20:24:49+08:00</lastmod>
   </url>
   

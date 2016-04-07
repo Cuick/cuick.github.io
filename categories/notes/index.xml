@@ -34,24 +34,43 @@
 &lt;li&gt;getattr(),setattr(),delattr(),hasattr()&lt;/li&gt;
 &lt;li&gt;zope plone&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ajalt/fuckitpy&#34;&gt;https://github.com/ajalt/fuckitpy&lt;/a&gt; fuckitpy&lt;/li&gt;
+&lt;li&gt;enumerate&lt;/li&gt;
+&lt;li&gt;set list map tuple&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;图标字体
 &lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;restful&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://my.oschina.net/leejun2005/blog/145461&#34;&gt;http://my.oschina.net/leejun2005/blog/145461&lt;/a&gt; flask&lt;/li&gt;
+&lt;li&gt;深入理解 python 中的赋值、引用、拷贝、作用域
+&lt;a href=&#34;http://my.oschina.net/leejun2005/blog/145911&#34;&gt;http://my.oschina.net/leejun2005/blog/145911&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;嵌入式等各种博客
+&lt;a href=&#34;http://blog.csdn.net/caimouse/&#34;&gt;http://blog.csdn.net/caimouse/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;计划:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;计划&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;看完twisted&lt;/li&gt;
-&lt;li&gt;系统的学一下python基础&lt;/li&gt;
-&lt;li&gt;python库好好整理一下&lt;/li&gt;
-&lt;li&gt;学习django&lt;/li&gt;
-&lt;li&gt;单元测试&lt;/li&gt;
-&lt;li&gt;&amp;hellip;&lt;/li&gt;
-&lt;li&gt;js&lt;/li&gt;
-&lt;li&gt;go erlang &amp;hellip;&lt;/li&gt;
-&lt;li&gt;设计模式&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;系统的学一下python基础&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;python库好好整理一下&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;redis&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;学习django&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;单元测试&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;hellip;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;js c/c++ linux&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;嵌入式。电气工程。。。。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;go erlang &amp;hellip;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;设计模式&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

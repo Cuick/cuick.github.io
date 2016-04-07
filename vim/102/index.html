@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    my vimrc // K&#39;s blog!
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.16-DEV" />
+
+  <meta property="og:title" content="my vimrc" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://cuick.github.io/vim/102/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://cuick.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+	
+
+    <h1 class="brand-title">崔程凯</h1>
+    <h2 class="brand-tagline">Do not cut down the tree that gives you shade.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/linux">linux</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/redis">redis</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/vim">vim</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/windows">windows</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
+        <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/vim/102/">my vimrc</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+            	</span>
+            	
+            
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-vim" href="http://cuick.github.io/categories/vim">vim</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            <p>我的vim配置文件</p>
+
+<pre><code>if !exists(&quot;:DiffOrig&quot;)
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+
+syntax on
+
+set t_Co=256
+set mouse=a
+
+set expandtab
+set sw=4
+set tabstop=4
+set softtabstop=4
+
+set nocompatible
+set rtp+=~/.vim/bundle/Vundle.vim
+
+set helplang=cn
+set nu
+set cindent
+set smartindent
+set showmatch
+set ignorecase smartcase
+set nowrapscan
+set incsearch
+set hlsearch
+set magic
+set sm
+set backspace=indent,eol,start
+set cmdheight=1
+
+set laststatus=2
+set autoread
+set list lcs=tab:&gt;-,trail:-
+
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set fileformats=unix
+set encoding=utf-8
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'vim-scripts/indentLine.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'mileszs/ack.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'sjl/badwolf'
+Plugin 'gregsexton/gitv'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'cespare/vim-toml'
+call vundle#end()
+filetype plugin indent on
+
+call pathogen#infect()
+call pathogen#helptags()
+
+let mapleader=&quot; &quot;
+nnoremap &lt;leader&gt;jd :YcmCompleter GoTo&lt;CR&gt;
+
+execute pathogen#infect()
+let g:syntastic_python_checkers=['flake8']
+let g:ycm_show_diagnostics_ui = 0
+let g:syntastic_error_symbol = &quot;✗&quot;
+let g:syntastic_style_error_symbol = &quot;✗=&quot;
+let g:syntastic_warning_symbol = &quot;⚠&quot;
+let g:syntastic_style_error_symbol = &quot;⚠=&quot;
+let g:syntastic_auto_jump = 0
+
+colorscheme badwolf
+
+map &lt;silent&gt; &lt;leader&gt;ss :source ~/.vimrc&lt;cr&gt;
+map &lt;silent&gt; &lt;leader&gt;ee :e ~/.vimrc&lt;cr&gt;
+
+map  / &lt;Plug&gt;(easymotion-sn)
+omap / &lt;Plug&gt;(easymotion-tn)
+nmap s &lt;Plug&gt;(easymotion-s)
+
+map &lt;Leader&gt;l &lt;Plug&gt;(easymotion-lineforward)
+map &lt;Leader&gt;j &lt;Plug&gt;(easymotion-j)
+map &lt;Leader&gt;k &lt;Plug&gt;(easymotion-k)
+map &lt;Leader&gt;h &lt;Plug&gt;(easymotion-linebackward)
+map &lt;Leader&gt;s :vimgrep &lt;c-r&gt;&lt;c-w&gt; **/*.py  &lt;cr&gt;
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+nmap &lt;c-p&gt;&lt;c-p&gt; :CtrlPQuickfix&lt;cr&gt;
+nmap &lt;c-o&gt;&lt;c-p&gt; :CtrlPMRU&lt;cr&gt;
+
+map &lt;leader&gt;i :NERDTreeToggle &lt;cr&gt;
+let NERDTreeIgnore=['.pyc$', '\~$']
+let g:NERDTreeQuitOnOpen = 1
+let g:vim_markdown_folding_disabled = 1
+</code></pre>
+
+	
+			
+
+			
+				<div class="tags-list">
+					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
+					
+	                <a class="post-tag post-tag-vim" href="http://cuick.github.io/tags/vim">vim</a>,
+	                
+				</div>
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/python/105_string/">python基础-字符串和编码</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/zsh/101/">my zshrc</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kooooook';
+    var disqus_identifier = 'http:\/\/cuick.github.io\/vim\/102\/';
+    var disqus_title = 'my vimrc';
+    var disqus_url = 'http:\/\/cuick.github.io\/vim\/102\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2016. All rights reserved.</p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

@@ -80,9 +80,19 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/linux">linux</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/redis">redis</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/vim">vim</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/windows">windows</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
         
@@ -122,7 +132,296 @@
             <header class="post-header">
             
             <h1 class="post-title">
-              <a href="/python/102/">线程安全与GIL</a>
+              <a href="/python/107_copy/">python-赋值、引用、拷贝、作用域</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>7</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>2 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<h2 id="赋值-引用-浅复制-深复制:8d37479f728103ff01e750a3599e3a2e">赋值 引用 浅复制 深复制</h2>
+
+<ul>
+<li><p>python 中赋值语句总是建立对象的引用值，而不是复制对象。因此，python 变量更像是指针，而不是数据存储区域</p>
+
+<pre><code>&gt;&gt;&gt; values = [0, 1, 2]
+&gt;&gt;&gt; values[1] = values
+&gt;&gt;&gt; values
+[0, [...], 2]
+</code></pre>
+
+<p>并非我预想de:</p>
+
+<pre><code>[0, [0, 1, 2], 2]
+</code></pre></li>
+</ul>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/python/107_copy/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/python/106_list_tuple_set/">python基础-list tuple set</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>7</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<h2 id="list-列表:9fbbb2834f2223c20142fe491c70f5c4">list 列表</h2>
+
+<h2 id="tuple-元组:9fbbb2834f2223c20142fe491c70f5c4">tuple 元组</h2>
+
+<ol>
+<li>要定义一个只有1个元素的tuple，如果你这么定义<code>a = (1)</code>,
+定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
+只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,<code>a=(1,)</code></li>
+<li>tuple所谓的“不变”是说，tuple的每个元素，指向永远不变</li>
+</ol>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/python/106_list_tuple_set/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/python/105_string/">python基础-字符串和编码</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>7</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<h2 id="字符串:a23880f8b35e46659c516e699a542eed">字符串</h2>
+
+<ol>
+<li>字符串是以单引号<code>'</code>或双引号<code>&quot;</code>括起来的任意文本，比如<code>'abc'</code>，<code>&quot;xyz&quot;</code></li>
+
+<li><p>如果字符串内部既包含<code>'</code>又包含<code>&quot;</code>怎么办？可以用转义字符\来标识</p>
+
+<pre><code>'I\'m \&quot;OK\&quot;!'
+</code></pre>
+
+<p>表示的内容：</p>
+
+<pre><code>I'm &quot;OK&quot;!
+</code></pre></li>
+</ol>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/python/105_string/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/python/104_time/">time计算日周月时间戳</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<p>计算自然周第一天、自然月第一天和每天的凌晨时间戳</p>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/python/104_time/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/twisted/102/">Twisted-测试</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>20</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-twisted" href="http://cuick.github.io/categories/twisted">Twisted</a>
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">Python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	测试
+            </article>
+			<div class="read-more-link">
+				<a href="/twisted/102/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/python/103_dict/">python基础-字典删除元素</a>
+            </h1>
+            </header>
+            <p class="post-meta">
+            	
+		          <span class="post-date">
+		            <span class="post-date-day"><sup>20</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+		          </span>
+      				
+      				
+      					
+      				
+              
+                <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+              
+      				
+      					<div class="post-categories">
+				        
+      					
+					        <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+      					
+      					</div>
+      				
+            </p>
+            <article class="post-summary">
+            	<h1 id="python-字典删除元素clear-pop-popitem:038858a3f82cf4ccbb0e60712917b653">Python 字典删除元素clear、pop、popitem</h1>
+
+<h3 id="clear:038858a3f82cf4ccbb0e60712917b653">clear()</h3>
+
+<p>clear()方法是用来清除字典中的所有数据，因为是原地操作，所以返回None（也可以理解为没有返回值）</p>
+
+<pre><code>&gt;&gt;&gt; x['name'] = 'lili'
+&gt;&gt;&gt; x['age'] = 20
+&gt;&gt;&gt; x
+{'age': 20, 'name': 'lili'}
+&gt;&gt;&gt; returned_value = x.clear()
+&gt;&gt;&gt; x
+{ }
+&gt;&gt;&gt; print returned_value
+None
+
+字典的clear()方法有什么特点：
+&gt;&gt;&gt; f = {'key':'value'}
+&gt;&gt;&gt; a = f
+&gt;&gt;&gt; a
+{'key': 'value'}
+&gt;&gt;&gt; f.clear()
+&gt;&gt;&gt; f
+{}
+&gt;&gt;&gt; a
+{}
+</code></pre>
+
+<p>当原字典被引用时，想清空原字典中的元素，用clear()方法，a字典中的元素也同时被清除了。</p>
+
+            </article>
+			<div class="read-more-link">
+				<a href="/python/103_dict/"><span class="read-more-slashes">//</span>Read More...</a>
+			</div>
+          </section>
+        
+          <section  class="post">
+            <header class="post-header">
+            
+            <h1 class="post-title">
+              <a href="/python/102_gil/">线程安全与GIL</a>
             </h1>
             </header>
             <p class="post-meta">
@@ -147,13 +446,13 @@
       				
             </p>
             <article class="post-summary">
-            	<h2 id="引入:b66e25cf931c5c75968256c4152b6090">引入</h2>
+            	<h2 id="引入:46f6c6eb85e710b6752b8fcd11e3d818">引入</h2>
 
 <p>多核时代到来。为了更好利用多核，就要讲到进程与线程，区别在于是否共享资源，前者是独立的后这是共享的。<br />
 多线程环境最大的问题就是资源的竞争 死锁 数据修改。
 于是就有了线程安全的问题。</p>
 
-<h2 id="线程安全:b66e25cf931c5c75968256c4152b6090">线程安全</h2>
+<h2 id="线程安全:46f6c6eb85e710b6752b8fcd11e3d818">线程安全</h2>
 
 <p>在多线程的环境下, 线程安全能够保证多个线程同时执行时程序依旧运行正确, 而且要保证对于共享的数据,可以由多个线程存取,但是同一时刻只能有一个线程进行存取.</p>
 
@@ -172,7 +471,7 @@
 
             </article>
 			<div class="read-more-link">
-				<a href="/python/102/"><span class="read-more-slashes">//</span>Read More...</a>
+				<a href="/python/102_gil/"><span class="read-more-slashes">//</span>Read More...</a>
 			</div>
           </section>
         
@@ -180,7 +479,7 @@
             <header class="post-header">
             
             <h1 class="post-title">
-              <a href="/python/101/">闭包</a>
+              <a href="/python/101_bibao/">闭包</a>
             </h1>
             </header>
             <p class="post-meta">
@@ -221,7 +520,7 @@ print q(10)
 
             </article>
 			<div class="read-more-link">
-				<a href="/python/101/"><span class="read-more-slashes">//</span>Read More...</a>
+				<a href="/python/101_bibao/"><span class="read-more-slashes">//</span>Read More...</a>
 			</div>
           </section>
         

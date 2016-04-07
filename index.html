@@ -80,9 +80,19 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/linux">linux</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
         
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/redis">redis</a></li>
+        
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/vim">vim</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/windows">windows</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
         
@@ -123,7 +133,533 @@
                 <header class="post-header">
                     
                     <h1 class="post-title">
-                      <a href="/python/102/">线程安全与GIL</a>
+                      <a href="/python/107_copy/">python-赋值、引用、拷贝、作用域</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>7</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>2 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h2 id="赋值-引用-浅复制-深复制:8d37479f728103ff01e750a3599e3a2e">赋值 引用 浅复制 深复制</h2>
+
+<ul>
+<li><p>python 中赋值语句总是建立对象的引用值，而不是复制对象。因此，python 变量更像是指针，而不是数据存储区域</p>
+
+<pre><code>&gt;&gt;&gt; values = [0, 1, 2]
+&gt;&gt;&gt; values[1] = values
+&gt;&gt;&gt; values
+[0, [...], 2]
+</code></pre>
+
+<p>并非我预想de:</p>
+
+<pre><code>[0, [0, 1, 2], 2]
+</code></pre></li>
+</ul>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/107_copy/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/106_list_tuple_set/">python基础-list tuple set</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>7</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h2 id="list-列表:9fbbb2834f2223c20142fe491c70f5c4">list 列表</h2>
+
+<h2 id="tuple-元组:9fbbb2834f2223c20142fe491c70f5c4">tuple 元组</h2>
+
+<ol>
+<li>要定义一个只有1个元素的tuple，如果你这么定义<code>a = (1)</code>,
+定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
+只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,<code>a=(1,)</code></li>
+<li>tuple所谓的“不变”是说，tuple的每个元素，指向永远不变</li>
+</ol>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/106_list_tuple_set/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/105_string/">python基础-字符串和编码</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>7</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h2 id="字符串:a23880f8b35e46659c516e699a542eed">字符串</h2>
+
+<ol>
+<li>字符串是以单引号<code>'</code>或双引号<code>&quot;</code>括起来的任意文本，比如<code>'abc'</code>，<code>&quot;xyz&quot;</code></li>
+
+<li><p>如果字符串内部既包含<code>'</code>又包含<code>&quot;</code>怎么办？可以用转义字符\来标识</p>
+
+<pre><code>'I\'m \&quot;OK\&quot;!'
+</code></pre>
+
+<p>表示的内容：</p>
+
+<pre><code>I'm &quot;OK&quot;!
+</code></pre></li>
+</ol>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/105_string/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/vim/102/">my vimrc</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>2 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-vim" href="http://cuick.github.io/categories/vim">vim</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <p>我的vim配置文件</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/vim/102/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/zsh/101/">my zshrc</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-zsh" href="http://cuick.github.io/categories/zsh">zsh</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <p>我的zsh配置文件</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/zsh/101/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/104_time/">time计算日周月时间戳</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <p>计算自然周第一天、自然月第一天和每天的凌晨时间戳</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/104_time/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/linux/notes_stu/">xshell连linux后ctrl&#43;s卡死</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-linux" href="http://cuick.github.io/categories/linux">linux</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <p>在vim下ctrl+s整个xshell终端就死了，遇到好几次这种情况，网上查了下原来ctrl+s在LINUX里是锁定屏幕的快捷键，解锁ctrl+q就可以了</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/linux/notes_stu/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/vim/101/">vim-markdown插件</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-markdown" href="http://cuick.github.io/categories/markdown">markdown</a>
+                    
+                    <a class="post-category post-category-vim" href="http://cuick.github.io/categories/vim">vim</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <p>插件目录结构：</p>
+
+<pre><code>  |-- syntax
+  |   |-- mkd.vim
+  |-- ftdetect
+  |   |-- mkd.vim 
+</code></pre>
+
+<p>将两个 mkd.vim 分别复制到 $VIM 下对应的 syntax 和 ftdetect 文件夹中</p>
+
+<pre><code>cp ./syntax/mkd.vim ~/.vim/syntax/
+cp ./ftdetect/mkd.vim ~/.vim/ftdetect/ 
+</code></pre>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/vim/101/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/redis/101/">redis执行lua脚本</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-redis" href="http://cuick.github.io/categories/redis">redis</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h2 id="好处:e4b8a5905536b2b2540aab2195e920f5">好处</h2>
+
+<ol>
+<li>减少网络开销：本来5次网络请求的操作，可以用一个请求完成，原先5次请求的逻辑放在redis服务器上完成。使用脚本，减少了网络往返时延。</li>
+<li>原子操作：Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。</li>
+<li>复用：客户端发送的脚本会永久存储在Redis中，意味着其他客户端可以复用这一脚本而不需要使用代码完成同样的逻辑</li>
+</ol>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/redis/101/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/windows/101/">win10专业版激活失败，弹窗提示0xc004f074</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>6</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-windows" href="http://cuick.github.io/categories/windows">windows</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <p>用下面激活方式激活win10专业版报错，网上好多方式都不好使，最后终于找到了原因，，，</p>
+
+<pre><code>slmgr /ipk  W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms kms.xspace.in
+slmgr /ato
+</code></pre>
+
+<p>kms.xspace.in关闭了，换一个激活服务器就好了，110.noip.me，自己搜一个kms服务器也行。</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/windows/101/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/twisted/102/">Twisted-测试</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>20</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-twisted" href="http://cuick.github.io/categories/twisted">Twisted</a>
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">Python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  测试
+              </article>
+              <div class="read-more-link">
+                  <a href="/twisted/102/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/103_dict/">python基础-字典删除元素</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>20</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h1 id="python-字典删除元素clear-pop-popitem:038858a3f82cf4ccbb0e60712917b653">Python 字典删除元素clear、pop、popitem</h1>
+
+<h3 id="clear:038858a3f82cf4ccbb0e60712917b653">clear()</h3>
+
+<p>clear()方法是用来清除字典中的所有数据，因为是原地操作，所以返回None（也可以理解为没有返回值）</p>
+
+<pre><code>&gt;&gt;&gt; x['name'] = 'lili'
+&gt;&gt;&gt; x['age'] = 20
+&gt;&gt;&gt; x
+{'age': 20, 'name': 'lili'}
+&gt;&gt;&gt; returned_value = x.clear()
+&gt;&gt;&gt; x
+{ }
+&gt;&gt;&gt; print returned_value
+None
+
+字典的clear()方法有什么特点：
+&gt;&gt;&gt; f = {'key':'value'}
+&gt;&gt;&gt; a = f
+&gt;&gt;&gt; a
+{'key': 'value'}
+&gt;&gt;&gt; f.clear()
+&gt;&gt;&gt; f
+{}
+&gt;&gt;&gt; a
+{}
+</code></pre>
+
+<p>当原字典被引用时，想清空原字典中的元素，用clear()方法，a字典中的元素也同时被清除了。</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/103_dict/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/102_gil/">线程安全与GIL</a>
                   </h1>
               </header>
               <p class="post-meta">
@@ -147,13 +683,13 @@
                 
             </p>
             <article class="post-summary">
-                  <h2 id="引入:b66e25cf931c5c75968256c4152b6090">引入</h2>
+                  <h2 id="引入:46f6c6eb85e710b6752b8fcd11e3d818">引入</h2>
 
 <p>多核时代到来。为了更好利用多核，就要讲到进程与线程，区别在于是否共享资源，前者是独立的后这是共享的。<br />
 多线程环境最大的问题就是资源的竞争 死锁 数据修改。
 于是就有了线程安全的问题。</p>
 
-<h2 id="线程安全:b66e25cf931c5c75968256c4152b6090">线程安全</h2>
+<h2 id="线程安全:46f6c6eb85e710b6752b8fcd11e3d818">线程安全</h2>
 
 <p>在多线程的环境下, 线程安全能够保证多个线程同时执行时程序依旧运行正确, 而且要保证对于共享的数据,可以由多个线程存取,但是同一时刻只能有一个线程进行存取.</p>
 
@@ -172,7 +708,7 @@
 
               </article>
               <div class="read-more-link">
-                  <a href="/python/102/"><span class="read-more-slashes">//</span>Read More...</a>
+                  <a href="/python/102_gil/"><span class="read-more-slashes">//</span>Read More...</a>
               </div>
           </section>
           
@@ -180,7 +716,7 @@
                 <header class="post-header">
                     
                     <h1 class="post-title">
-                      <a href="/python/101/">闭包</a>
+                      <a href="/python/101_bibao/">闭包</a>
                   </h1>
               </header>
               <p class="post-meta">
@@ -220,7 +756,7 @@ print q(10)
 
               </article>
               <div class="read-more-link">
-                  <a href="/python/101/"><span class="read-more-slashes">//</span>Read More...</a>
+                  <a href="/python/101_bibao/"><span class="read-more-slashes">//</span>Read More...</a>
               </div>
           </section>
           
@@ -241,7 +777,7 @@ print q(10)
                     
                 
                 
-                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>0 min. read</em></span>
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
                 
                 
                 <div class="post-categories">
@@ -252,7 +788,20 @@ print q(10)
                 
             </p>
             <article class="post-summary">
-                  
+                  <h3 id="总结:b66e25cf931c5c75968256c4152b6090">总结</h3>
+
+<p>生活上在艺动工作一年半的时间，总体来说还是挺舒服的，望京soho高大上的工作环境，公司福利待遇都挺到位的。
+但是总感觉差点劲儿，给人的感觉就是面儿上该做的都做了，不够真心似的。其实大公司都这样吧，还是自己不够适应。</p>
+
+<p>技术上到艺动之后才接触的python，项目用的firefly那一套，当时学完语法以后写逻辑都没有障碍了。
+对于框架也没有深入研究，虽然有多次尝试往底层看。但是面向对象的基础有点差，那好几次尝试最终都放弃了。
+当时完全没有危机感，真的过的太安逸了。</p>
+
+<h3 id="离职:b66e25cf931c5c75968256c4152b6090">离职</h3>
+
+<p>X年前就开始找工作，当时的我还以为项目还会继续下去，就算不会大推，至少要上线的，那时候我还是没有着急。
+到了年后，项目组的人开始往外抽人了,后端我们三个人P去了其他组，X离职，我成了孤家寡人。</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/notes/102/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -382,24 +931,6 @@ mysite
 <li>文章排序等级<br />
 weight = 999</li>
 <li>series = [ &ldquo;hugo content config&rdquo; ]</li>
-<li>分类<br />
-categories = [&ldquo;VIM&rdquo;]</li>
-<li>标签
-tags = [ &ldquo;Markdown&rdquo;, &ldquo;编程语言&rdquo;, &ldquo;Hugo&rdquo;, &ldquo;command&rdquo; , &ldquo;标记语言&rdquo;]</li>
-<li>不显示写文章时间<br />
-nodate = true</li>
-<li>url里的name<br />
-slug = &ldquo;menu&rdquo;</li>
-<li>隐藏上下页<br />
-nopaging = true</li>
-<li>隐藏读取时间<br />
-noread = true</li>
-<li>显示作者<br />
-author = &ldquo;崔程凯&rdquo;</li>
-<li>隐藏作者<br />
-noauthor = true</li>
-<li>topics = [ &ldquo;Development&rdquo;, &ldquo;Go&rdquo; ]</li>
-<li>description = &ldquo;description.&rdquo;</li>
 </ul>
 
               </article>
@@ -627,10 +1158,17 @@ A Second Level Header
 <li>getattr(),setattr(),delattr(),hasattr()</li>
 <li>zope plone</li>
 <li><a href="https://github.com/ajalt/fuckitpy">https://github.com/ajalt/fuckitpy</a> fuckitpy</li>
+<li>enumerate</li>
+<li>set list map tuple</li>
 </ul></li>
 <li>图标字体
 <a href="http://fontawesome.dashgame.com/">http://fontawesome.dashgame.com/</a></li>
 <li>restful</li>
+<li><a href="http://my.oschina.net/leejun2005/blog/145461">http://my.oschina.net/leejun2005/blog/145461</a> flask</li>
+<li>深入理解 python 中的赋值、引用、拷贝、作用域
+<a href="http://my.oschina.net/leejun2005/blog/145911">http://my.oschina.net/leejun2005/blog/145911</a></li>
+<li>嵌入式等各种博客
+<a href="http://blog.csdn.net/caimouse/">http://blog.csdn.net/caimouse/</a></li>
 </ol>
 
               </article>

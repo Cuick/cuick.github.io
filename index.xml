@@ -6,24 +6,872 @@
     <description>Recent content on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Mar 2016 21:15:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Apr 2016 14:55:49 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>线程安全与GIL</title>
-      <link>http://cuick.github.io/python/102/</link>
-      <pubDate>Sat, 19 Mar 2016 21:15:49 +0800</pubDate>
+      <title>python-赋值、引用、拷贝、作用域</title>
+      <link>http://cuick.github.io/python/107_copy/</link>
+      <pubDate>Thu, 07 Apr 2016 14:55:49 +0800</pubDate>
       
-      <guid>http://cuick.github.io/python/102/</guid>
+      <guid>http://cuick.github.io/python/107_copy/</guid>
       <description>
 
-&lt;h2 id=&#34;引入:b66e25cf931c5c75968256c4152b6090&#34;&gt;引入&lt;/h2&gt;
+&lt;h2 id=&#34;赋值-引用-浅复制-深复制:8d37479f728103ff01e750a3599e3a2e&#34;&gt;赋值 引用 浅复制 深复制&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;python 中赋值语句总是建立对象的引用值，而不是复制对象。因此，python 变量更像是指针，而不是数据存储区域&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; values = [0, 1, 2]
+&amp;gt;&amp;gt;&amp;gt; values[1] = values
+&amp;gt;&amp;gt;&amp;gt; values
+[0, [...], 2]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;并非我预想de:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[0, [0, 1, 2], 2]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;要达到你所需要的效果，即得到 [0, [0, 1, 2], 2] 这个对象，你不能直接将 values[1] 指向 values 引用的对象本身，需要：&lt;/p&gt;
+
+&lt;p&gt;所以你需要执行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;values[1] = values[:]  #生成对象的拷贝或者是复制序列，不再是引用和共享变量，但此法只能顶层复制
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;values[:] 复制操作是所谓的「浅复制」(shallow copy)，当列表对象有嵌套的时候也会产生出乎意料的错误&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;a = [0, [1, 2], 3]
+b = a[:]
+a[0] = 8
+a[1][1] = 9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正确答案是 a 为 [8, [1, 9], 3]，b 为 [0, [1, 9], 3]
+b的第二个元组也变化了。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;正确的复制嵌套元素的方法是进行「深复制」(deep copy)，方法是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import copy
+
+ a = [0, [1, 2], 3]
+ b = copy.deepcopy(a)
+ a[0] = 8
+ a[1][1] = 9
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;引用-and-复制:8d37479f728103ff01e750a3599e3a2e&#34;&gt;引用 and 复制&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;没有限制条件的分片表达式（L[:]）能够复制序列，但此法只能浅层复制。&lt;/li&gt;
+&lt;li&gt;字典 copy 方法，D.copy() 能够复制字典，但此法只能浅层复制&lt;/li&gt;
+&lt;li&gt;有些内置函数，例如 list，能够生成拷贝 list(L),浅复制&lt;/li&gt;
+&lt;li&gt;copy 标准库模块能够生成完整拷贝：deepcopy 本质上是递归 copy&lt;/li&gt;
+&lt;li&gt;对于不可变对象和可变对象来说，浅复制都是复制的引用，只是因为复制不变对象和复制不变对象的引用是等效的（因为对象不可变，当改变时会新建对象重新赋值）。所以看起来浅复制只复制不可变对象（整数，实数，字符串等），对于可变对象，浅复制其实是创建了一个对于该对象的引用，也就是说只是给同一个对象贴上了另一个标签而已。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;a-b-与-a-a-b:8d37479f728103ff01e750a3599e3a2e&#34;&gt;a+=b 与 a=a+b&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;L = [1, 2]
+M = L
+L = L + [3, 4]
+print L, M
+print &amp;quot;-------------------&amp;quot;
+L = [1, 2]
+M = L
+L += [3, 4]
+print L, M
+
+[1, 2, 3, 4] [1, 2]
+-------------------
+[1, 2, 3, 4] [1, 2, 3, 4]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;例子中两种操作结果不同&lt;/li&gt;
+&lt;li&gt;x = x + y 定义一个x，合并x与y，赋值给x&lt;/li&gt;
+&lt;li&gt;x += y 不生成新对象，只是把y添加到x内存块末尾，性能相比来要好&lt;/li&gt;
+&lt;li&gt;x y 都为list时， +自动调用extend进行合并运算。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;python-从-2-x-到-3-x-语句变函数引发的变量作用域问题:8d37479f728103ff01e750a3599e3a2e&#34;&gt;python 从 2.x 到 3.x，语句变函数引发的变量作用域问题&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;def test():
+    a = False
+    exec (&amp;quot;a = True&amp;quot;)
+    print (&amp;quot;a = &amp;quot;, a)
+test()
+
+b = False
+exec (&amp;quot;b = True&amp;quot;)
+print (&amp;quot;b = &amp;quot;, b)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;不同版本下结果分别为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2.x：
+a =  True
+b =  True
+
+3.x：
+a =  False
+b =  True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;原因：
+在3.x版本中exec 由语句变成函数了，而在函数中变量默认都是局部的，也就是说
+你所见到的两个 a，是两个不同的变量，分别处于不同的命名空间中，而不会冲突。&lt;/p&gt;
+
+&lt;p&gt;兼容方案：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def test():
+    a = False
+    ldict = locals()
+    exec(&amp;quot;a=True&amp;quot;,globals(),ldict)
+    a = ldict[&#39;a&#39;]
+    print(a)
+
+test()
+
+b = False
+exec(&amp;quot;b = True&amp;quot;, globals())
+print(&amp;quot;b = &amp;quot;, b)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;python-变量作用域及其陷阱:8d37479f728103ff01e750a3599e3a2e&#34;&gt;python 变量作用域及其陷阱&lt;/h2&gt;
+
+&lt;h3 id=&#34;可变与不可变对象:8d37479f728103ff01e750a3599e3a2e&#34;&gt;可变与不可变对象&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;不可变对象包括int，float，long，str，tuple等&lt;/li&gt;
+&lt;li&gt;可变对象包括list，set，dict等&lt;/li&gt;
+&lt;li&gt;不可变指的是值的不可变。对于不可变类型的变量，如果要更改变量，则会创建一个新值，把变量绑定到新值上，而旧值如果没有被引用就等待垃圾回收&lt;/li&gt;
+&lt;li&gt;不可变的类型可以计算hash值，可以作为字典的key&lt;/li&gt;
+&lt;li&gt;可变类型数据对对象操作的时候，不需要再在其他地方申请内存，只需要在此对象后面连续申请(+/-)即可，也就是它的内存地址会保持不变，但区域会变长或者变短。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;函数值传递:8d37479f728103ff01e750a3599e3a2e&#34;&gt;函数值传递&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;def func_int(a):
+    a += 4
+
+def func_list(a_list):
+    a_list[0] = 4
+
+t = 0
+func_int(t)
+print t
+# output: 0
+
+t_list = [1, 2, 3]
+func_list(t_list)
+print t_list
+# output: [4, 2, 3]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;引起上面现象的原因:对于可变对象，对象的操作不会重建对象，而对于不可变对象，每一次操作就重建新的对象。&lt;/li&gt;
+&lt;li&gt;在函数参数传递的时候，Python其实就是把参数里传入的变量对应的对象的引用依次赋值给对应的函数内部变量&lt;/li&gt;
+&lt;li&gt;例子中func_int中的局部变量&amp;rdquo;a&amp;rdquo;其实是全部变量&amp;rdquo;t&amp;rdquo;所指向对象的另一个引用，由于整数对象是不可变的，所以当func_int对变量&amp;rdquo;a&amp;rdquo;进行修改的时候，实际上是将局部变量&amp;rdquo;a&amp;rdquo;指向到了整数对象&amp;rdquo;1&amp;rdquo;。所以很明显，func_list修改的是一个可变的对象，局部变量&amp;rdquo;a&amp;rdquo;和全局变量&amp;rdquo;t_list&amp;rdquo;指向的还是同一个对象&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;局部变量-全局变量:8d37479f728103ff01e750a3599e3a2e&#34;&gt;局部变量 全局变量&lt;/h3&gt;
+
+&lt;p&gt;例一&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;s = &#39;foo&#39;
+d = {&#39;a&#39;:1}
+def f():
+    s = &#39;bar&#39;
+    d[&#39;b&#39;] = 2
+f()
+print s  # foo
+print d  # {&#39;a&#39;: 1, &#39;b&#39;: 2}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在s = &amp;lsquo;bar&amp;rsquo;这句中，它是“有歧义的“，因为它既可以是表示引用全局变量s，也可以是创建一个新的局部变量，所以在python中，默认它的行为是创建局部变量，除非显式声明global&lt;/li&gt;
+&lt;li&gt;在d[&amp;lsquo;b&amp;rsquo;]=2这句中，它是“明确的”，因为如果把d当作是局部变量的话，它会报KeyError，所以它只能是引用全局的d,故不需要多此一举显式声明global&lt;/li&gt;
+&lt;li&gt;止dict不需要global，所有”明确的“东西都不需要global&lt;/li&gt;
+&lt;li&gt;int类型str类型之类的不可变对象，每一次操作就重建新的对象，他们只有一种修改方法，即x = y， 恰好这种修改方法同时也是创建变量的方法，所以产生了歧义，不知道是要修改还是创建。而dict/list/对象等可变对象，操作不会重建对象，可以通过dict[&amp;lsquo;x&amp;rsquo;]=y或list.append()之类的来修改，跟创建变量不冲突，不产生歧义，所以都不用显式global。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例二&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;list_a = []
+def a():
+    list_a = [1]      ## 语句1
+a()
+print list_a    # []
+print &amp;quot;======================&amp;quot;
+list_b = []
+def b():
+    list_b.append(1)    ## 语句2
+b()
+print list_b    # [1]
+print &#39;=======================&#39;
+list_c = [1]
+def c():
+    list_c[0] = 3      ## 语句3
+c()
+print list_c    # [3]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;语句1有歧义所以python规定是定义了一个局部变量。&lt;/li&gt;
+&lt;li&gt;语句2与语句3没有歧义，是修改了全局变量，不然会是报错。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;永远不要用可变的默认参数:8d37479f728103ff01e750a3599e3a2e&#34;&gt;永远不要用可变的默认参数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;def foo(a, b, c=[]):
+# append to c
+# do some more stuff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这种写法，每次调用foo，用的都是同一个引用，同一个地方修改了c的值，其他地方跟着变。非常可怕！！！！！！！&lt;/p&gt;
+
+&lt;p&gt;要修改为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def foo(a, b, c=None):
+    if c is None:
+        c = []
+    # append to c
+    # do some more stuff
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>python基础-list tuple set</title>
+      <link>http://cuick.github.io/python/106_list_tuple_set/</link>
+      <pubDate>Thu, 07 Apr 2016 14:55:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/106_list_tuple_set/</guid>
+      <description>
+
+&lt;h2 id=&#34;list-列表:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;list 列表&lt;/h2&gt;
+
+&lt;h2 id=&#34;tuple-元组:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;tuple 元组&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;要定义一个只有1个元素的tuple，如果你这么定义&lt;code&gt;a = (1)&lt;/code&gt;,
+定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
+只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,&lt;code&gt;a=(1,)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;tuple所谓的“不变”是说，tuple的每个元素，指向永远不变&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;set-集合:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;set 集合&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; s1 = set([1, 2, 3])
+&amp;gt;&amp;gt;&amp;gt; s2 = set([2, 3, 4])
+&amp;gt;&amp;gt;&amp;gt; s1 &amp;amp; s2
+set([2, 3])
+&amp;gt;&amp;gt;&amp;gt; s1 | s2
+set([1, 2, 3, 4])
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>python基础-字符串和编码</title>
+      <link>http://cuick.github.io/python/105_string/</link>
+      <pubDate>Thu, 07 Apr 2016 09:55:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/105_string/</guid>
+      <description>
+
+&lt;h2 id=&#34;字符串:a23880f8b35e46659c516e699a542eed&#34;&gt;字符串&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;字符串是以单引号&lt;code&gt;&#39;&lt;/code&gt;或双引号&lt;code&gt;&amp;quot;&lt;/code&gt;括起来的任意文本，比如&lt;code&gt;&#39;abc&#39;&lt;/code&gt;，&lt;code&gt;&amp;quot;xyz&amp;quot;&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果字符串内部既包含&lt;code&gt;&#39;&lt;/code&gt;又包含&lt;code&gt;&amp;quot;&lt;/code&gt;怎么办？可以用转义字符\来标识&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&#39;I\&#39;m \&amp;quot;OK\&amp;quot;!&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;表示的内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;I&#39;m &amp;quot;OK&amp;quot;!
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;转义字符\可以转义很多字符，比如&lt;code&gt;\n&lt;/code&gt;表示换行，&lt;code&gt;\t&lt;/code&gt;表示制表符，字符\本身也要转义，所以&lt;code&gt;\\&lt;/code&gt;表示的字符就是\，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; print(&#39;\\\t\\&#39;)
+\       \
+&amp;gt;&amp;gt;&amp;gt; print(r&#39;\\\t\\&#39;)
+\\\t\\
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果字符串内部有很多换行，用\n写在一行里不好阅读，为了简化，Python允许用&lt;code&gt;&#39;&#39;&#39;...&#39;&#39;&#39;&lt;/code&gt;的格式表示多行内容&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;多行字符串&lt;code&gt;&#39;&#39;&#39;...&#39;&#39;&#39;&lt;/code&gt;还可以在前面加上r使用&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;编码:a23880f8b35e46659c516e699a542eed&#34;&gt;编码&lt;/h2&gt;
+
+&lt;h4 id=&#34;ascii-unicode和utf-8的关系:a23880f8b35e46659c516e699a542eed&#34;&gt;ASCII、Unicode和UTF-8的关系&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;最早只有127个字母被编码到计算机里，也就是大小写英文字母、数字和一些符号，这个编码表被称为ASCII编码，比如大写字母A的编码是65，小写字母z的编码是122。&lt;/li&gt;
+&lt;li&gt;处理中文显然一个字节是不够的，至少需要两个字节，而且还不能和ASCII编码冲突，所以，中国制定了GB2312编码，用来把中文编进去,日本把日文编到Shift_JIS里，韩国把韩文编到Euc-kr里,
+各国有各国的标准，就会不可避免地出现冲突，结果就是，在多语言混合的文本中，显示出来会有乱码。&lt;/li&gt;
+&lt;li&gt;Unicode应运而生。Unicode把所有语言都统一到一套编码里，这样就不会再有乱码问题了。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ASCII编码和Unicode编码的区别：ASCII编码是1个字节，而Unicode编码通常是2个字节。
+字母A用ASCII编码是十进制的65，二进制的01000001；&lt;/p&gt;
+
+&lt;p&gt;字符0用ASCII编码是十进制的48，二进制的00110000，注意字符&amp;rsquo;0&amp;rsquo;和整数0是不同的；&lt;/p&gt;
+
+&lt;p&gt;汉字中已经超出了ASCII编码的范围，用Unicode编码是十进制的20013，二进制的01001110 00101101。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果统一成Unicode编码，乱码问题从此消失了。但是，如果你写的文本基本上全部是英文的话，用Unicode编码比ASCII编码需要多一倍的存储空间，在存储和传输上就十分不划算。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Unicode编码转化为“可变长编码”的UTF-8编码。
+UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。
+如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;计算机系统通用的字符编码工作方式:a23880f8b35e46659c516e699a542eed&#34;&gt;计算机系统通用的字符编码工作方式&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。&lt;/li&gt;
+&lt;li&gt;用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件&lt;/li&gt;
+&lt;li&gt;浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;python字符串-python2-7:a23880f8b35e46659c516e699a542eed&#34;&gt;python字符串(python2.7)&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Python只支持ASCII编码&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Python在后来添加了对Unicode的支持，以Unicode表示的字符串用u&amp;rsquo;&amp;hellip;&amp;lsquo;表示&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; print u&#39;中文&#39;
+中文
+&amp;gt;&amp;gt;&amp;gt; u&#39;中&#39;
+u&#39;\u4e2d
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;字符串&amp;rsquo;xxx&amp;rsquo;虽然是ASCII编码，但也可以看成是UTF-8编码，而u&amp;rsquo;xxx&amp;rsquo;则只能是Unicode编码。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;把u&amp;rsquo;xxx&amp;rsquo;转换为UTF-8编码的&amp;rsquo;xxx&amp;rsquo;用encode(&amp;lsquo;utf-8&amp;rsquo;)方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; u&#39;ABC&#39;.encode(&#39;utf-8&#39;)
+&#39;ABC&#39;
+&amp;gt;&amp;gt;&amp;gt; u&#39;中文&#39;.encode(&#39;utf-8&#39;)
+&#39;\xe4\xb8\xad\xe6\x96\x87&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由unicode转化为指定的编码用encode。由指定编码 解码为 unicode 用decode&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;英文字符转换后表示的UTF-8的值和Unicode值相等（但占用的存储空间不同），而中文字符转换后1个Unicode字符将变为3个UTF-8字符，\xe4就是其中一个字节，因为它的值是228，没有对应的字母可以显示，所以以十六进制显示字节的数值。len()函数可以返回字符串的长度&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释；&lt;/p&gt;
+
+&lt;p&gt;第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;python3字符串是以Unicode编码的&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;格式化:a23880f8b35e46659c516e699a542eed&#34;&gt;格式化&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;采用的格式化方式和C语言是一致的，用%实现&lt;/li&gt;
+&lt;li&gt;有几个%?占位符，后面就跟几个变量或者值，顺序要对应好。如果只有一个%?，括号可以省略。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;常见的占位符有：&lt;/p&gt;
+
+&lt;p&gt;%d  整数
+%f  浮点数
+%s  字符串
+%x  十六进制整数&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;格式化整数和浮点数还可以指定是否补0和整数与小数的位数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &#39;%2d-%02d&#39; % (3, 1)
+&#39; 3-01&#39;
+&amp;gt;&amp;gt;&amp;gt; &#39;%.2f&#39; % 3.1415926
+&#39;3.14&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果你不太确定应该用什么，%s永远起作用，它会把任何数据类型转换为字符串&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;对于Unicode字符串，用法完全一样，但最好确保替换的字符串也是Unicode字符串&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; u&#39;Hi, %s&#39; % u&#39;Michael&#39;
+u&#39;Hi, Michael&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;字符串里面的%是一个普通字符的时候就需要转义，用%%来表示一个%&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &#39;growth rate: %d %%&#39; % 7
+&#39;growth rate: 7 %&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Python当然也支持其他编码方式，比如把Unicode编码成GB2312&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; u&#39;中文&#39;.encode(&#39;gb2312&#39;)
+&#39;\xd6\xd0\xce\xc4&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果没有特殊业务要求，请牢记仅使用Unicode和UTF-8这两种编码方式&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在Python 3.x版本中，把&amp;rsquo;xxx&amp;rsquo;和u&amp;rsquo;xxx&amp;rsquo;统一成Unicode编码，即写不写前缀u都是一样的&lt;/p&gt;
+
+&lt;p&gt;由于Python3.x的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把str变为以字节为单位的bytes。&lt;/p&gt;
+
+&lt;p&gt;Python3.x对bytes类型的数据用带b前缀的单引号或双引号表示：b&amp;rsquo;xxx&amp;rsquo;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>my vimrc</title>
+      <link>http://cuick.github.io/vim/102/</link>
+      <pubDate>Wed, 06 Apr 2016 23:03:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/vim/102/</guid>
+      <description>&lt;p&gt;我的vim配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if !exists(&amp;quot;:DiffOrig&amp;quot;)
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+
+syntax on
+
+set t_Co=256
+set mouse=a
+
+set expandtab
+set sw=4
+set tabstop=4
+set softtabstop=4
+
+set nocompatible
+set rtp+=~/.vim/bundle/Vundle.vim
+
+set helplang=cn
+set nu
+set cindent
+set smartindent
+set showmatch
+set ignorecase smartcase
+set nowrapscan
+set incsearch
+set hlsearch
+set magic
+set sm
+set backspace=indent,eol,start
+set cmdheight=1
+
+set laststatus=2
+set autoread
+set list lcs=tab:&amp;gt;-,trail:-
+
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set fileformats=unix
+set encoding=utf-8
+
+call vundle#begin()
+Plugin &#39;gmarik/Vundle.vim&#39;
+Plugin &#39;kien/ctrlp.vim&#39;
+Plugin &#39;scrooloose/nerdtree&#39;
+Plugin &#39;airblade/vim-gitgutter&#39;
+Plugin &#39;Lokaltog/vim-easymotion&#39;
+Plugin &#39;altercation/vim-colors-solarized&#39;
+Plugin &#39;Valloric/YouCompleteMe&#39;
+Plugin &#39;Shougo/vimshell.vim&#39;
+Plugin &#39;scrooloose/syntastic&#39;
+Plugin &#39;Shougo/vimproc.vim&#39;
+Plugin &#39;vim-scripts/indentLine.vim&#39;
+Plugin &#39;terryma/vim-multiple-cursors&#39;
+Plugin &#39;tpope/vim-fugitive&#39;
+Plugin &#39;tpope/vim-git&#39;
+Plugin &#39;mileszs/ack.vim&#39;
+Plugin &#39;mattn/emmet-vim&#39;
+Plugin &#39;tpope/vim-surround&#39;
+Plugin &#39;sjl/badwolf&#39;
+Plugin &#39;gregsexton/gitv&#39;
+Plugin &#39;plasticboy/vim-markdown&#39;
+Plugin &#39;cespare/vim-toml&#39;
+call vundle#end()
+filetype plugin indent on
+
+call pathogen#infect()
+call pathogen#helptags()
+
+let mapleader=&amp;quot; &amp;quot;
+nnoremap &amp;lt;leader&amp;gt;jd :YcmCompleter GoTo&amp;lt;CR&amp;gt;
+
+execute pathogen#infect()
+let g:syntastic_python_checkers=[&#39;flake8&#39;]
+let g:ycm_show_diagnostics_ui = 0
+let g:syntastic_error_symbol = &amp;quot;✗&amp;quot;
+let g:syntastic_style_error_symbol = &amp;quot;✗=&amp;quot;
+let g:syntastic_warning_symbol = &amp;quot;⚠&amp;quot;
+let g:syntastic_style_error_symbol = &amp;quot;⚠=&amp;quot;
+let g:syntastic_auto_jump = 0
+
+colorscheme badwolf
+
+map &amp;lt;silent&amp;gt; &amp;lt;leader&amp;gt;ss :source ~/.vimrc&amp;lt;cr&amp;gt;
+map &amp;lt;silent&amp;gt; &amp;lt;leader&amp;gt;ee :e ~/.vimrc&amp;lt;cr&amp;gt;
+
+map  / &amp;lt;Plug&amp;gt;(easymotion-sn)
+omap / &amp;lt;Plug&amp;gt;(easymotion-tn)
+nmap s &amp;lt;Plug&amp;gt;(easymotion-s)
+
+map &amp;lt;Leader&amp;gt;l &amp;lt;Plug&amp;gt;(easymotion-lineforward)
+map &amp;lt;Leader&amp;gt;j &amp;lt;Plug&amp;gt;(easymotion-j)
+map &amp;lt;Leader&amp;gt;k &amp;lt;Plug&amp;gt;(easymotion-k)
+map &amp;lt;Leader&amp;gt;h &amp;lt;Plug&amp;gt;(easymotion-linebackward)
+map &amp;lt;Leader&amp;gt;s :vimgrep &amp;lt;c-r&amp;gt;&amp;lt;c-w&amp;gt; **/*.py  &amp;lt;cr&amp;gt;
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+let g:ycm_global_ycm_extra_conf = &#39;~/.ycm_extra_conf.py&#39;
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+nmap &amp;lt;c-p&amp;gt;&amp;lt;c-p&amp;gt; :CtrlPQuickfix&amp;lt;cr&amp;gt;
+nmap &amp;lt;c-o&amp;gt;&amp;lt;c-p&amp;gt; :CtrlPMRU&amp;lt;cr&amp;gt;
+
+map &amp;lt;leader&amp;gt;i :NERDTreeToggle &amp;lt;cr&amp;gt;
+let NERDTreeIgnore=[&#39;.pyc$&#39;, &#39;\~$&#39;]
+let g:NERDTreeQuitOnOpen = 1
+let g:vim_markdown_folding_disabled = 1
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>my zshrc</title>
+      <link>http://cuick.github.io/zsh/101/</link>
+      <pubDate>Wed, 06 Apr 2016 23:03:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/zsh/101/</guid>
+      <description>&lt;p&gt;我的zsh配置文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export ZSH=$HOME/.oh-my-zsh
+export PATH=&amp;quot;/usr/local/bin/pypy-5.0.1-linux_x86_64-portable/bin&amp;quot;:$PATH
+ZSH_THEME=&amp;quot;af-magic&amp;quot;
+export PATH=$HOME/bin:/usr/local/mysql/bin:$PATH
+source $ZSH/oh-my-zsh.sh
+
+setopt extended_glob
+ TOKENS_FOLLOWED_BY_COMMANDS=(&#39;|&#39; &#39;||&#39; &#39;;&#39; &#39;&amp;amp;&#39; &#39;&amp;amp;&amp;amp;&#39; &#39;sudo&#39; &#39;do&#39; &#39;time&#39; &#39;strace&#39;)
+
+ recolor-cmd() {
+     region_highlight=()
+     colorize=true
+     start_pos=0
+     for arg in ${(z)BUFFER}; do
+         ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
+         ((end_pos=$start_pos+${#arg}))
+         if $colorize; then
+             colorize=false
+             res=$(LC_ALL=C builtin type $arg 2&amp;gt;/dev/null)
+             case $res in
+                 *&#39;reserved word&#39;*)   style=&amp;quot;fg=magenta,bold&amp;quot;;;
+                 *&#39;alias for&#39;*)       style=&amp;quot;fg=cyan,bold&amp;quot;;;
+                 *&#39;shell builtin&#39;*)   style=&amp;quot;fg=yellow,bold&amp;quot;;;
+                 *&#39;shell function&#39;*)  style=&#39;fg=green,bold&#39;;;
+                 *&amp;quot;$arg is&amp;quot;*)
+                     [[ $arg = &#39;sudo&#39; ]] &amp;amp;&amp;amp; style=&amp;quot;fg=red,bold&amp;quot; || style=&amp;quot;fg=blue,bold&amp;quot;;;
+                 *)                   style=&#39;none,bold&#39;;;
+             esac
+             region_highlight+=(&amp;quot;$start_pos $end_pos $style&amp;quot;)
+         fi
+         [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = &#39;yes&#39; ]] &amp;amp;&amp;amp; colorize=true
+         start_pos=$end_pos
+     done
+ }
+check-cmd-self-insert() { zle .self-insert &amp;amp;&amp;amp; recolor-cmd }
+ check-cmd-backward-delete-char() { zle .backward-delete-char &amp;amp;&amp;amp; recolor-cmd }
+
+ zle -N self-insert check-cmd-self-insert
+ zle -N backward-delete-char check-cmd-backward-delete-char
+
+function rtn
+{
+    cd ~/work/transfer/TTransfer/frameworks/runtime-src/proj.ios_mac
+    xcodebuild -project &amp;quot;TTransfer.xcodeproj&amp;quot; -configuration Debug -target &amp;quot;TTransfer Mac&amp;quot;
+    open ~/work/transfer/TTransfer/runtime/mac/TTransfer Mac.app/Contents/MacOS/TTransfer\ Mac
+    cd -
+}
+
+alias gp=&#39;git pull origin master:master&#39;
+alias gm=&#39;git merge origin master&#39;
+hash -d tv=~/work/traversing
+export LC_ALL=en_US.utf-8
+export LANG=&amp;quot;$LC_ALL&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>time计算日周月时间戳</title>
+      <link>http://cuick.github.io/python/104_time/</link>
+      <pubDate>Wed, 06 Apr 2016 20:48:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/104_time/</guid>
+      <description>&lt;p&gt;计算自然周第一天、自然月第一天和每天的凌晨时间戳&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import time
+
+def get_day_begin(ts = time.time(),N = 0):
+&amp;quot;&amp;quot;&amp;quot;
+N为0时获取时间戳ts当天的起始时间戳，N为负数时前数N天，N为正数是后数N天
+&amp;quot;&amp;quot;&amp;quot;
+ return int(time.mktime(time.strptime(time.strftime(&#39;%Y-%m-%d&#39;,time.localtime(ts)),&#39;%Y-%m-%d&#39;))) + 86400*N
+
+def get_week_begin(ts = time.time(),N = 0):
+&amp;quot;&amp;quot;&amp;quot;
+N为0时获取时间戳ts当周的开始时间戳，N为负数时前数N周，N为整数是后数N周，此函数将周一作为周的第一天
+&amp;quot;&amp;quot;&amp;quot;
+ w = int(time.strftime(&#39;%w&#39;,time.localtime(ts)))
+ return get_day_begin(int(ts - (w-1)*86400)) + N*604800
+
+def get_month_begin(ts = time.time(),N = 0):
+&amp;quot;&amp;quot;&amp;quot;
+N为0时获取时间戳ts当月的开始时间戳，N为负数前数N月，N为正数后数N月
+&amp;quot;&amp;quot;&amp;quot;
+ month_day = {1:31,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
+ cur_y,cur_m,cur_d = [int(x) for x in time.strftime(&#39;%Y-%m-%d&#39;,time.localtime(ts)).split(&#39;-&#39;)]
+ if (cur_y%4 == 0 and cur_y%100 != 0) or cur_y%400 == 0:
+ month_day[2] = 29
+else:
+ month_day[2] = 28
+ t = get_day_begin(ts) - (cur_d-1)*86400
+ real_month = N + cur_m
+ if real_month == cur_m:
+ return t
+ if N &amp;gt; 0:
+ if real_month &amp;lt;= 12:
+ for x in xrange(cur_m,real_month):
+ t += month_day[x]*86400
+ if real_month &amp;gt; 12:
+ for x in xrange(cur_m,13):
+ t += month_day[x]*86400
+ t = get_month_begin(t,real_month - 13)
+ if N &amp;lt; 0:
+ if real_month &amp;gt;= 1:
+ for x in xrange(real_month,cur_m):
+ t -= month_day[x]*86400
+ if real_month &amp;lt; 1:
+ for x in xrange(1,cur_m):
+ t -= month_day[x]*86400
+ t -= month_day[12]*86400
+ t = get_month_begin(t,real_month)
+ return t
+
+if __name__ ==&amp;quot;__main__&amp;quot;:
+ t = time.time()
+ print time.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;,time.localtime(get_day_begin(t,1)))
+ print time.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;,time.localtime(get_week_begin(t,-2)))
+ print time.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;,time.localtime(get_month_begin(t,-3)))
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>xshell连linux后ctrl&#43;s卡死</title>
+      <link>http://cuick.github.io/linux/notes_stu/</link>
+      <pubDate>Wed, 06 Apr 2016 18:30:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/linux/notes_stu/</guid>
+      <description>&lt;p&gt;在vim下ctrl+s整个xshell终端就死了，遇到好几次这种情况，网上查了下原来ctrl+s在LINUX里是锁定屏幕的快捷键，解锁ctrl+q就可以了&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>vim-markdown插件</title>
+      <link>http://cuick.github.io/vim/101/</link>
+      <pubDate>Wed, 06 Apr 2016 17:40:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/vim/101/</guid>
+      <description>&lt;p&gt;插件目录结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  |-- syntax
+  |   |-- mkd.vim
+  |-- ftdetect
+  |   |-- mkd.vim 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将两个 mkd.vim 分别复制到 $VIM 下对应的 syntax 和 ftdetect 文件夹中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp ./syntax/mkd.vim ~/.vim/syntax/
+cp ./ftdetect/mkd.vim ~/.vim/ftdetect/ 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>redis执行lua脚本</title>
+      <link>http://cuick.github.io/redis/101/</link>
+      <pubDate>Wed, 06 Apr 2016 16:44:00 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/redis/101/</guid>
+      <description>
+
+&lt;h2 id=&#34;好处:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;好处&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;减少网络开销：本来5次网络请求的操作，可以用一个请求完成，原先5次请求的逻辑放在redis服务器上完成。使用脚本，减少了网络往返时延。&lt;/li&gt;
+&lt;li&gt;原子操作：Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。&lt;/li&gt;
+&lt;li&gt;复用：客户端发送的脚本会永久存储在Redis中，意味着其他客户端可以复用这一脚本而不需要使用代码完成同样的逻辑&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;lua脚本demo:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;lua脚本demo&lt;/h2&gt;
+
+&lt;p&gt;ratelimiting.lua&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;local times = redis.call(&#39;incr&#39;,KEYS[1])
+
+if times == 1 then
+    redis.call(&#39;expire&#39;,KEYS[1], ARGV[1])
+end
+
+if times &amp;gt; tonumber(ARGV[2]) then
+    return 0
+end
+return 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;执行脚本:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;执行脚本&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;redis-cli --eval ratelimiting.lua rate.limitingl:127.0.0.1 , 10 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash;eval参数是告诉redis-cli读取并运行后面的Lua脚本，ratelimiting.lua是脚本的位置，后面跟着是传给Lua脚本的参数。其中&amp;rdquo;,&amp;ldquo;前的rate.limiting:127.0.0.1是要操作的键，可以再脚本中用KEYS[1]获取，&amp;rdquo;,&amp;ldquo;后面的10和3是参数，在脚本中能够使用ARGV[1]和ARGV[2]获得。注：&amp;rdquo;,&amp;ldquo;两边的空格不能省略，否则会出错
+结合脚本的内容可知这行命令的作用是将访问频率限制为每10秒最多3次，所以在终端中不断的运行此命令会发现当访问频率在10秒内小于或等于3次时返回1，否则返回0。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>win10专业版激活失败，弹窗提示0xc004f074</title>
+      <link>http://cuick.github.io/windows/101/</link>
+      <pubDate>Wed, 06 Apr 2016 16:44:00 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/windows/101/</guid>
+      <description>&lt;p&gt;用下面激活方式激活win10专业版报错，网上好多方式都不好使，最后终于找到了原因，，，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;slmgr /ipk  W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms kms.xspace.in
+slmgr /ato
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;kms.xspace.in关闭了，换一个激活服务器就好了，110.noip.me，自己搜一个kms服务器也行。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Twisted-测试</title>
+      <link>http://cuick.github.io/twisted/102/</link>
+      <pubDate>Sun, 20 Mar 2016 22:03:23 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/twisted/102/</guid>
+      <description>
+
+&lt;h1 id=&#34;测试:b66e25cf931c5c75968256c4152b6090&#34;&gt;测试&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>python基础-字典删除元素</title>
+      <link>http://cuick.github.io/python/103_dict/</link>
+      <pubDate>Sun, 20 Mar 2016 17:57:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/103_dict/</guid>
+      <description>
+
+&lt;h1 id=&#34;python-字典删除元素clear-pop-popitem:038858a3f82cf4ccbb0e60712917b653&#34;&gt;Python 字典删除元素clear、pop、popitem&lt;/h1&gt;
+
+&lt;h3 id=&#34;clear:038858a3f82cf4ccbb0e60712917b653&#34;&gt;clear()&lt;/h3&gt;
+
+&lt;p&gt;clear()方法是用来清除字典中的所有数据，因为是原地操作，所以返回None（也可以理解为没有返回值）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; x[&#39;name&#39;] = &#39;lili&#39;
+&amp;gt;&amp;gt;&amp;gt; x[&#39;age&#39;] = 20
+&amp;gt;&amp;gt;&amp;gt; x
+{&#39;age&#39;: 20, &#39;name&#39;: &#39;lili&#39;}
+&amp;gt;&amp;gt;&amp;gt; returned_value = x.clear()
+&amp;gt;&amp;gt;&amp;gt; x
+{ }
+&amp;gt;&amp;gt;&amp;gt; print returned_value
+None
+
+字典的clear()方法有什么特点：
+&amp;gt;&amp;gt;&amp;gt; f = {&#39;key&#39;:&#39;value&#39;}
+&amp;gt;&amp;gt;&amp;gt; a = f
+&amp;gt;&amp;gt;&amp;gt; a
+{&#39;key&#39;: &#39;value&#39;}
+&amp;gt;&amp;gt;&amp;gt; f.clear()
+&amp;gt;&amp;gt;&amp;gt; f
+{}
+&amp;gt;&amp;gt;&amp;gt; a
+{}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当原字典被引用时，想清空原字典中的元素，用clear()方法，a字典中的元素也同时被清除了。&lt;/p&gt;
+
+&lt;h3 id=&#34;pop:038858a3f82cf4ccbb0e60712917b653&#34;&gt;pop()&lt;/h3&gt;
+
+&lt;p&gt;移除字典数据pop()方法的作用是：删除指定给定键所对应的值，返回这个值并从字典中把它移除。注意字典pop()方法与列表pop()方法作用完全不同。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; x = {&#39;a&#39;:1,&#39;b&#39;:2}
+&amp;gt;&amp;gt;&amp;gt; x.pop(&#39;a&#39;)
+1
+&amp;gt;&amp;gt;&amp;gt; x
+{&#39;b&#39;: 2}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;popitem:038858a3f82cf4ccbb0e60712917b653&#34;&gt;popitem()&lt;/h3&gt;
+
+&lt;p&gt;字典popitem()方法作用是：随机返回并删除字典中的一对键和值（项）。为什么是随机删除呢？因为字典是无序的，没有所谓的“最后一项”或是其它顺序。在工作时如果遇到需要逐一删除项的工作，用popitem()方法效率很高。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; x
+{&#39;url&#39;: &#39;aaa&#39;, &#39;title&#39;: &#39;bbb&#39;}
+&amp;gt;&amp;gt;&amp;gt; x.popitem()
+(&#39;url&#39;, &#39;aaa&#39;)
+&amp;gt;&amp;gt;&amp;gt; x
+{&#39;title&#39;: &#39;bbb&#39;}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>线程安全与GIL</title>
+      <link>http://cuick.github.io/python/102_gil/</link>
+      <pubDate>Sat, 19 Mar 2016 21:15:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/102_gil/</guid>
+      <description>
+
+&lt;h2 id=&#34;引入:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;引入&lt;/h2&gt;
 
 &lt;p&gt;多核时代到来。为了更好利用多核，就要讲到进程与线程，区别在于是否共享资源，前者是独立的后这是共享的。&lt;br /&gt;
 多线程环境最大的问题就是资源的竞争 死锁 数据修改。
 于是就有了线程安全的问题。&lt;/p&gt;
 
-&lt;h2 id=&#34;线程安全:b66e25cf931c5c75968256c4152b6090&#34;&gt;线程安全&lt;/h2&gt;
+&lt;h2 id=&#34;线程安全:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;线程安全&lt;/h2&gt;
 
 &lt;p&gt;在多线程的环境下, 线程安全能够保证多个线程同时执行时程序依旧运行正确, 而且要保证对于共享的数据,可以由多个线程存取,但是同一时刻只能有一个线程进行存取.&lt;/p&gt;
 
@@ -40,7 +888,7 @@
 
 &lt;p&gt;Python中的全局锁机制,便是 GIL (Global Interpreter Lock)&lt;/p&gt;
 
-&lt;h2 id=&#34;什么是gil:b66e25cf931c5c75968256c4152b6090&#34;&gt;什么是GIL&lt;/h2&gt;
+&lt;h2 id=&#34;什么是gil:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;什么是GIL&lt;/h2&gt;
 
 &lt;p&gt;全局解释器锁（GIL）是一种互斥锁，由程序语言解析线程持有，用于避免代码共享可能导致的线程安全问题。在支持GIL的语言中，每一个解释器进程中都会含有一个GIL。&lt;/p&gt;
 
@@ -48,13 +896,13 @@
 
 &lt;p&gt;那么很容易就会发现,如果一个interpreter进程只能有一个线程来执行, 多线程的并发则成为不可能, 即使这几个线程之间不存在资源的竞争.&lt;/p&gt;
 
-&lt;h4 id=&#34;gil应用:b66e25cf931c5c75968256c4152b6090&#34;&gt;GIL应用&lt;/h4&gt;
+&lt;h4 id=&#34;gil应用:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;GIL应用&lt;/h4&gt;
 
 &lt;p&gt;一些支持 GIL 的语言的实现包括 CPython（Python 语言最被广泛使用的一种实现），Ruby MRI（Ruby 的推荐实现，GIL 在 Ruby 中被称为 Global VM Lock）&lt;/p&gt;
 
 &lt;p&gt;基于 JVM 的上述语言的等价实现（Jython 和 JRuby）不使用 GIL。IronPython 和 IronRuby 被实现成微软的动态语言运行时，并在其中避免使用 GIL 。&lt;/p&gt;
 
-&lt;h4 id=&#34;关于gil的争议:b66e25cf931c5c75968256c4152b6090&#34;&gt;关于GIL的争议&lt;/h4&gt;
+&lt;h4 id=&#34;关于gil的争议:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;关于GIL的争议&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;认为应该去除 GIL 的:&lt;/p&gt;
@@ -72,15 +920,26 @@
 &lt;/ol&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;gil设计的缺陷:b66e25cf931c5c75968256c4152b6090&#34;&gt;GIL设计的缺陷&lt;/h4&gt;
+&lt;h4 id=&#34;gil设计的缺陷:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;GIL设计的缺陷&lt;/h4&gt;
 
-&lt;p&gt;基于pcode数量的调度方式&lt;br /&gt;
-为了让各个线程能够平均利用CPU时间，python会计算当前已执行的微代码数量，达到一定阈值后就强制释放GIL。而这时也会触发一次操作系统的线程调度&lt;br /&gt;
-当其他在其他核心上的线程被唤醒时，大部分情况下主线程已经又再一次获取到GIL了。这个时候被唤醒执行的线程只能白白的浪费CPU时间，看着另一个线程拿着GIL欢快的执行着。然后达到切换时间后进入待调度状态，再被唤醒，再等待，以此往复恶性循环。&lt;/p&gt;
+&lt;p&gt;基于pcode数量的调度方式&lt;/p&gt;
+
+&lt;p&gt;按照Python社区的想法，操作系统本身的线程调度已经非常成熟稳定了，没有必要自己搞一套。所以Python的线程就是C语言的一个pthread，并通过操作系统调度算法进行调度（例如linux是CFS）。为了让各个线程能够平均利用CPU时间，python会计算当前已执行的微代码数量，达到一定阈值后就强制释放GIL。而这时也会触发一次操作系统的线程调度（当然是否真正进行上下文切换由操作系统自主决定）。&lt;/p&gt;
+
+&lt;p&gt;伪代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;while True:
+    acquire GIL
+    for i in 1000:
+        do something
+    release GIL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这种模式在只有一个CPU核心的情况下毫无问题。任何一个线程被唤起时都能成功获得到GIL（因为只有释放了GIL才会引发线程调度）。但当CPU有多个核心的时候，问题就来了。从伪代码可以看到，从 release GIL 到 acquire GIL 之间几乎是没有间隙的。所以当其他在其他核心上的线程被唤醒时，大部分情况下主线程已经又再一次获取到GIL了。这个时候被唤醒执行的线程只能白白的浪费CPU时间，看着另一个线程拿着GIL欢快的执行着。然后达到切换时间后进入待调度状态，再被唤醒，再等待，以此往复恶性循环。&lt;/p&gt;
 
 &lt;p&gt;Python的多线程在多核CPU上，只对于IO密集型计算产生正面效果；而当有至少有一个CPU密集型线程存在，那么多线程效率会由于GIL而大幅下降。&lt;/p&gt;
 
-&lt;h4 id=&#34;解决办法:b66e25cf931c5c75968256c4152b6090&#34;&gt;解决办法&lt;/h4&gt;
+&lt;h4 id=&#34;解决办法:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;解决办法&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;用multiprocess替代Thread&lt;/li&gt;
@@ -107,7 +966,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;总结:b66e25cf931c5c75968256c4152b6090&#34;&gt;总结&lt;/h2&gt;
+&lt;h2 id=&#34;总结:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;总结&lt;/h2&gt;
 
 &lt;p&gt;Python GIL其实是功能和性能之间权衡后的产物，它尤其存在的合理性，也有较难改变的客观因素。从本分的分析中，我们可以做以下一些简单的总结：&lt;/p&gt;
 
@@ -119,7 +978,7 @@
 &lt;li&gt;&lt;p&gt;GIL在较长一段时间内将会继续存在，但是会不断对其进行改进&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id=&#34;参考文章:b66e25cf931c5c75968256c4152b6090&#34;&gt;参考文章：&lt;/h5&gt;
+&lt;h5 id=&#34;参考文章:46f6c6eb85e710b6752b8fcd11e3d818&#34;&gt;参考文章：&lt;/h5&gt;
 
 &lt;p&gt;1.&lt;a href=&#34;http://www.tuicool.com/articles/7zIra2r&#34;&gt;http://www.tuicool.com/articles/7zIra2r&lt;/a&gt;&lt;br /&gt;
 2.&lt;a href=&#34;http://my.oschina.net/moooofly/blog/178531&#34;&gt;http://my.oschina.net/moooofly/blog/178531&lt;/a&gt;&lt;/p&gt;
@@ -128,10 +987,10 @@
     
     <item>
       <title>闭包</title>
-      <link>http://cuick.github.io/python/101/</link>
+      <link>http://cuick.github.io/python/101_bibao/</link>
       <pubDate>Sat, 19 Mar 2016 20:24:49 +0800</pubDate>
       
-      <guid>http://cuick.github.io/python/101/</guid>
+      <guid>http://cuick.github.io/python/101_bibao/</guid>
       <description>&lt;p&gt;闭包&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;def make_addr(addend):
@@ -154,591 +1013,76 @@ print q(10)
       <pubDate>Fri, 18 Mar 2016 18:10:03 +0800</pubDate>
       
       <guid>http://cuick.github.io/notes/102/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>footer</title>
-      <link>http://cuick.github.io/footer/</link>
-      <pubDate>Fri, 18 Mar 2016 17:57:29 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/footer/</guid>
       <description>
 
-&lt;h2 id=&#34;powered-by-hugo-https-github-com-spf13-hugo-with-hugo-redlounge-https-github-com-tmaiaroto-hugo-redlounge:b88206c9a05a97b8527e1f5cd9a8bba4&#34;&gt;Powered by &lt;a href=&#34;https://github.com/spf13/hugo&#34;&gt;Hugo&lt;/a&gt; with &lt;a href=&#34;https://github.com/tmaiaroto/hugo-redlounge&#34;&gt;hugo-redlounge&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;总结:b66e25cf931c5c75968256c4152b6090&#34;&gt;总结&lt;/h3&gt;
 
-&lt;h2 id=&#34;有问题请微博私信:b88206c9a05a97b8527e1f5cd9a8bba4&#34;&gt;有问题请微博私信&lt;/h2&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Django笔记(一)</title>
-      <link>http://cuick.github.io/django/101/</link>
-      <pubDate>Tue, 15 Mar 2016 22:06:53 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/django/101/</guid>
-      <description>
+&lt;p&gt;生活上在艺动工作一年半的时间，总体来说还是挺舒服的，望京soho高大上的工作环境，公司福利待遇都挺到位的。
+但是总感觉差点劲儿，给人的感觉就是面儿上该做的都做了，不够真心似的。其实大公司都这样吧，还是自己不够适应。&lt;/p&gt;
 
-&lt;h2 id=&#34;安装:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;技术上到艺动之后才接触的python，项目用的firefly那一套，当时学完语法以后写逻辑都没有障碍了。
+对于框架也没有深入研究，虽然有多次尝试往底层看。但是面向对象的基础有点差，那好几次尝试最终都放弃了。
+当时完全没有危机感，真的过的太安逸了。&lt;/p&gt;
 
-&lt;p&gt;同其他python模块的安装&lt;/p&gt;
+&lt;h3 id=&#34;离职:b66e25cf931c5c75968256c4152b6090&#34;&gt;离职&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo pip install Django==1.9.4
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;X年前就开始找工作，当时的我还以为项目还会继续下去，就算不会大推，至少要上线的，那时候我还是没有着急。
+到了年后，项目组的人开始往外抽人了,后端我们三个人P去了其他组，X离职，我成了孤家寡人。&lt;/p&gt;
 
-&lt;h2 id=&#34;基本命令:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;基本命令&lt;/h2&gt;
+&lt;p&gt;C和J找我聊了几次问我打算， 我说我打算项目结束后离职。当时觉得公司貌似除了工作环境好点没有什么让我留恋的了。公司马上就搬家，
+连喜欢的工作环境也没有了（前两天看到了他们发的搬家后的工作环境，也挺不错的其实）。
+工作经验到了三年，觉得自己的薪水也该调了，但是公司貌似没有这个意思。
+还有一个就是没发年终奖 没发年终奖 没发年终奖！！我觉得公司不发年终奖这个事儿，再加上搬家，公司就是明摆了的要变相的裁员。
+就年后到我走的那天,公司离职的至少有四分之一。这一波离职估计至少三分之一，甚至是五分之二。&lt;/p&gt;
 
-&lt;h4 id=&#34;1-新建一个-django-projec:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;1.新建一个 django projec:&lt;/h4&gt;
+&lt;p&gt;跟我聊的时候我依然以为项目还要上线的。后来才知道主公项目不要了。
+虽然我决定了离职，而且跟他们说了离职。但是我没有马上走，我的想法完全就是因为担心我走了之后项目上线后端没人了怎么办。。
+现在想想我他妈真是太二了。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;django-admin.py startproject project-name
+&lt;p&gt;这就是我之前为什么说公司给我的感觉差点劲儿，对于项目的计划什么的搞的和秘密似的，把自己的员工当成外人，
+员工会把项目当成自己的项目吗？会有积极性吗。&lt;/p&gt;
 
-mysite
-├── manage.py
-└── mysite
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;准备:b66e25cf931c5c75968256c4152b6090&#34;&gt;准备&lt;/h3&gt;
 
-&lt;p&gt;新建了一个 mysite 目录，其中还有一个 mysite 目录&lt;br /&gt;
-一些项目的设置 settings.py 文件，&lt;br /&gt;
-总的urls配置文件 urls.py&lt;br /&gt;
-部署服务器时用到的 wsgi.py 文件，&lt;br /&gt;
-&lt;strong&gt;init&lt;/strong&gt;.py 是python包的目录结构必须的，与调用有关。&lt;/p&gt;
+&lt;p&gt;决定离职后，我要开始准备找工作了，终于拿出了之前看了三分之一的twisted教程，然后同时开始搞hugo。
+现在想想，当时坚持看twisted教程是多么的正确，因为现在工作用的框架就是twisted+stackless。&lt;/p&gt;
 
-&lt;h4 id=&#34;2-新建-app:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;2.新建 app:&lt;/h4&gt;
+&lt;p&gt;这期间，策划除了JJ一个人都不剩的离职了，客户端全转别的组。测试在测别的项目。P也离职了。忽然发现，项目只有我一个人了。
+就连吃饭都是和客户端他们去。然后加快了准备的进度。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;python manage.py startapp app-name
-django-admin.py startapp app-name
-app-name/
-├── __init__.py
-├── admin.py
-├── models.py
-├── tests.py
-└── views.py
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;投简历:b66e25cf931c5c75968256c4152b6090&#34;&gt;投简历&lt;/h3&gt;
 
-&lt;p&gt;把我们新定义的app加到settings.py中的INSTALL_APPS中&lt;br /&gt;
-修改 mysite/mysite/settings.py&lt;/p&gt;
+&lt;p&gt;过了几天，离职没几天的L联系我说有个好的PYTHON工作推荐给我。说是多么多么简单多么多么容易面成功，给多么多么多的钱，18-20 。
+虽然我觉得他说的很不靠谱，觉得天上不会掉馅饼，但是他那么肯定的说，我也挺兴奋的。然后就急忙的整理了简历，
+跟这家公司约的同时在智联开始投简历。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;INSTALLED_APPS = (
-    &#39;django.contrib.admin&#39;,
-    &#39;django.contrib.auth&#39;,
-    &#39;django.contrib.contenttypes&#39;,
-    &#39;django.contrib.sessions&#39;,
-    &#39;django.contrib.messages&#39;,
-    &#39;django.contrib.staticfiles&#39;,
+&lt;p&gt;投了七八家公司，只有两个面试机会。加上L推荐的，总共三个面试。其他的简历，智联上显示公司都没有点开看。
+原因可能是学历问题或者不缺人或者没看到。学历问题的可能大一些。为什么这么说呢？在投简历的同事从脉脉加了几个猎头，
+猎头推荐了几家公司，其中就有我投的公司。说明他们是缺人的。给猎头简历以后没有了消息。后来厚着脸皮问了猎头，猎头说是因为学历的原因，不合适。关键是我现在用的框架可那几家招聘上要求的很吻合啊。当时我非常看好的几家公司，规模啊地点啊各方面的都合适。居然因为学历，面试机会都没有。&lt;/p&gt;
 
-    &#39;myapp&#39;,
-)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;之前一直以为不去阿里腾讯这种大公司学历好坏没关系。这一次真的感受到了学历的重要。后来也想了一下学历的问题。要不要整个自考什么的。真的没那么多精力。与其耗费精力考学历，还不如把时间利用起来学技术对我的帮助大。毕竟最终靠的还是技术。技术上过了低级码农的这个阶段可能就会好一些了。&lt;/p&gt;
 
-&lt;p&gt;使用开发服务器:&lt;/p&gt;
+&lt;h3 id=&#34;面试:b66e25cf931c5c75968256c4152b6090&#34;&gt;面试&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;python manage.py runserver
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hugo 文章配置toml</title>
-      <link>http://cuick.github.io/hugo/hugo_content_config/</link>
-      <pubDate>Thu, 03 Mar 2016 17:26:29 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/hugo/hugo_content_config/</guid>
-      <description>
+&lt;p&gt;第一家，小公司，游戏，大约二十人，办公地点居民楼。
+自我介绍，项目架构，如何实现单线程异步的。聊得不多，我当时自我感觉良好。觉得答的还可以的。被L忽悠的自信心爆棚，再加上这是个小公司，直接张口要了14。没信了。
+失败原因应该就是答得不够到位，还有就是要多了。&lt;/p&gt;
 
-&lt;h1 id=&#34;常用配置项:b66e25cf931c5c75968256c4152b6090&#34;&gt;常用配置项&lt;/h1&gt;
+&lt;p&gt;第二家，大公司，做应用的，关于第三方应用安全服务的。-
+装饰器，修饰符等等细节。django。要了15。
+失败原因 基础不好，web方面包括django知识不够。&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;date = &amp;ldquo;1970-01-01T00:00:01+08:00&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;title = &amp;ldquo;MENU&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;文章排序等级&lt;br /&gt;
-weight = 999&lt;/li&gt;
-&lt;li&gt;series = [ &amp;ldquo;hugo content config&amp;rdquo; ]&lt;/li&gt;
-&lt;li&gt;分类&lt;br /&gt;
-categories = [&amp;ldquo;VIM&amp;rdquo;]&lt;/li&gt;
-&lt;li&gt;标签
-tags = [ &amp;ldquo;Markdown&amp;rdquo;, &amp;ldquo;编程语言&amp;rdquo;, &amp;ldquo;Hugo&amp;rdquo;, &amp;ldquo;command&amp;rdquo; , &amp;ldquo;标记语言&amp;rdquo;]&lt;/li&gt;
-&lt;li&gt;不显示写文章时间&lt;br /&gt;
-nodate = true&lt;/li&gt;
-&lt;li&gt;url里的name&lt;br /&gt;
-slug = &amp;ldquo;menu&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;隐藏上下页&lt;br /&gt;
-nopaging = true&lt;/li&gt;
-&lt;li&gt;隐藏读取时间&lt;br /&gt;
-noread = true&lt;/li&gt;
-&lt;li&gt;显示作者&lt;br /&gt;
-author = &amp;ldquo;崔程凯&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;隐藏作者&lt;br /&gt;
-noauthor = true&lt;/li&gt;
-&lt;li&gt;topics = [ &amp;ldquo;Development&amp;rdquo;, &amp;ldquo;Go&amp;rdquo; ]&lt;/li&gt;
-&lt;li&gt;description = &amp;ldquo;description.&amp;rdquo;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hugo基本操作命令</title>
-      <link>http://cuick.github.io/hugo/hugo_command/</link>
-      <pubDate>Thu, 03 Mar 2016 17:26:29 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/hugo/hugo_command/</guid>
-      <description>
+&lt;p&gt;这两家面完后当天晚上就知道了结果。不成功。
+当时挺受打击的。真的是从美梦中醒来了。对自己python技术有了一个更准确的定位。面试自我感觉良好并没有什么卵用。。第二家面试的那个家伙一脸的和气，最后也都是成了怎么样怎么样的。让你很舒服。然而这个要不要你没什么关系。
+然后调整了自己的期望薪资，做了更充分的准备。第三家成功了。小公司，游戏，加班，建外soho。上班还是挺方便的。除了五号线有点挤。&lt;/p&gt;
 
-&lt;h2 id=&#34;注意点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;注意点&lt;/h2&gt;
+&lt;h3 id=&#34;总结-1:b66e25cf931c5c75968256c4152b6090&#34;&gt;总结&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;创建一个新的文档后，默认是draft属性是true&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;在艺动过的太安逸了。之前对技术掌握的太浅了。要好好的加油了。&lt;/p&gt;
 
-&lt;h2 id=&#34;常用命令:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;常用命令&lt;/h2&gt;
+&lt;p&gt;这次找工作很尴尬的一点在于，我虽然有将近三年的工作经验，但是我的经验是分了两部分，一年多的erlang和一年多的python。找工作的话我这两个语言基础都不够扎实，应用都不够深。所以拿不到三年工作经验应该拿的钱。虽然过了初级阶段多掌握一些语言是有很大好处的。但是现在来说都不够扎实就很没有优势了。&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;本地执行&lt;br /&gt;
-hugo server &amp;ndash;theme=hugo-redlounge &amp;ndash;buildDrafts&lt;/li&gt;
-&lt;li&gt;创建一个文档&lt;br /&gt;
-hugo new hugo/101.md&lt;/li&gt;
-&lt;li&gt;创建一个项目&lt;br /&gt;
-hugo new site blols&lt;/li&gt;
-&lt;li&gt;生成静态网站&lt;br /&gt;
-hugo &amp;ndash;theme=hugo-redlounge &amp;ndash;baseUrl=&amp;ldquo;&lt;a href=&#34;http://cuick.github.io/&amp;quot;&#34;&gt;http://cuick.github.io/&amp;quot;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Markdown快速入门</title>
-      <link>http://cuick.github.io/markdown/markdown_stu/</link>
-      <pubDate>Thu, 03 Mar 2016 16:57:08 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/markdown/markdown_stu/</guid>
-      <description>
-
-&lt;h1 id=&#34;教程地址:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;教程地址&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://wowubuntu.com/markdown/&#34;&gt;http://wowubuntu.com/markdown/&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;因为本站就是用markdown编辑，所以，本文是从教程地址直接复制文章过来，然后以markdown的code方式显示出来， 直接在编辑文章处删除相关注释，就可查看例子效果&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;段落、标题、区块代码
-
-一个段落是由一个以上的连接的行句组成，而一个以上的空行则会划分出不同的段落（空行的定义是显示上看起来像是空行，就被视为空行，例如有一行只有空白和 tab，那该行也会被视为空行），一般的段落不需要用空白或换行缩进。
-
-Markdown 支持两种标题的语法，Setext 和 atx 形式。Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题），Atx 形式在行首插入 1 到 6 个 # ，对应到标题 1 到 6 阶。
-
-区块引用则使用 email 形式的 &#39;&amp;gt;&#39; 角括号。
-
-Markdown 语法:
-
-A First Level Header
-====================
-A Second Level Header
----------------------
-
-
-Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.
-
-The quick brown fox jumped over the lazy
-dog&#39;s back.
-Header 3
-
-&amp;gt; This is a blockquote.
-&amp;gt;
-&amp;gt;&amp;gt; This is the second paragraph in the blockquote.
-&amp;gt;
-&amp;gt; ## This is an H2 in a blockquote
-
-输出 HTML 为：
-
-&amp;lt;h1&amp;gt;A First Level Header&amp;lt;/h1&amp;gt;
-&amp;lt;h2&amp;gt;A Second Level Header&amp;lt;/h2&amp;gt;
-&amp;lt;p&amp;gt;Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.&amp;lt;/p&amp;gt;
-&amp;lt;p&amp;gt;The quick brown fox jumped over the lazy
-dog&#39;s back.&amp;lt;/p&amp;gt;
-&amp;lt;h3&amp;gt;Header 3&amp;lt;/h3&amp;gt;
-&amp;lt;blockquote&amp;gt;
-&amp;lt;p&amp;gt;This is a blockquote.&amp;lt;/p&amp;gt;
-&amp;lt;p&amp;gt;This is the second paragraph in the blockquote.&amp;lt;/p&amp;gt;
-&amp;lt;h2&amp;gt;This is an H2 in a blockquote&amp;lt;/h2&amp;gt;
-&amp;lt;/blockquote&amp;gt;
-
-修辞和强调
-
-Markdown 使用星号和底线来标记需要强调的区段。
-
-Markdown 语法:
-
-Some of these words *are emphasized*.
-Some of these words _are emphasized also_.
-Use two asterisks for **strong emphasis**.
-Or, if you prefer, __use two underscores instead__.
-
-输出 HTML 为:
-
-&amp;lt;p&amp;gt;Some of these words &amp;lt;em&amp;gt;are emphasized&amp;lt;/em&amp;gt;.
-Some of these words &amp;lt;em&amp;gt;are emphasized also&amp;lt;/em&amp;gt;.&amp;lt;/p&amp;gt;
-&amp;lt;p&amp;gt;Use two asterisks for &amp;lt;strong&amp;gt;strong emphasis&amp;lt;/strong&amp;gt;.
-Or, if you prefer, &amp;lt;strong&amp;gt;use two underscores instead&amp;lt;/strong&amp;gt;.&amp;lt;/p&amp;gt;
-
-列表
-
-无序列表使用星号、加号和减号来做为列表的项目标记，这些符号是都可以使用的，使用星号：
-
-* Candy.
-* Gum.
-* Booze.
-
-加号：
-
-+ Candy.
-+ Gum.
-+ Booze.
-
-和减号
-
-- Candy.
-- Gum.
-- Booze.
-
-都会输出 HTML 为：
-
-&amp;lt;ul&amp;gt;
-&amp;lt;li&amp;gt;Candy.&amp;lt;/li&amp;gt;
-&amp;lt;li&amp;gt;Gum.&amp;lt;/li&amp;gt;
-&amp;lt;li&amp;gt;Booze.&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-
-有序的列表则是使用一般的数字接着一个英文句点作为项目标记：
-
-1. Red
-2. Green
-3. Blue
-
-输出 HTML 为：
-
-&amp;lt;ol&amp;gt;
-&amp;lt;li&amp;gt;Red&amp;lt;/li&amp;gt;
-&amp;lt;li&amp;gt;Green&amp;lt;/li&amp;gt;
-&amp;lt;li&amp;gt;Blue&amp;lt;/li&amp;gt;
-&amp;lt;/ol&amp;gt;
-
-如果你在项目之间插入空行，那项目的内容会用 &amp;lt;p&amp;gt; 包起来，你也可以在一个项目内放上多个段落，只要在它前面缩排 4 个空白或 1 个 tab 。
-
-* A list item.
-
-    With multiple paragraphs.
-
-    * Another item in the list.
-
-输出 HTML 为：
-
-&amp;lt;ul&amp;gt;
-&amp;lt;li&amp;gt;&amp;lt;p&amp;gt;A list item.&amp;lt;/p&amp;gt;
-&amp;lt;p&amp;gt;With multiple paragraphs.&amp;lt;/p&amp;gt;&amp;lt;/li&amp;gt;
-&amp;lt;li&amp;gt;&amp;lt;p&amp;gt;Another item in the list.&amp;lt;/p&amp;gt;&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-
-链接
-
-Markdown 支援两种形式的链接语法： 行内 和 参考 两种形式，两种都是使用角括号来把文字转成连结。
-
-行内形式是直接在后面用括号直接接上链接：
-
-This is an [example link](http://example.com/).
-
-输出 HTML 为：
-
-&amp;lt;p&amp;gt;This is an &amp;lt;a href=&amp;quot;http://example.com/&amp;quot;&amp;gt;
-example link&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
-
-你也可以选择性的加上 title 属性：
-
-This is an [example link](http://example.com/ &amp;quot;With a Title&amp;quot;).
-
-输出 HTML 为：
-
-&amp;lt;p&amp;gt;This is an &amp;lt;a href=&amp;quot;http://example.com/&amp;quot; title=&amp;quot;With a Title&amp;quot;&amp;gt;
-example link&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
-
-参考形式的链接让你可以为链接定一个名称，之后你可以在文件的其他地方定义该链接的内容：
-
-I get 10 times more traffic from [Google][1] than from
-[Yahoo][2] or [MSN][3].
-
-[1]: http://google.com/ &amp;quot;Google&amp;quot;
-[2]: http://search.yahoo.com/ &amp;quot;Yahoo Search&amp;quot;
-[3]: http://search.msn.com/ &amp;quot;MSN Search&amp;quot;
-
-输出 HTML 为：
-
-&amp;lt;p&amp;gt;I get 10 times more traffic from &amp;lt;a href=&amp;quot;http://google.com/&amp;quot;
-title=&amp;quot;Google&amp;quot;&amp;gt;Google&amp;lt;/a&amp;gt; than from &amp;lt;a href=&amp;quot;http://search.yahoo.com/&amp;quot;
-title=&amp;quot;Yahoo Search&amp;quot;&amp;gt;Yahoo&amp;lt;/a&amp;gt; or &amp;lt;a href=&amp;quot;http://search.msn.com/&amp;quot;
-title=&amp;quot;MSN Search&amp;quot;&amp;gt;MSN&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
-
-title 属性是选择性的，链接名称可以用字母、数字和空格，但是不分大小写：
-
-I start my morning with a cup of coffee and
-[The New York Times][NY Times].
-
-[ny times]: http://www.nytimes.com/
-
-输出 HTML 为：
-
-&amp;lt;p&amp;gt;I start my morning with a cup of coffee and
-&amp;lt;a href=&amp;quot;http://www.nytimes.com/&amp;quot;&amp;gt;The New York Times&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
-
-图片
-
-图片的语法和链接很像。
-
-行内形式（title 是选择性的）：
-
-![alt text](/path/to/img.jpg &amp;quot;Title&amp;quot;)
-
-参考形式：
-
-![alt text][id]
-
-[id]: /path/to/img.jpg &amp;quot;Title&amp;quot;
-
-上面两种方法都会输出 HTML 为：
-
-&amp;lt;img src=&amp;quot;/path/to/img.jpg&amp;quot; alt=&amp;quot;alt text&amp;quot; title=&amp;quot;Title&amp;quot; /&amp;gt;
-
-代码
-
-在一般的段落文字中，你可以使用反引号 \` 来标记代码区段，区段内的 &amp;amp;、&amp;lt; 和 &amp;gt; 都会被自动的转换成 HTML 实体，这项特性让你可以很容易的在代码区段内插入 HTML 码：
-
-I strongly recommend against using any `&amp;lt;blink&amp;gt;` tags.
-
-I wish SmartyPants used named entities like `&amp;amp;mdash;`  
-instead of decimal-encoded entites like `&amp;amp;#8212;`.
-
-输出 HTML 为：
-
-&amp;lt;p&amp;gt;I strongly recommend against using any
-&amp;lt;code&amp;gt;&amp;amp;lt;blink&amp;amp;gt;&amp;lt;/code&amp;gt; tags.&amp;lt;/p&amp;gt;
-&amp;lt;p&amp;gt;I wish SmartyPants used named entities like
-&amp;lt;code&amp;gt;&amp;amp;amp;mdash;&amp;lt;/code&amp;gt; instead of decimal-encoded
-entites like &amp;lt;code&amp;gt;&amp;amp;amp;#8212;&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
-
-如果要建立一个已经格式化好的代码区块，只要每行都缩进 4 个空格或是一个 tab 就可以了，而 &amp;amp;、&amp;lt; 和 &amp;gt; 也一样会自动转成 HTML 实体。
-
-Markdown 语法:
-
-If you want your page to validate under XHTML 1.0 Strict,
-you&#39;ve got to put paragraph tags in your blockquotes:
-
-    &amp;lt;blockquote&amp;gt;
-    &amp;lt;p&amp;gt;For example.&amp;lt;/p&amp;gt;
-    &amp;lt;/blockquote&amp;gt;
-
-输出 HTML 为：
-
-&amp;lt;p&amp;gt;If you want your page to validate under XHTML 1.0 Strict,
-you&#39;ve got to put paragraph tags in your blockquotes:&amp;lt;/p&amp;gt;
-&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&amp;amp;lt;blockquote&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;For example.&amp;amp;lt;/p&amp;amp;gt;
-&amp;amp;lt;/blockquote&amp;amp;gt;
-&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Twisted基础</title>
-      <link>http://cuick.github.io/twisted/twisted_basic/</link>
-      <pubDate>Sat, 27 Feb 2016 22:17:23 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/twisted/twisted_basic/</guid>
-      <description>
-
-&lt;h1 id=&#34;网络编程:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;网络编程&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;socket&lt;/li&gt;
-&lt;li&gt;select&lt;/li&gt;
-&lt;li&gt;poll&lt;/li&gt;
-&lt;li&gt;epoll&lt;/li&gt;
-&lt;li&gt;greenlet&lt;/li&gt;
-&lt;li&gt;gevent&lt;/li&gt;
-&lt;li&gt;gevent是基于协程的高性能Python网络库，相比Twisted、Stackless等，gevent使用libev事件循环，因此速度很快、性能很好，使用greenlet提供高层的同步API，因此非常轻量。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.elias.cn/Python/PyConcurrency&#34;&gt;http://www.elias.cn/Python/PyConcurrency&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.csdn.net/yueguanghaidao/&#34;&gt;http://blog.csdn.net/yueguanghaidao/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;twisted:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Twisted&lt;/h1&gt;
-
-&lt;h3 id=&#34;twisted特点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;twisted特点：&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;在一个回调函数执行过程中，实际上Twisted的循环是被有效地阻塞在我们的代码上的。因此，因此我们应该确保回调函数不要浪费时间（尽快返回）。&lt;/li&gt;
-&lt;li&gt;很多标准的Python方法没有办法转换为非阻塞方式。例如，os.system中的很多方法会在子进程完成前一直处于阻塞状态。这也就是它工作的方式。所以当你使用Twisted时，避开使用os.system。&lt;/li&gt;
-&lt;li&gt;我们为Twisted程序写的API必须是异步的&lt;/li&gt;
-&lt;li&gt;不能将同步与异步代码混合起来使用&lt;/li&gt;
-&lt;li&gt;我们可以在自己的代码中写回调函数，正如Twisted做的那样&lt;/li&gt;
-&lt;li&gt;并且，我们需要写处理错误信息的回调函数&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;reactor:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Reactor&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;一个真正reactor模式的实现是需要实现循环独立抽象出来并具有如下的功能：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;监视一系列与你I/O操作相关的文件描述符（description)&lt;/li&gt;
-&lt;li&gt;不停地向你汇报那些准备好I/O操作的文件描述符&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;一个设计优秀的reactor模式实现需要做到：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;处理所有不同系统会出现的I/O事件&lt;/li&gt;
-&lt;li&gt;提供优雅的抽象来帮助你在使用reactor时少花些心思去考虑它的存在&lt;/li&gt;
-&lt;li&gt;提供你可以在抽象层外（treactor实现）使用的公共协议实现。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;reactor特性&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Twisted的reactor只有通过调用reactor.run()来启动。&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;reactor循环是在其开始的进程中运行，也就是运行在主进程中。&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;一旦启动，就会一直运行下去。reactor就会在程序的控制下（或者具体在一个启动它的线程的控制下）。&lt;/li&gt;
-&lt;li&gt;reactor循环并不会消耗任何CPU的资源。&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;并不需要显式的创建reactor，只需要引入就OK了。&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;使用twisted.internet.pollreactor中的系统调用来poll 来代替select方法&lt;br /&gt;
-from twited.internet import pollreactor&lt;br /&gt;
-pollreactor.install()&lt;br /&gt;
-from twisted.internet import reactor&lt;br /&gt;
-reactor.run()&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;transports:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Transports&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;一个Twisted的Transport代表一个可以收发字节的单条连接。对于我们的诗歌下载客户端而言，就是对一条TCP连接的抽象。&lt;/li&gt;
-&lt;li&gt;ransport抽象可以代表任何这样的连接并为其代表的连接处理具体的异步I/O操作细节。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;protocols:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Protocols&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;一个具体的Twisted的Protocol的实现应该对应一个具体网络协议的实现，像FTP、IMAP或其它我们自己规定的协议。&lt;/li&gt;
-&lt;li&gt;每一个Twisted的Protocols类实例都为一个具体的连接提供协议解析。&lt;/li&gt;
-&lt;li&gt;Protocol实例是存储协议状态与间断性接收并累积数据的地方（由于我们是通过异步I/O方式以任意大小来接收数据的）。&lt;/li&gt;
-&lt;li&gt;Protocol实例如何得知它为哪条连接服务呢？如果你阅读IProtocol定义会发现一个makeConnection函数。这是一个回调函数，Twisted会在调用它时传递给其一个也是仅有的一个参数，即就是Transport实例。这个Transport实例就代表Protocol将要使用的连接。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;protocol-factories:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Protocol Factories&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;每个连接需要一个自己的Portocol&lt;/li&gt;
-&lt;li&gt;Protocol Factories一个新的连接制定一个合适的协议&lt;/li&gt;
-&lt;li&gt;Protocol Factory就是Factory模式的一个具体实现。&lt;/li&gt;
-&lt;li&gt;buildProtocol方法在每次被调用时返回一个新Protocol实例。它就是Twisted用来为新连接创建新Protocol实例的方法。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;failure:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Failure&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;如果有异常出现的话，其能捕获Exception与跟踪栈。&lt;/li&gt;
-&lt;li&gt;将一个Failure对象付给回调函数，我们就可以为以后的调试保存跟踪栈的信息了。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;关于回调:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;关于回调&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;激活errback是非常重要的。由于errback的功能与except块相同，因此用户需要确保它们的存在。他们并不可选项，而是必选项。&lt;/li&gt;
-&lt;li&gt;不在错误的时间点激活回调与在正确的时间点激活回调同等重要。典型的用法是，callback与errback是互斥的即只能运行其中一个。&lt;/li&gt;
-&lt;li&gt;使用回调函数的代码重构起来有些困难。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;deferred-以让程序员在使用回调时更简便:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Deferred-以让程序员在使用回调时更简便&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;ol&gt;
-&lt;li&gt;我们不能忽视errback，在任何异步编程的API中都需要它。Deferred支持errbacks。&lt;/li&gt;
-&lt;li&gt;激活回调多次可能会导致很严重的问题。Deferred只能被激活一次，这就类似于同步编程中的try/except的处理方法。&lt;/li&gt;
-&lt;li&gt;含有回调的程序在重构时相当困难。有了deferred，我们就通过修改回调链来重构程序。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ol&gt;
-&lt;li&gt;一个deferred有一个callback/errback对链，它们以添加到deferred中的顺序依次排列&lt;/li&gt;
-&lt;li&gt;stage 0，即第一对errback/callbac，会在deferred激活时调用，具体调用那个看激活deferred的方式，若是通过.errback激活，则调用errback；同样若是通过.callback激活则调用callback。（这里的errback/callback实际是指通过addBoth添加的函数）&lt;/li&gt;
-&lt;li&gt;如果stage N执行出现异常，则stage N+1的errback被调用，并且其参数即为stage N出现的异常&lt;/li&gt;
-&lt;li&gt;同样，如果stage N成功，即没有抛出异常，则N+1的callback被调用，其第一个参数为stage N的返回值。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;服务器用ServerFactory而不是ClientFactory, 这是因为服务器是要被动地监听连接状态而不是像客户端一样去主动的创建。使用listenTCP方法.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;deferred进阶:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;Deferred进阶&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;一个deferred的回调链中的一个回函数可以再返回了一个 deferred&lt;/li&gt;
-&lt;li&gt;当内层deferrd被激活时，外层的deferred恢复其回调链的执行。当内层deferred回调执行成功，那么外层deferred会调用第N+1个callback回调。相反，如果内层deferred执行失败，那么外层deferred会调用第N+1个errback回调
-&lt;img src=&#34;http://cuick.github.io/twisted/deferred-111.png&#34; alt=&#34;deferred&#34; title=&#34;xxx&#34; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>notes</title>
-      <link>http://cuick.github.io/notes/notes_stu/</link>
-      <pubDate>Fri, 26 Feb 2016 14:39:49 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/notes/notes_stu/</guid>
-      <description>
-
-&lt;h4 id=&#34;知识点:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;知识点&lt;/h4&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;好机记性如烂笔头，随手记下学习的知识点,有必要的将来整理成博客。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Markdown&lt;/li&gt;
-&lt;li&gt;llvm&lt;/li&gt;
-&lt;li&gt;python:
-
-&lt;ul&gt;
-&lt;li&gt;optparse 处理命令行参数&lt;/li&gt;
-&lt;li&gt;Eve框架&lt;/li&gt;
-&lt;li&gt;getattr(),setattr(),delattr(),hasattr()&lt;/li&gt;
-&lt;li&gt;zope plone&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ajalt/fuckitpy&#34;&gt;https://github.com/ajalt/fuckitpy&lt;/a&gt; fuckitpy&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;图标字体
-&lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;restful&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;计划:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;计划&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;看完twisted&lt;/li&gt;
-&lt;li&gt;系统的学一下python基础&lt;/li&gt;
-&lt;li&gt;python库好好整理一下&lt;/li&gt;
-&lt;li&gt;学习django&lt;/li&gt;
-&lt;li&gt;单元测试&lt;/li&gt;
-&lt;li&gt;&amp;hellip;&lt;/li&gt;
-&lt;li&gt;js&lt;/li&gt;
-&lt;li&gt;go erlang &amp;hellip;&lt;/li&gt;
-&lt;li&gt;设计模式&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;所以现在我首先要把现在在做的python从基础到深入的系统的重新学一遍。先精通一门技术再说。一通百通。&lt;/p&gt;
 </description>
     </item>
     

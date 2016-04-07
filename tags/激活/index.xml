@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>激活 on K&#39;s blog!</title>
+    <link>http://cuick.github.io/tags/%E6%BF%80%E6%B4%BB/</link>
+    <description>Recent content in 激活 on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Apr 2016 16:44:00 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/tags/%E6%BF%80%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>win10专业版激活失败，弹窗提示0xc004f074</title>
+      <link>http://cuick.github.io/windows/101/</link>
+      <pubDate>Wed, 06 Apr 2016 16:44:00 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/windows/101/</guid>
+      <description>&lt;p&gt;用下面激活方式激活win10专业版报错，网上好多方式都不好使，最后终于找到了原因，，，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;slmgr /ipk  W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms kms.xspace.in
+slmgr /ato
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;kms.xspace.in关闭了，换一个激活服务器就好了，110.noip.me，自己搜一个kms服务器也行。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tuple on K&#39;s blog!</title>
+    <link>http://cuick.github.io/tags/tuple/</link>
+    <description>Recent content in Tuple on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Apr 2016 14:55:49 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/tags/tuple/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>python基础-list tuple set</title>
+      <link>http://cuick.github.io/python/106_list_tuple_set/</link>
+      <pubDate>Thu, 07 Apr 2016 14:55:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/106_list_tuple_set/</guid>
+      <description>
+
+&lt;h2 id=&#34;list-列表:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;list 列表&lt;/h2&gt;
+
+&lt;h2 id=&#34;tuple-元组:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;tuple 元组&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;要定义一个只有1个元素的tuple，如果你这么定义&lt;code&gt;a = (1)&lt;/code&gt;,
+定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
+只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,&lt;code&gt;a=(1,)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;tuple所谓的“不变”是说，tuple的每个元素，指向永远不变&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;set-集合:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;set 集合&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; s1 = set([1, 2, 3])
+&amp;gt;&amp;gt;&amp;gt; s2 = set([2, 3, 4])
+&amp;gt;&amp;gt;&amp;gt; s1 &amp;amp; s2
+set([2, 3])
+&amp;gt;&amp;gt;&amp;gt; s1 | s2
+set([1, 2, 3, 4])
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
