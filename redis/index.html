@@ -94,8 +94,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -157,7 +155,13 @@
       				
             </p>
             <article class="post-summary">
-            	
+            	<h2 id="好处:e4b8a5905536b2b2540aab2195e920f5">好处</h2>
+
+<ol>
+<li>减少网络开销：本来5次网络请求的操作，可以用一个请求完成，原先5次请求的逻辑放在redis服务器上完成。使用脚本，减少了网络往返时延。</li>
+<li>原子操作：Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。</li>
+</ol>
+
             </article>
 			<div class="read-more-link">
 				<a href="/redis/101/"><span class="read-more-slashes">//</span>Read More...</a>

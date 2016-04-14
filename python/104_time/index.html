@@ -96,8 +96,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -170,6 +168,7 @@ def get_day_begin(ts = time.time(),N = 0):
 &quot;&quot;&quot;
 N为0时获取时间戳ts当天的起始时间戳，N为负数时前数N天，N为正数是后数N天
 &quot;&quot;&quot;
+
  return int(time.mktime(time.strptime(time.strftime('%Y-%m-%d',time.localtime(ts)),'%Y-%m-%d'))) + 86400*N
 
 def get_week_begin(ts = time.time(),N = 0):

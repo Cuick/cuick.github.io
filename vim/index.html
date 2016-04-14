@@ -94,8 +94,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -157,7 +155,18 @@
       				
             </p>
             <article class="post-summary">
-            	
+            	<p>我的vim配置文件</p>
+
+<pre><code>if !exists(&quot;:DiffOrig&quot;)
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+
+syntax on
+
+set t_Co=256
+set mouse=a
+</code></pre>
+
             </article>
 			<div class="read-more-link">
 				<a href="/vim/102/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -195,7 +204,14 @@
       				
             </p>
             <article class="post-summary">
-            	
+            	<p>插件目录结构：</p>
+
+<pre><code>  |-- syntax
+  |   |-- mkd.vim
+  |-- ftdetect
+  |   |-- mkd.vim 
+</code></pre>
+
             </article>
 			<div class="read-more-link">
 				<a href="/vim/101/"><span class="read-more-slashes">//</span>Read More...</a>

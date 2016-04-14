@@ -96,8 +96,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -182,14 +180,23 @@
 
 <h2 id="切片:79290c2d83e6fde04d9f892eafcbd74d">切片</h2>
 
-<p>取一个list或tuple的部分元素
-* L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。
-* 如果第一个索引是0，还可以省略L[:3]
-* 倒数第一个元素的索引是-1。L[-2:-1]
-* L[:]就可以原样复制一个list
-* tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：
-* 字符串&rsquo;xxx&rsquo;也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：
-* L[:10:2],前10个数，每两个取一个</p>
+<p>取一个list或tuple的部分元素</p>
+
+<ul>
+<li>L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。</li>
+
+<li><p>如果第一个索引是0，还可以省略L[:3]</p></li>
+
+<li><p>倒数第一个元素的索引是-1。L[-2:-1]</p></li>
+
+<li><p>L[:]就可以原样复制一个list</p></li>
+
+<li><p>tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：</p></li>
+
+<li><p>字符串&rsquo;xxx&rsquo;也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：</p></li>
+
+<li><p>L[:10:2],前10个数，每两个取一个</p></li>
+</ul>
 
 <h2 id="迭代:79290c2d83e6fde04d9f892eafcbd74d">迭代</h2>
 

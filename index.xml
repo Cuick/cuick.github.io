@@ -6,13 +6,320 @@
     <description>Recent content on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Apr 2016 15:58:49 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Apr 2016 15:07:49 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>python基础-模块</title>
+      <link>http://cuick.github.io/python/111_module/</link>
+      <pubDate>Wed, 13 Apr 2016 15:07:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/111_module/</guid>
+      <description>
+
+&lt;h2 id=&#34;包:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;包&lt;/h2&gt;
+
+&lt;p&gt;避免模块名冲突，Python又引入了按目录来组织模块的方法，称为包（Package）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package1
+├─ __init__.py
+├── admin.py
+├── models.py
+├── tests.py
+└─ views.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;每一个包目录下面都会有一个&lt;strong&gt;init&lt;/strong&gt;.py的文件，这个文件是必须存在的，否则，Python就把这个目录当成普通目录，而不是一个包。&lt;strong&gt;init&lt;/strong&gt;.py可以是空文件，也可以有Python代码，因为&lt;strong&gt;init&lt;/strong&gt;.py本身就是一个模块，而它的模块名就是mycompany&lt;/p&gt;
+
+&lt;p&gt;可以有多级目录，组成多级层次的包结构。&lt;/p&gt;
+
+&lt;h2 id=&#34;模块:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;模块&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;在Python中，一个.py文件就称之为一个模块（Module）。
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+&#39; a test module &#39;
+
+__author__ = &#39;Michael Liao&#39;
+
+import sys
+
+def test():
+    args = sys.argv
+    if len(args)==1:
+        print &#39;Hello, world!&#39;
+    elif len(args)==2:
+        print &#39;Hello, %s!&#39; % args[1]
+    else:
+        print &#39;Too many arguments!&#39;
+
+if __name__==&#39;__main__&#39;:
+    test()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当我们在命令行运行hello模块文件时，Python解释器把一个特殊变量&lt;strong&gt;name&lt;/strong&gt;置为&lt;strong&gt;main&lt;/strong&gt;，而如果在其他地方导入该hello模块时，if判断将失败，因此，这种if测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试。&lt;/p&gt;
+
+&lt;h2 id=&#34;使用模块:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;使用模块&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;import sys
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;导入sys模块后，我们就有了变量sys指向该模块，利用sys这个变量，就可以访问sys模块的所有功能&lt;/p&gt;
+
+&lt;h3 id=&#34;别名:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;别名&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;try:
+    import cStringIO as StringIO
+except ImportError: # 导入失败会捕获到ImportError
+    import StringIO
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于Python是动态语言，函数签名一致接口就一样，因此，无论导入哪个模块后续代码都能正常工作&lt;/p&gt;
+
+&lt;h2 id=&#34;第三方模块:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;第三方模块&lt;/h2&gt;
+
+&lt;h3 id=&#34;安装:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;Python有两个封装了setuptools的包管理工具：easy_install和pip。&lt;/p&gt;
+
+&lt;h3 id=&#34;模块搜索路径:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;模块搜索路径&lt;/h3&gt;
+
+&lt;p&gt;当我们试图加载一个模块时，Python会在指定的路径下搜索对应的.py文件，如果找不到，就会报错&lt;/p&gt;
+
+&lt;p&gt;Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块，搜索路径存放在sys模块的path变量中&lt;/p&gt;
+
+&lt;h3 id=&#34;添加自己的搜索目录:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;添加自己的搜索目录&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方法一：直接修改sys.path，添加要搜索的目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import sys
+&amp;gt;&amp;gt;&amp;gt; sys.path.append(&#39;/Users/michael/my_py_scripts&#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;方法二：设置环境变量PYTHONPATH，该环境变量的内容会被自动添加到模块搜索路径中&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;future:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;future&lt;/h3&gt;
+
+&lt;p&gt;Python提供了&lt;strong&gt;future&lt;/strong&gt;模块，把下一个新版本的特性导入到当前版本，于是我们就可以在当前版本中测试一些新版本的特性。&lt;/p&gt;
+
+&lt;p&gt;果你想在Python 2.7的代码中直接使用Python 3.x的除法，可以通过&lt;strong&gt;future&lt;/strong&gt;模块的division实现：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from __future__ import division
+
+print &#39;10 / 3 =&#39;, 10 / 3
+print &#39;10.0 / 3 =&#39;, 10.0 / 3
+print &#39;10 // 3 =&#39;, 10 // 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;10 / 3 = 3.33333333333
+10.0 / 3 = 3.33333333333
+10 // 3 = 3
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>python基础-面向对象</title>
+      <link>http://cuick.github.io/python/112_oop/</link>
+      <pubDate>Wed, 13 Apr 2016 15:07:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/112_oop/</guid>
+      <description>
+
+&lt;h3 id=&#34;访问限制:0589866b25f4e1e0a9df23909371bb14&#34;&gt;访问限制&lt;/h3&gt;
+
+&lt;p&gt;在Python中，变量名类似&lt;strong&gt;xxx&lt;/strong&gt;的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用&lt;strong&gt;name&lt;/strong&gt;、&lt;strong&gt;score&lt;/strong&gt;这样的变量名&lt;/p&gt;
+
+&lt;p&gt;如果要让类内部属性不被外部访问，可以把属性的名称前加上两个下划线&lt;strong&gt;，在Python中，实例的变量名如果以&lt;/strong&gt;开头，就变成了一个私有变量（private）&lt;/p&gt;
+
+&lt;p&gt;双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问&lt;strong&gt;name是因为Python解释器对外把&lt;/strong&gt;name变量改成了_Student&lt;strong&gt;name，所以，仍然可以通过_Student&lt;/strong&gt;name来访问__name变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Student(object):
+
+def __init__(self, name, score):
+    self.__name = name
+    self.__score = score
+
+def print_score(self):
+    print &#39;%s: %s&#39; % (self.__name, self.__score)
+
+&amp;gt;&amp;gt;&amp;gt; bart._Student__name
+&#39;Bart Simpson&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是永远不要这么干&lt;/p&gt;
+
+&lt;h3 id=&#34;获取对象信息:0589866b25f4e1e0a9df23909371bb14&#34;&gt;获取对象信息&lt;/h3&gt;
+
+&lt;h4 id=&#34;type:0589866b25f4e1e0a9df23909371bb14&#34;&gt;type&lt;/h4&gt;
+
+&lt;p&gt;判断对象类型&lt;/p&gt;
+
+&lt;p&gt;所有类型本身的类型就是TypeType&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; type(int)==type(str)==types.TypeType
+True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;isinstance:0589866b25f4e1e0a9df23909371bb14&#34;&gt;isinstance&lt;/h4&gt;
+
+&lt;p&gt;判断 一个对象是否是某种类型&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = Animal()
+&amp;gt;&amp;gt;&amp;gt; d = Dog()
+&amp;gt;&amp;gt;&amp;gt; h = Husky()
+
+&amp;gt;&amp;gt;&amp;gt; isinstance(h, Husky)
+True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;子类对象是是父类的类型&lt;/p&gt;
+
+&lt;p&gt;父类对象 不是 子类 的类型&lt;/p&gt;
+
+&lt;p&gt;能用type()判断的基本类型也可以用isinstance()判断&lt;/p&gt;
+
+&lt;p&gt;还可以判断一个变量是否是某些类型中的一种:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; isinstance(&#39;a&#39;, (str, unicode))
+True
+&amp;gt;&amp;gt;&amp;gt; isinstance(u&#39;a&#39;, (str, unicode))
+True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;dir:0589866b25f4e1e0a9df23909371bb14&#34;&gt;dir()&lt;/h4&gt;
+
+&lt;p&gt;获得一个对象的所有属性和方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; dir(&#39;ABC&#39;)
+[&#39;__add__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__getnewargs__&#39;, &#39;__getslice__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__mod__&#39;, &#39;__mul__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__rmod__&#39;, &#39;__rmul__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_formatter_field_name_split&#39;, &#39;_formatter_parser&#39;, &#39;capitalize&#39;, &#39;center&#39;, &#39;count&#39;, &#39;decode&#39;, &#39;encode&#39;, &#39;endswith&#39;, &#39;expandtabs&#39;, &#39;find&#39;, &#39;format&#39;, &#39;index&#39;, &#39;isalnum&#39;, &#39;isalpha&#39;, &#39;isdigit&#39;, &#39;islower&#39;, &#39;isspace&#39;, &#39;istitle&#39;, &#39;isupper&#39;, &#39;join&#39;, &#39;ljust&#39;, &#39;lower&#39;, &#39;lstrip&#39;, &#39;partition&#39;, &#39;replace&#39;, &#39;rfind&#39;, &#39;rindex&#39;, &#39;rjust&#39;, &#39;rpartition&#39;, &#39;rsplit&#39;, &#39;rstrip&#39;, &#39;split&#39;, &#39;splitlines&#39;, &#39;startswith&#39;, &#39;strip&#39;, &#39;swapcase&#39;, &#39;title&#39;, &#39;translate&#39;, &#39;upper&#39;, &#39;zfill&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配合getattr()、setattr()以及hasattr()，我们可以直接操作一个对象的状态&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class MyObject(object):
+...     def __init__(self):
+...         self.x = 9
+...     def power(self):
+...         return self.x * self.x
+...
+&amp;gt;&amp;gt;&amp;gt; obj = MyObject()
+
+&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;x&#39;) # 有属性&#39;x&#39;吗？
+True
+&amp;gt;&amp;gt;&amp;gt; obj.x
+9
+&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;y&#39;) # 有属性&#39;y&#39;吗？
+False
+&amp;gt;&amp;gt;&amp;gt; setattr(obj, &#39;y&#39;, 19) # 设置一个属性&#39;y&#39;
+&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;y&#39;) # 有属性&#39;y&#39;吗？
+True
+&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;y&#39;) # 获取属性&#39;y&#39;
+19
+&amp;gt;&amp;gt;&amp;gt; obj.y # 获取属性&#39;y&#39;
+19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果试图获取不存在的属性，会抛出AttributeError的错误：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;z&#39;) # 获取属性&#39;z&#39;
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+AttributeError: &#39;MyObject&#39; object has no attribute &#39;z&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以传入一个default参数，如果属性不存在，就返回默认值：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;z&#39;, 404) # 获取属性&#39;z&#39;，如果不存在，返回默认值404
+404
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以获得对象的方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;power&#39;) # 有属性&#39;power&#39;吗？
+True
+&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;power&#39;) # 获取属性&#39;power&#39;
+&amp;lt;bound method MyObject.power of &amp;lt;__main__.MyObject object at 0x108ca35d0&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; fn = getattr(obj, &#39;power&#39;) # 获取属性&#39;power&#39;并赋值到变量fn
+&amp;gt;&amp;gt;&amp;gt; fn # fn指向obj.power
+&amp;lt;bound method MyObject.power of &amp;lt;__main__.MyObject object at 0x108ca35d0&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; fn() # 调用fn()与调用obj.power()是一样的
+81
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;动态添加属性:0589866b25f4e1e0a9df23909371bb14&#34;&gt;动态添加属性&lt;/h3&gt;
+
+&lt;p&gt;定义class&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class Student(object):
+...     pass
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;绑定属性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; s = Student()
+&amp;gt;&amp;gt;&amp;gt; s.name = &#39;Michael&#39; # 动态给实例绑定一个属性
+&amp;gt;&amp;gt;&amp;gt; print s.name
+Michael
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;给一个实例绑定方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def set_age(self, age): # 定义一个函数作为实例方法
+...     self.age = age
+...
+&amp;gt;&amp;gt;&amp;gt; from types import MethodType
+&amp;gt;&amp;gt;&amp;gt; s.set_age = MethodType(set_age, s, Student) # 给实例绑定一个方法
+&amp;gt;&amp;gt;&amp;gt; s.set_age(25) # 调用实例方法
+&amp;gt;&amp;gt;&amp;gt; s.age # 测试结果
+25
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;给class绑定方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def set_score(self, score):
+...     self.score = score
+...
+&amp;gt;&amp;gt;&amp;gt; Student.set_score = MethodType(set_score, None, Student)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;给实例绑定方法后其他的实例不能使用
+给类绑定方法后所有的实例都可以使用&lt;/p&gt;
+
+&lt;p&gt;动态绑定允许我们在程序运行的过程中动态给class加上功能，这在静态语言中很难实现&lt;/p&gt;
+
+&lt;h4 id=&#34;slots:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;slots&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;Python允许在定义class的时候，定义一个特殊的&lt;strong&gt;slots&lt;/strong&gt;变量，来限制该class能添加的属性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class Student(object):
+...     __slots__ = (&#39;name&#39;, &#39;age&#39;) # 用tuple定义允许绑定的属性名称
+...
+
+&amp;gt;&amp;gt;&amp;gt; s = Student() # 创建新的实例
+&amp;gt;&amp;gt;&amp;gt; s.name = &#39;Michael&#39; # 绑定属性&#39;name&#39;
+&amp;gt;&amp;gt;&amp;gt; s.age = 25 # 绑定属性&#39;age&#39;
+&amp;gt;&amp;gt;&amp;gt; s.score = 99 # 绑定属性&#39;score&#39;
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+AttributeError: &#39;Student&#39; object has no attribute &#39;score&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;slots&lt;/strong&gt;定义的属性仅对当前类起作用，对继承的子类是不起作用的&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>python-函数式编程</title>
       <link>http://cuick.github.io/python/110_fp/</link>
-      <pubDate>Mon, 11 Apr 2016 15:58:49 +0800</pubDate>
+      <pubDate>Tue, 12 Apr 2016 15:58:49 +0800</pubDate>
       
       <guid>http://cuick.github.io/python/110_fp/</guid>
       <description>
@@ -208,14 +515,23 @@ def log(text):
 
 &lt;h2 id=&#34;切片:79290c2d83e6fde04d9f892eafcbd74d&#34;&gt;切片&lt;/h2&gt;
 
-&lt;p&gt;取一个list或tuple的部分元素
-* L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。
-* 如果第一个索引是0，还可以省略L[:3]
-* 倒数第一个元素的索引是-1。L[-2:-1]
-* L[:]就可以原样复制一个list
-* tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：
-* 字符串&amp;rsquo;xxx&amp;rsquo;也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：
-* L[:10:2],前10个数，每两个取一个&lt;/p&gt;
+&lt;p&gt;取一个list或tuple的部分元素&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果第一个索引是0，还可以省略L[:3]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;倒数第一个元素的索引是-1。L[-2:-1]&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;L[:]就可以原样复制一个list&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;字符串&amp;rsquo;xxx&amp;rsquo;也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;L[:10:2],前10个数，每两个取一个&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;迭代:79290c2d83e6fde04d9f892eafcbd74d&#34;&gt;迭代&lt;/h2&gt;
 
@@ -447,36 +763,6 @@ def f2(a, b=0, *args, **kw):
 &lt;li&gt;调用时，可在变量前加**，把dict作为关键字参数传入函数内&lt;/li&gt;
 &lt;li&gt;命名关键字参数在 &amp;gt;3.5 的版本中才有&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>python基础-模块</title>
-      <link>http://cuick.github.io/python/111_module/</link>
-      <pubDate>Sun, 10 Apr 2016 15:07:49 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/python/111_module/</guid>
-      <description>
-
-&lt;h2 id=&#34;模块:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;模块&lt;/h2&gt;
-
-&lt;p&gt;在Python中，一个.py文件就称之为一个模块（Module）。&lt;/p&gt;
-
-&lt;h2 id=&#34;包:2e443d841f9bf0a6e5f9c1a9e8bdae98&#34;&gt;包&lt;/h2&gt;
-
-&lt;p&gt;避免模块名冲突，Python又引入了按目录来组织模块的方法，称为包（Package）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;package1
-├─ __init__.py
-├── admin.py
-├── models.py
-├── tests.py
-└─ views.py
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;每一个包目录下面都会有一个&lt;strong&gt;init&lt;/strong&gt;.py的文件，这个文件是必须存在的，否则，Python就把这个目录当成普通目录，而不是一个包。&lt;strong&gt;init&lt;/strong&gt;.py可以是空文件，也可以有Python代码，因为&lt;strong&gt;init&lt;/strong&gt;.py本身就是一个模块，而它的模块名就是mycompany&lt;/p&gt;
-
-&lt;p&gt;可以有多级目录，组成多级层次的包结构。&lt;/p&gt;
 </description>
     </item>
     
@@ -723,16 +1009,17 @@ print list_c    # [3]
       <guid>http://cuick.github.io/python/106_list_tuple_set/</guid>
       <description>
 
-&lt;h2 id=&#34;list-列表:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;list 列表&lt;/h2&gt;
-
 &lt;h2 id=&#34;tuple-元组:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;tuple 元组&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;要定义一个只有1个元素的tuple，如果你这么定义&lt;code&gt;a = (1)&lt;/code&gt;,
+&lt;li&gt;&lt;p&gt;要定义一个只有1个元素的tuple，如果你这么定义&lt;code&gt;a = (1)&lt;/code&gt;,
 定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
-只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,&lt;code&gt;a=(1,)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;tuple所谓的“不变”是说，tuple的每个元素，指向永远不变&lt;/li&gt;
+只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,&lt;code&gt;a=(1,)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;tuple所谓的“不变”是说，tuple的每个元素，指向永远不变&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h2 id=&#34;list-列表:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;list 列表&lt;/h2&gt;
 
 &lt;h2 id=&#34;set-集合:9fbbb2834f2223c20142fe491c70f5c4&#34;&gt;set 集合&lt;/h2&gt;
 
@@ -929,6 +1216,7 @@ syntax on
 set t_Co=256
 set mouse=a
 
+
 set expandtab
 set sw=4
 set tabstop=4
@@ -1046,6 +1334,7 @@ ZSH_THEME=&amp;quot;af-magic&amp;quot;
 export PATH=$HOME/bin:/usr/local/mysql/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 
+
 setopt extended_glob
  TOKENS_FOLLOWED_BY_COMMANDS=(&#39;|&#39; &#39;||&#39; &#39;;&#39; &#39;&amp;amp;&#39; &#39;&amp;amp;&amp;amp;&#39; &#39;sudo&#39; &#39;do&#39; &#39;time&#39; &#39;strace&#39;)
 
@@ -1111,6 +1400,7 @@ def get_day_begin(ts = time.time(),N = 0):
 &amp;quot;&amp;quot;&amp;quot;
 N为0时获取时间戳ts当天的起始时间戳，N为负数时前数N天，N为正数是后数N天
 &amp;quot;&amp;quot;&amp;quot;
+
  return int(time.mktime(time.strptime(time.strftime(&#39;%Y-%m-%d&#39;,time.localtime(ts)),&#39;%Y-%m-%d&#39;))) + 86400*N
 
 def get_week_begin(ts = time.time(),N = 0):
@@ -1206,8 +1496,10 @@ cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
 
 &lt;ol&gt;
 &lt;li&gt;减少网络开销：本来5次网络请求的操作，可以用一个请求完成，原先5次请求的逻辑放在redis服务器上完成。使用脚本，减少了网络往返时延。&lt;/li&gt;
-&lt;li&gt;原子操作：Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。&lt;/li&gt;
-&lt;li&gt;复用：客户端发送的脚本会永久存储在Redis中，意味着其他客户端可以复用这一脚本而不需要使用代码完成同样的逻辑&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;原子操作：Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;复用：客户端发送的脚本会永久存储在Redis中，意味着其他客户端可以复用这一脚本而不需要使用代码完成同样的逻辑&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;lua脚本demo:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;lua脚本demo&lt;/h2&gt;
@@ -1250,18 +1542,6 @@ slmgr /ato
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;kms.xspace.in关闭了，换一个激活服务器就好了，110.noip.me，自己搜一个kms服务器也行。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Twisted-测试</title>
-      <link>http://cuick.github.io/twisted/102/</link>
-      <pubDate>Sun, 20 Mar 2016 22:03:23 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/twisted/102/</guid>
-      <description>
-
-&lt;h1 id=&#34;测试:b66e25cf931c5c75968256c4152b6090&#34;&gt;测试&lt;/h1&gt;
 </description>
     </item>
     

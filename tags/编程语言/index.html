@@ -94,8 +94,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -157,7 +155,12 @@
       				
             </p>
             <article class="post-summary">
-            	
+            	<h2 id="引入:46f6c6eb85e710b6752b8fcd11e3d818">引入</h2>
+
+<p>多核时代到来。为了更好利用多核，就要讲到进程与线程，区别在于是否共享资源，前者是独立的后这是共享的。<br />
+多线程环境最大的问题就是资源的竞争 死锁 数据修改。
+于是就有了线程安全的问题。</p>
+
             </article>
 			<div class="read-more-link">
 				<a href="/python/102_gil/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -193,7 +196,20 @@
       				
             </p>
             <article class="post-summary">
-            	
+            	<p>闭包</p>
+
+<pre><code>def make_addr(addend):
+    def addr(augend):
+        return augend + addend
+    return addr
+
+p = make_addr(23)
+q = make_addr(42)
+
+print p(10)
+print q(10)
+</code></pre>
+
             </article>
 			<div class="read-more-link">
 				<a href="/python/101_bibao/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -229,7 +245,14 @@
       				
             </p>
             <article class="post-summary">
-            	
+            	<h1 id="教程地址:e4b8a5905536b2b2540aab2195e920f5">教程地址</h1>
+
+<p><a href="http://wowubuntu.com/markdown/">http://wowubuntu.com/markdown/</a></p>
+
+<blockquote>
+<p>因为本站就是用markdown编辑，所以，本文是从教程地址直接复制文章过来，然后以markdown的code方式显示出来， 直接在编辑文章处删除相关注释，就可查看例子效果</p>
+</blockquote>
+
             </article>
 			<div class="read-more-link">
 				<a href="/markdown/markdown_stu/"><span class="read-more-slashes">//</span>Read More...</a>

@@ -3,13 +3,23 @@
   
   <url>
     <loc>http://cuick.github.io/</loc>
-    <lastmod>2016-04-11T15:58:49+08:00</lastmod>
+    <lastmod>2016-04-13T15:07:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://cuick.github.io/python/111_module/</loc>
+    <lastmod>2016-04-13T15:07:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuick.github.io/python/112_oop/</loc>
+    <lastmod>2016-04-13T15:07:49+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://cuick.github.io/python/110_fp/</loc>
-    <lastmod>2016-04-11T15:58:49+08:00</lastmod>
+    <lastmod>2016-04-12T15:58:49+08:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +29,6 @@
   
   <url>
     <loc>http://cuick.github.io/python/108_fun/</loc>
-    <lastmod>2016-04-10T15:07:49+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cuick.github.io/python/111_module/</loc>
     <lastmod>2016-04-10T15:07:49+08:00</lastmod>
   </url>
   

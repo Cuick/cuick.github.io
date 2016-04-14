@@ -23,6 +23,7 @@ ZSH_THEME=&amp;quot;af-magic&amp;quot;
 export PATH=$HOME/bin:/usr/local/mysql/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 
+
 setopt extended_glob
  TOKENS_FOLLOWED_BY_COMMANDS=(&#39;|&#39; &#39;||&#39; &#39;;&#39; &#39;&amp;amp;&#39; &#39;&amp;amp;&amp;amp;&#39; &#39;sudo&#39; &#39;do&#39; &#39;time&#39; &#39;strace&#39;)
 

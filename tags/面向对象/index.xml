@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>面向对象 on K&#39;s blog!</title>
+    <link>http://cuick.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+    <description>Recent content in 面向对象 on K&#39;s blog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Apr 2016 15:07:49 +0800</lastBuildDate>
+    <atom:link href="http://cuick.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>python基础-面向对象</title>
+      <link>http://cuick.github.io/python/112_oop/</link>
+      <pubDate>Wed, 13 Apr 2016 15:07:49 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/python/112_oop/</guid>
+      <description>
+
+&lt;h3 id=&#34;访问限制:0589866b25f4e1e0a9df23909371bb14&#34;&gt;访问限制&lt;/h3&gt;
+
+&lt;p&gt;在Python中，变量名类似&lt;strong&gt;xxx&lt;/strong&gt;的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用&lt;strong&gt;name&lt;/strong&gt;、&lt;strong&gt;score&lt;/strong&gt;这样的变量名&lt;/p&gt;
+
+&lt;p&gt;如果要让类内部属性不被外部访问，可以把属性的名称前加上两个下划线&lt;strong&gt;，在Python中，实例的变量名如果以&lt;/strong&gt;开头，就变成了一个私有变量（private）&lt;/p&gt;
+
+&lt;p&gt;双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问&lt;strong&gt;name是因为Python解释器对外把&lt;/strong&gt;name变量改成了_Student&lt;strong&gt;name，所以，仍然可以通过_Student&lt;/strong&gt;name来访问__name变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Student(object):
+
+def __init__(self, name, score):
+    self.__name = name
+    self.__score = score
+
+def print_score(self):
+    print &#39;%s: %s&#39; % (self.__name, self.__score)
+
+&amp;gt;&amp;gt;&amp;gt; bart._Student__name
+&#39;Bart Simpson&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是永远不要这么干&lt;/p&gt;
+
+&lt;h3 id=&#34;获取对象信息:0589866b25f4e1e0a9df23909371bb14&#34;&gt;获取对象信息&lt;/h3&gt;
+
+&lt;h4 id=&#34;type:0589866b25f4e1e0a9df23909371bb14&#34;&gt;type&lt;/h4&gt;
+
+&lt;p&gt;判断对象类型&lt;/p&gt;
+
+&lt;p&gt;所有类型本身的类型就是TypeType&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; type(int)==type(str)==types.TypeType
+True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;isinstance:0589866b25f4e1e0a9df23909371bb14&#34;&gt;isinstance&lt;/h4&gt;
+
+&lt;p&gt;判断 一个对象是否是某种类型&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = Animal()
+&amp;gt;&amp;gt;&amp;gt; d = Dog()
+&amp;gt;&amp;gt;&amp;gt; h = Husky()
+
+&amp;gt;&amp;gt;&amp;gt; isinstance(h, Husky)
+True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;子类对象是是父类的类型&lt;/p&gt;
+
+&lt;p&gt;父类对象 不是 子类 的类型&lt;/p&gt;
+
+&lt;p&gt;能用type()判断的基本类型也可以用isinstance()判断&lt;/p&gt;
+
+&lt;p&gt;还可以判断一个变量是否是某些类型中的一种:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; isinstance(&#39;a&#39;, (str, unicode))
+True
+&amp;gt;&amp;gt;&amp;gt; isinstance(u&#39;a&#39;, (str, unicode))
+True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;dir:0589866b25f4e1e0a9df23909371bb14&#34;&gt;dir()&lt;/h4&gt;
+
+&lt;p&gt;获得一个对象的所有属性和方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; dir(&#39;ABC&#39;)
+[&#39;__add__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__getnewargs__&#39;, &#39;__getslice__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__mod__&#39;, &#39;__mul__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__rmod__&#39;, &#39;__rmul__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_formatter_field_name_split&#39;, &#39;_formatter_parser&#39;, &#39;capitalize&#39;, &#39;center&#39;, &#39;count&#39;, &#39;decode&#39;, &#39;encode&#39;, &#39;endswith&#39;, &#39;expandtabs&#39;, &#39;find&#39;, &#39;format&#39;, &#39;index&#39;, &#39;isalnum&#39;, &#39;isalpha&#39;, &#39;isdigit&#39;, &#39;islower&#39;, &#39;isspace&#39;, &#39;istitle&#39;, &#39;isupper&#39;, &#39;join&#39;, &#39;ljust&#39;, &#39;lower&#39;, &#39;lstrip&#39;, &#39;partition&#39;, &#39;replace&#39;, &#39;rfind&#39;, &#39;rindex&#39;, &#39;rjust&#39;, &#39;rpartition&#39;, &#39;rsplit&#39;, &#39;rstrip&#39;, &#39;split&#39;, &#39;splitlines&#39;, &#39;startswith&#39;, &#39;strip&#39;, &#39;swapcase&#39;, &#39;title&#39;, &#39;translate&#39;, &#39;upper&#39;, &#39;zfill&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;配合getattr()、setattr()以及hasattr()，我们可以直接操作一个对象的状态&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class MyObject(object):
+...     def __init__(self):
+...         self.x = 9
+...     def power(self):
+...         return self.x * self.x
+...
+&amp;gt;&amp;gt;&amp;gt; obj = MyObject()
+
+&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;x&#39;) # 有属性&#39;x&#39;吗？
+True
+&amp;gt;&amp;gt;&amp;gt; obj.x
+9
+&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;y&#39;) # 有属性&#39;y&#39;吗？
+False
+&amp;gt;&amp;gt;&amp;gt; setattr(obj, &#39;y&#39;, 19) # 设置一个属性&#39;y&#39;
+&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;y&#39;) # 有属性&#39;y&#39;吗？
+True
+&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;y&#39;) # 获取属性&#39;y&#39;
+19
+&amp;gt;&amp;gt;&amp;gt; obj.y # 获取属性&#39;y&#39;
+19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果试图获取不存在的属性，会抛出AttributeError的错误：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;z&#39;) # 获取属性&#39;z&#39;
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+AttributeError: &#39;MyObject&#39; object has no attribute &#39;z&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以传入一个default参数，如果属性不存在，就返回默认值：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;z&#39;, 404) # 获取属性&#39;z&#39;，如果不存在，返回默认值404
+404
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以获得对象的方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; hasattr(obj, &#39;power&#39;) # 有属性&#39;power&#39;吗？
+True
+&amp;gt;&amp;gt;&amp;gt; getattr(obj, &#39;power&#39;) # 获取属性&#39;power&#39;
+&amp;lt;bound method MyObject.power of &amp;lt;__main__.MyObject object at 0x108ca35d0&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; fn = getattr(obj, &#39;power&#39;) # 获取属性&#39;power&#39;并赋值到变量fn
+&amp;gt;&amp;gt;&amp;gt; fn # fn指向obj.power
+&amp;lt;bound method MyObject.power of &amp;lt;__main__.MyObject object at 0x108ca35d0&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; fn() # 调用fn()与调用obj.power()是一样的
+81
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;动态添加属性:0589866b25f4e1e0a9df23909371bb14&#34;&gt;动态添加属性&lt;/h3&gt;
+
+&lt;p&gt;定义class&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class Student(object):
+...     pass
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;绑定属性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; s = Student()
+&amp;gt;&amp;gt;&amp;gt; s.name = &#39;Michael&#39; # 动态给实例绑定一个属性
+&amp;gt;&amp;gt;&amp;gt; print s.name
+Michael
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;给一个实例绑定方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def set_age(self, age): # 定义一个函数作为实例方法
+...     self.age = age
+...
+&amp;gt;&amp;gt;&amp;gt; from types import MethodType
+&amp;gt;&amp;gt;&amp;gt; s.set_age = MethodType(set_age, s, Student) # 给实例绑定一个方法
+&amp;gt;&amp;gt;&amp;gt; s.set_age(25) # 调用实例方法
+&amp;gt;&amp;gt;&amp;gt; s.age # 测试结果
+25
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;给class绑定方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def set_score(self, score):
+...     self.score = score
+...
+&amp;gt;&amp;gt;&amp;gt; Student.set_score = MethodType(set_score, None, Student)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;给实例绑定方法后其他的实例不能使用
+给类绑定方法后所有的实例都可以使用&lt;/p&gt;
+
+&lt;p&gt;动态绑定允许我们在程序运行的过程中动态给class加上功能，这在静态语言中很难实现&lt;/p&gt;
+
+&lt;h4 id=&#34;slots:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;slots&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;Python允许在定义class的时候，定义一个特殊的&lt;strong&gt;slots&lt;/strong&gt;变量，来限制该class能添加的属性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class Student(object):
+...     __slots__ = (&#39;name&#39;, &#39;age&#39;) # 用tuple定义允许绑定的属性名称
+...
+
+&amp;gt;&amp;gt;&amp;gt; s = Student() # 创建新的实例
+&amp;gt;&amp;gt;&amp;gt; s.name = &#39;Michael&#39; # 绑定属性&#39;name&#39;
+&amp;gt;&amp;gt;&amp;gt; s.age = 25 # 绑定属性&#39;age&#39;
+&amp;gt;&amp;gt;&amp;gt; s.score = 99 # 绑定属性&#39;score&#39;
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+AttributeError: &#39;Student&#39; object has no attribute &#39;score&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;slots&lt;/strong&gt;定义的属性仅对当前类起作用，对继承的子类是不起作用的&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

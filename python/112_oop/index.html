@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    python基础-面向对象 // K&#39;s blog!
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.16-DEV" />
+
+  <meta property="og:title" content="python基础-面向对象" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://cuick.github.io/python/112_oop/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://cuick.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+	
+
+    <h1 class="brand-title">崔程凯</h1>
+    <h2 class="brand-tagline">Do not cut down the tree that gives you shade.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/linux">linux</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/redis">redis</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/vim">vim</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/windows">windows</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
+        <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#访问限制:0589866b25f4e1e0a9df23909371bb14">访问限制</a></li>
+<li><a href="#获取对象信息:0589866b25f4e1e0a9df23909371bb14">获取对象信息</a>
+<ul>
+<li><a href="#type:0589866b25f4e1e0a9df23909371bb14">type</a></li>
+<li><a href="#isinstance:0589866b25f4e1e0a9df23909371bb14">isinstance</a></li>
+<li><a href="#dir:0589866b25f4e1e0a9df23909371bb14">dir()</a></li>
+</ul></li>
+<li><a href="#动态添加属性:0589866b25f4e1e0a9df23909371bb14">动态添加属性</a>
+<ul>
+<li><a href="#slots:0589866b25f4e1e0a9df23909371bb14"><strong>slots</strong></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/python/112_oop/">python基础-面向对象</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>13</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+            	</span>
+            	
+            
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<h3 id="访问限制:0589866b25f4e1e0a9df23909371bb14">访问限制</h3>
+
+<p>在Python中，变量名类似<strong>xxx</strong>的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用<strong>name</strong>、<strong>score</strong>这样的变量名</p>
+
+<p>如果要让类内部属性不被外部访问，可以把属性的名称前加上两个下划线<strong>，在Python中，实例的变量名如果以</strong>开头，就变成了一个私有变量（private）</p>
+
+<p>双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问<strong>name是因为Python解释器对外把</strong>name变量改成了_Student<strong>name，所以，仍然可以通过_Student</strong>name来访问__name变量：</p>
+
+<pre><code>class Student(object):
+
+def __init__(self, name, score):
+    self.__name = name
+    self.__score = score
+
+def print_score(self):
+    print '%s: %s' % (self.__name, self.__score)
+
+&gt;&gt;&gt; bart._Student__name
+'Bart Simpson'
+</code></pre>
+
+<p>但是永远不要这么干</p>
+
+<h3 id="获取对象信息:0589866b25f4e1e0a9df23909371bb14">获取对象信息</h3>
+
+<h4 id="type:0589866b25f4e1e0a9df23909371bb14">type</h4>
+
+<p>判断对象类型</p>
+
+<p>所有类型本身的类型就是TypeType</p>
+
+<pre><code>&gt;&gt;&gt; type(int)==type(str)==types.TypeType
+True
+</code></pre>
+
+<h4 id="isinstance:0589866b25f4e1e0a9df23909371bb14">isinstance</h4>
+
+<p>判断 一个对象是否是某种类型</p>
+
+<pre><code>&gt;&gt;&gt; a = Animal()
+&gt;&gt;&gt; d = Dog()
+&gt;&gt;&gt; h = Husky()
+
+&gt;&gt;&gt; isinstance(h, Husky)
+True
+</code></pre>
+
+<p>子类对象是是父类的类型</p>
+
+<p>父类对象 不是 子类 的类型</p>
+
+<p>能用type()判断的基本类型也可以用isinstance()判断</p>
+
+<p>还可以判断一个变量是否是某些类型中的一种:</p>
+
+<pre><code>&gt;&gt;&gt; isinstance('a', (str, unicode))
+True
+&gt;&gt;&gt; isinstance(u'a', (str, unicode))
+True
+</code></pre>
+
+<h4 id="dir:0589866b25f4e1e0a9df23909371bb14">dir()</h4>
+
+<p>获得一个对象的所有属性和方法</p>
+
+<pre><code>&gt;&gt;&gt; dir('ABC')
+['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__getslice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '_formatter_field_name_split', '_formatter_parser', 'capitalize', 'center', 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+</code></pre>
+
+<p>配合getattr()、setattr()以及hasattr()，我们可以直接操作一个对象的状态</p>
+
+<pre><code>&gt;&gt;&gt; class MyObject(object):
+...     def __init__(self):
+...         self.x = 9
+...     def power(self):
+...         return self.x * self.x
+...
+&gt;&gt;&gt; obj = MyObject()
+
+&gt;&gt;&gt; hasattr(obj, 'x') # 有属性'x'吗？
+True
+&gt;&gt;&gt; obj.x
+9
+&gt;&gt;&gt; hasattr(obj, 'y') # 有属性'y'吗？
+False
+&gt;&gt;&gt; setattr(obj, 'y', 19) # 设置一个属性'y'
+&gt;&gt;&gt; hasattr(obj, 'y') # 有属性'y'吗？
+True
+&gt;&gt;&gt; getattr(obj, 'y') # 获取属性'y'
+19
+&gt;&gt;&gt; obj.y # 获取属性'y'
+19
+</code></pre>
+
+<p>如果试图获取不存在的属性，会抛出AttributeError的错误：</p>
+
+<pre><code>&gt;&gt;&gt; getattr(obj, 'z') # 获取属性'z'
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: 'MyObject' object has no attribute 'z'
+</code></pre>
+
+<p>可以传入一个default参数，如果属性不存在，就返回默认值：</p>
+
+<pre><code>&gt;&gt;&gt; getattr(obj, 'z', 404) # 获取属性'z'，如果不存在，返回默认值404
+404
+</code></pre>
+
+<p>也可以获得对象的方法：</p>
+
+<pre><code>&gt;&gt;&gt; hasattr(obj, 'power') # 有属性'power'吗？
+True
+&gt;&gt;&gt; getattr(obj, 'power') # 获取属性'power'
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x108ca35d0&gt;&gt;
+&gt;&gt;&gt; fn = getattr(obj, 'power') # 获取属性'power'并赋值到变量fn
+&gt;&gt;&gt; fn # fn指向obj.power
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x108ca35d0&gt;&gt;
+&gt;&gt;&gt; fn() # 调用fn()与调用obj.power()是一样的
+81
+</code></pre>
+
+<h3 id="动态添加属性:0589866b25f4e1e0a9df23909371bb14">动态添加属性</h3>
+
+<p>定义class</p>
+
+<pre><code>&gt;&gt;&gt; class Student(object):
+...     pass
+...
+</code></pre>
+
+<p>绑定属性</p>
+
+<pre><code>&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.name = 'Michael' # 动态给实例绑定一个属性
+&gt;&gt;&gt; print s.name
+Michael
+</code></pre>
+
+<p>给一个实例绑定方法</p>
+
+<pre><code>&gt;&gt;&gt; def set_age(self, age): # 定义一个函数作为实例方法
+...     self.age = age
+...
+&gt;&gt;&gt; from types import MethodType
+&gt;&gt;&gt; s.set_age = MethodType(set_age, s, Student) # 给实例绑定一个方法
+&gt;&gt;&gt; s.set_age(25) # 调用实例方法
+&gt;&gt;&gt; s.age # 测试结果
+25
+</code></pre>
+
+<p>给class绑定方法</p>
+
+<pre><code>&gt;&gt;&gt; def set_score(self, score):
+...     self.score = score
+...
+&gt;&gt;&gt; Student.set_score = MethodType(set_score, None, Student)
+</code></pre>
+
+<p>给实例绑定方法后其他的实例不能使用
+给类绑定方法后所有的实例都可以使用</p>
+
+<p>动态绑定允许我们在程序运行的过程中动态给class加上功能，这在静态语言中很难实现</p>
+
+<h4 id="slots:0589866b25f4e1e0a9df23909371bb14"><strong>slots</strong></h4>
+
+<p>Python允许在定义class的时候，定义一个特殊的<strong>slots</strong>变量，来限制该class能添加的属性</p>
+
+<pre><code>&gt;&gt;&gt; class Student(object):
+...     __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
+...
+
+&gt;&gt;&gt; s = Student() # 创建新的实例
+&gt;&gt;&gt; s.name = 'Michael' # 绑定属性'name'
+&gt;&gt;&gt; s.age = 25 # 绑定属性'age'
+&gt;&gt;&gt; s.score = 99 # 绑定属性'score'
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: 'Student' object has no attribute 'score'
+</code></pre>
+
+<p><strong>slots</strong>定义的属性仅对当前类起作用，对继承的子类是不起作用的</p>
+
+	
+			
+
+			
+				<div class="tags-list">
+					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
+					
+	                <a class="post-tag post-tag-python" href="http://cuick.github.io/tags/python">python</a>,
+	                
+	                <a class="post-tag post-tag-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1" href="http://cuick.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a>,
+	                
+				</div>
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/python/111_module/">python基础-模块</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/python/110_fp/">python-函数式编程</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kooooook';
+    var disqus_identifier = 'http:\/\/cuick.github.io\/python\/112_oop\/';
+    var disqus_title = 'python基础-面向对象';
+    var disqus_url = 'http:\/\/cuick.github.io\/python\/112_oop\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2016. All rights reserved.</p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

@@ -23,6 +23,7 @@ def get_day_begin(ts = time.time(),N = 0):
 &amp;quot;&amp;quot;&amp;quot;
 N为0时获取时间戳ts当天的起始时间戳，N为负数时前数N天，N为正数是后数N天
 &amp;quot;&amp;quot;&amp;quot;
+
  return int(time.mktime(time.strptime(time.strftime(&#39;%Y-%m-%d&#39;,time.localtime(ts)),&#39;%Y-%m-%d&#39;))) + 86400*N
 
 def get_week_begin(ts = time.time(),N = 0):

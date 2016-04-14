@@ -96,8 +96,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -136,9 +134,9 @@
 				<small class="toc-label">Contents</small>
 		   	 	<nav id="TableOfContents">
 <ul>
-<li><a href="#twisted:e4b8a5905536b2b2540aab2195e920f5">Twisted</a>
-<ul>
 <li>
+<ul>
+<li><a href="#twisted:e4b8a5905536b2b2540aab2195e920f5">Twisted</a>
 <ul>
 <li><a href="#twisted特点:e4b8a5905536b2b2540aab2195e920f5">twisted特点：</a></li>
 <li><a href="#reactor:e4b8a5905536b2b2540aab2195e920f5">Reactor</a></li>
@@ -190,17 +188,22 @@
 
             
 
-<h1 id="twisted:e4b8a5905536b2b2540aab2195e920f5">Twisted</h1>
+<h2 id="twisted:e4b8a5905536b2b2540aab2195e920f5">Twisted</h2>
 
 <h3 id="twisted特点:e4b8a5905536b2b2540aab2195e920f5">twisted特点：</h3>
 
 <ol>
 <li>在一个回调函数执行过程中，实际上Twisted的循环是被有效地阻塞在我们的代码上的。因此，因此我们应该确保回调函数不要浪费时间（尽快返回）。</li>
-<li>很多标准的Python方法没有办法转换为非阻塞方式。例如，os.system中的很多方法会在子进程完成前一直处于阻塞状态。这也就是它工作的方式。所以当你使用Twisted时，避开使用os.system。</li>
-<li>我们为Twisted程序写的API必须是异步的</li>
-<li>不能将同步与异步代码混合起来使用</li>
-<li>我们可以在自己的代码中写回调函数，正如Twisted做的那样</li>
-<li>并且，我们需要写处理错误信息的回调函数</li>
+
+<li><p>很多标准的Python方法没有办法转换为非阻塞方式。例如，os.system中的很多方法会在子进程完成前一直处于阻塞状态。这也就是它工作的方式。所以当你使用Twisted时，避开使用os.system。</p></li>
+
+<li><p>我们为Twisted程序写的API必须是异步的</p></li>
+
+<li><p>不能将同步与异步代码混合起来使用</p></li>
+
+<li><p>我们可以在自己的代码中写回调函数，正如Twisted做的那样</p></li>
+
+<li><p>并且，我们需要写处理错误信息的回调函数</p></li>
 </ol>
 
 <h3 id="reactor:e4b8a5905536b2b2540aab2195e920f5">Reactor</h3>

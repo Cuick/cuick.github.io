@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+<meta name="baidu-site-verification" content="lYAvgbtgDf" />
   <title>
     K&#39;s blog!
   </title>
@@ -94,8 +95,6 @@
         
           <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
-        
       </ul>
     </nav>
 
@@ -133,13 +132,59 @@
                 <header class="post-header">
                     
                     <h1 class="post-title">
-                      <a href="/python/110_fp/">python-函数式编程</a>
+                      <a href="/python/111_module/">python基础-模块</a>
                   </h1>
               </header>
               <p class="post-meta">
                   
                   <span class="post-date">
-                    <span class="post-date-day"><sup>11</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                    <span class="post-date-day"><sup>13</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h2 id="包:2e443d841f9bf0a6e5f9c1a9e8bdae98">包</h2>
+
+<p>避免模块名冲突，Python又引入了按目录来组织模块的方法，称为包（Package）</p>
+
+<pre><code>package1
+├─ __init__.py
+├── admin.py
+├── models.py
+├── tests.py
+└─ views.py
+</code></pre>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/111_module/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/112_oop/">python基础-面向对象</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>13</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
                 </span>
                 
                 
@@ -157,7 +202,48 @@
                 
             </p>
             <article class="post-summary">
+                  <h3 id="访问限制:0589866b25f4e1e0a9df23909371bb14">访问限制</h3>
+
+<p>在Python中，变量名类似<strong>xxx</strong>的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用<strong>name</strong>、<strong>score</strong>这样的变量名</p>
+
+              </article>
+              <div class="read-more-link">
+                  <a href="/python/112_oop/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/python/110_fp/">python-函数式编程</a>
+                  </h1>
+              </header>
+              <p class="post-meta">
                   
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>12</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>2 min. read</em></span>
+                
+                
+                <div class="post-categories">
+                    
+                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+                    
+                </div>
+                
+            </p>
+            <article class="post-summary">
+                  <h2 id="关于函数式编程:5d974e52f6440f66e5eafa0028ddc75c">关于函数式编程</h2>
+
+<p>函数是Python内建支持的一种封装，我们通过把大段代码拆成函数，通过一层一层的函数调用，就可以把复杂任务分解成简单的任务，这种分解可以称之为面向过程的程序设计。函数就是面向过程的程序设计的基本单元。</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/110_fp/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -192,7 +278,15 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="切片:79290c2d83e6fde04d9f892eafcbd74d">切片</h2>
+
+<p>取一个list或tuple的部分元素</p>
+
+<ul>
+<li>L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。</li>
+<li>如果第一个索引是0，还可以省略L[:3]</li>
+</ul>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/109_special/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -227,45 +321,13 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="所有内置函数:de303522e70934a82875d78047200a03">所有内置函数</h2>
+
+<p><a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></p>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/108_fun/"><span class="read-more-slashes">//</span>Read More...</a>
-              </div>
-          </section>
-          
-            <section  class="post">
-                <header class="post-header">
-                    
-                    <h1 class="post-title">
-                      <a href="/python/111_module/">python基础-模块</a>
-                  </h1>
-              </header>
-              <p class="post-meta">
-                  
-                  <span class="post-date">
-                    <span class="post-date-day"><sup>10</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
-                </span>
-                
-                
-                    
-                
-                
-                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>1 min. read</em></span>
-                
-                
-                <div class="post-categories">
-                    
-                    <a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
-                    
-                </div>
-                
-            </p>
-            <article class="post-summary">
-                  
-              </article>
-              <div class="read-more-link">
-                  <a href="/python/111_module/"><span class="read-more-slashes">//</span>Read More...</a>
               </div>
           </section>
           
@@ -297,7 +359,18 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="赋值-引用-浅复制-深复制:8d37479f728103ff01e750a3599e3a2e">赋值 引用 浅复制 深复制</h2>
+
+<ul>
+<li><p>python 中赋值语句总是建立对象的引用值，而不是复制对象。因此，python 变量更像是指针，而不是数据存储区域</p>
+
+<pre><code>&gt;&gt;&gt; values = [0, 1, 2]
+&gt;&gt;&gt; values[1] = values
+&gt;&gt;&gt; values
+[0, [...], 2]
+</code></pre></li>
+</ul>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/107_copy/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -332,7 +405,14 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="tuple-元组:9fbbb2834f2223c20142fe491c70f5c4">tuple 元组</h2>
+
+<ol>
+<li>要定义一个只有1个元素的tuple，如果你这么定义<code>a = (1)</code>,
+定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
+只有1个元素的tuple定义时必须加一个逗号,，来消除歧义,<code>a=(1,)</code></li>
+</ol>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/106_list_tuple_set/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -367,7 +447,13 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="字符串:a23880f8b35e46659c516e699a542eed">字符串</h2>
+
+<ol>
+<li>字符串是以单引号<code>'</code>或双引号<code>&quot;</code>括起来的任意文本，比如<code>'abc'</code>，<code>&quot;xyz&quot;</code></li>
+<li>如果字符串内部既包含<code>'</code>又包含<code>&quot;</code>怎么办？可以用转义字符\来标识</li>
+</ol>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/105_string/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -402,7 +488,18 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <p>我的vim配置文件</p>
+
+<pre><code>if !exists(&quot;:DiffOrig&quot;)
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+endif
+
+syntax on
+
+set t_Co=256
+set mouse=a
+</code></pre>
+
               </article>
               <div class="read-more-link">
                   <a href="/vim/102/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -439,6 +536,13 @@
             <article class="post-summary">
                   <p>我的zsh配置文件</p>
 
+<pre><code>export ZSH=$HOME/.oh-my-zsh
+export PATH=&quot;/usr/local/bin/pypy-5.0.1-linux_x86_64-portable/bin&quot;:$PATH
+ZSH_THEME=&quot;af-magic&quot;
+export PATH=$HOME/bin:/usr/local/mysql/bin:$PATH
+source $ZSH/oh-my-zsh.sh
+</code></pre>
+
               </article>
               <div class="read-more-link">
                   <a href="/zsh/101/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -473,7 +577,16 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <p>计算自然周第一天、自然月第一天和每天的凌晨时间戳</p>
+
+<pre><code>import time
+
+def get_day_begin(ts = time.time(),N = 0):
+&quot;&quot;&quot;
+N为0时获取时间戳ts当天的起始时间戳，N为负数时前数N天，N为正数是后数N天
+&quot;&quot;&quot;
+</code></pre>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/104_time/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -508,7 +621,8 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <p>在vim下ctrl+s整个xshell终端就死了，遇到好几次这种情况，网上查了下原来ctrl+s在LINUX里是锁定屏幕的快捷键，解锁ctrl+q就可以了</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/linux/notes_stu/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -545,7 +659,14 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <p>插件目录结构：</p>
+
+<pre><code>  |-- syntax
+  |   |-- mkd.vim
+  |-- ftdetect
+  |   |-- mkd.vim 
+</code></pre>
+
               </article>
               <div class="read-more-link">
                   <a href="/vim/101/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -580,7 +701,13 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="好处:e4b8a5905536b2b2540aab2195e920f5">好处</h2>
+
+<ol>
+<li>减少网络开销：本来5次网络请求的操作，可以用一个请求完成，原先5次请求的逻辑放在redis服务器上完成。使用脚本，减少了网络往返时延。</li>
+<li>原子操作：Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。</li>
+</ol>
+
               </article>
               <div class="read-more-link">
                   <a href="/redis/101/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -615,7 +742,15 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <p>用下面激活方式激活win10专业版报错，网上好多方式都不好使，最后终于找到了原因，，，</p>
+
+<pre><code>slmgr /ipk  W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms kms.xspace.in
+slmgr /ato
+</code></pre>
+
+<p>kms.xspace.in关闭了，换一个激活服务器就好了，110.noip.me，自己搜一个kms服务器也行。</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/windows/101/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -687,7 +822,12 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="python-字典删除元素clear-pop-popitem:038858a3f82cf4ccbb0e60712917b653">Python 字典删除元素clear、pop、popitem</h2>
+
+<h3 id="clear:038858a3f82cf4ccbb0e60712917b653">clear()</h3>
+
+<p>clear()方法是用来清除字典中的所有数据，因为是原地操作，所以返回None（也可以理解为没有返回值）</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/103_dict/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -722,7 +862,12 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="引入:46f6c6eb85e710b6752b8fcd11e3d818">引入</h2>
+
+<p>多核时代到来。为了更好利用多核，就要讲到进程与线程，区别在于是否共享资源，前者是独立的后这是共享的。<br />
+多线程环境最大的问题就是资源的竞争 死锁 数据修改。
+于是就有了线程安全的问题。</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/102_gil/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -757,7 +902,20 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <p>闭包</p>
+
+<pre><code>def make_addr(addend):
+    def addr(augend):
+        return augend + addend
+    return addr
+
+p = make_addr(23)
+q = make_addr(42)
+
+print p(10)
+print q(10)
+</code></pre>
+
               </article>
               <div class="read-more-link">
                   <a href="/python/101_bibao/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -792,7 +950,11 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h3 id="总结:b66e25cf931c5c75968256c4152b6090">总结</h3>
+
+<p>生活上在艺动工作一年半的时间，总体来说还是挺舒服的，望京soho高大上的工作环境，公司福利待遇都挺到位的。
+但是总感觉差点劲儿，给人的感觉就是面儿上该做的都做了，不够真心似的。其实大公司都这样吧，还是自己不够适应。</p>
+
               </article>
               <div class="read-more-link">
                   <a href="/notes/102/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -852,7 +1014,13 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="安装:e4b8a5905536b2b2540aab2195e920f5">安装</h2>
+
+<p>同其他python模块的安装</p>
+
+<pre><code>sudo pip install Django==1.9.4
+</code></pre>
+
               </article>
               <div class="read-more-link">
                   <a href="/django/101/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -887,7 +1055,13 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="常用配置项:b66e25cf931c5c75968256c4152b6090">常用配置项</h2>
+
+<ul>
+<li>date = &ldquo;1970-01-01T00:00:01+08:00&rdquo;</li>
+<li>title = &ldquo;MENU&rdquo;</li>
+</ul>
+
               </article>
               <div class="read-more-link">
                   <a href="/hugo/hugo_content_config/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -922,7 +1096,12 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="注意点:e4b8a5905536b2b2540aab2195e920f5">注意点</h2>
+
+<ul>
+<li>创建一个新的文档后，默认是draft属性是true</li>
+</ul>
+
               </article>
               <div class="read-more-link">
                   <a href="/hugo/hugo_command/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -957,7 +1136,14 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h1 id="教程地址:e4b8a5905536b2b2540aab2195e920f5">教程地址</h1>
+
+<p><a href="http://wowubuntu.com/markdown/">http://wowubuntu.com/markdown/</a></p>
+
+<blockquote>
+<p>因为本站就是用markdown编辑，所以，本文是从教程地址直接复制文章过来，然后以markdown的code方式显示出来， 直接在编辑文章处删除相关注释，就可查看例子效果</p>
+</blockquote>
+
               </article>
               <div class="read-more-link">
                   <a href="/markdown/markdown_stu/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -994,7 +1180,15 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h2 id="twisted:e4b8a5905536b2b2540aab2195e920f5">Twisted</h2>
+
+<h3 id="twisted特点:e4b8a5905536b2b2540aab2195e920f5">twisted特点：</h3>
+
+<ol>
+<li>在一个回调函数执行过程中，实际上Twisted的循环是被有效地阻塞在我们的代码上的。因此，因此我们应该确保回调函数不要浪费时间（尽快返回）。</li>
+<li>很多标准的Python方法没有办法转换为非阻塞方式。例如，os.system中的很多方法会在子进程完成前一直处于阻塞状态。这也就是它工作的方式。所以当你使用Twisted时，避开使用os.system。</li>
+</ol>
+
               </article>
               <div class="read-more-link">
                   <a href="/twisted/twisted_basic/"><span class="read-more-slashes">//</span>Read More...</a>
@@ -1029,7 +1223,12 @@
                 
             </p>
             <article class="post-summary">
-                  
+                  <h4 id="知识点:e4b8a5905536b2b2540aab2195e920f5">知识点</h4>
+
+<blockquote>
+<p>好机记性如烂笔头，随手记下学习的知识点,有必要的将来整理成博客。</p>
+</blockquote>
+
               </article>
               <div class="read-more-link">
                   <a href="/notes/notes_stu/"><span class="read-more-slashes">//</span>Read More...</a>
