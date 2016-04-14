@@ -24,36 +24,25 @@
 &lt;li&gt;title = &amp;ldquo;MENU&amp;rdquo;&lt;/li&gt;
 &lt;li&gt;文章排序等级&lt;br /&gt;
 weight = 999&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;series = [ &amp;ldquo;hugo content config&amp;rdquo; ]&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;分类&lt;br /&gt;
-categories = [&amp;ldquo;VIM&amp;rdquo;]&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;标签
-tags = [ &amp;ldquo;Markdown&amp;rdquo;, &amp;ldquo;编程语言&amp;rdquo;, &amp;ldquo;Hugo&amp;rdquo;, &amp;ldquo;command&amp;rdquo; , &amp;ldquo;标记语言&amp;rdquo;]&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;不显示写文章时间&lt;br /&gt;
-nodate = true&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;url里的name&lt;br /&gt;
-slug = &amp;ldquo;menu&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;隐藏上下页&lt;br /&gt;
-nopaging = true&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;隐藏读取时间&lt;br /&gt;
-noread = true&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;显示作者&lt;br /&gt;
-author = &amp;ldquo;崔程凯&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;隐藏作者&lt;br /&gt;
-noauthor = true&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;topics = [ &amp;ldquo;Development&amp;rdquo;, &amp;ldquo;Go&amp;rdquo; ]&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;description = &amp;ldquo;description.&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;series = [ &amp;ldquo;hugo content config&amp;rdquo; ]&lt;/li&gt;
+&lt;li&gt;分类&lt;br /&gt;
+categories = [&amp;ldquo;VIM&amp;rdquo;]&lt;/li&gt;
+&lt;li&gt;标签
+tags = [ &amp;ldquo;Markdown&amp;rdquo;, &amp;ldquo;编程语言&amp;rdquo;, &amp;ldquo;Hugo&amp;rdquo;, &amp;ldquo;command&amp;rdquo; , &amp;ldquo;标记语言&amp;rdquo;]&lt;/li&gt;
+&lt;li&gt;不显示写文章时间&lt;br /&gt;
+nodate = true&lt;/li&gt;
+&lt;li&gt;url里的name&lt;br /&gt;
+slug = &amp;ldquo;menu&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;隐藏上下页&lt;br /&gt;
+nopaging = true&lt;/li&gt;
+&lt;li&gt;隐藏读取时间&lt;br /&gt;
+noread = true&lt;/li&gt;
+&lt;li&gt;显示作者&lt;br /&gt;
+author = &amp;ldquo;崔程凯&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;隐藏作者&lt;br /&gt;
+noauthor = true&lt;/li&gt;
+&lt;li&gt;topics = [ &amp;ldquo;Development&amp;rdquo;, &amp;ldquo;Go&amp;rdquo; ]&lt;/li&gt;
+&lt;li&gt;description = &amp;ldquo;description.&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

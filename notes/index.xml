@@ -112,45 +112,89 @@
 &lt;li&gt;Eve框架&lt;/li&gt;
 &lt;li&gt;getattr(),setattr(),delattr(),hasattr()&lt;/li&gt;
 &lt;li&gt;zope plone&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ajalt/fuckitpy&#34;&gt;https://github.com/ajalt/fuckitpy&lt;/a&gt; fuckitpy&lt;/li&gt;
+&lt;li&gt;fuckitpy &lt;a href=&#34;https://github.com/ajalt/fuckitpy&#34;&gt;https://github.com/ajalt/fuckitpy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;enumerate&lt;/li&gt;
 &lt;li&gt;set list map tuple&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;图标字体
-&lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;图标字体 &lt;a href=&#34;http://fontawesome.dashgame.com/&#34;&gt;http://fontawesome.dashgame.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;restful&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://my.oschina.net/leejun2005/blog/145461&#34;&gt;http://my.oschina.net/leejun2005/blog/145461&lt;/a&gt; flask&lt;/li&gt;
-&lt;li&gt;深入理解 python 中的赋值、引用、拷贝、作用域
-&lt;a href=&#34;http://my.oschina.net/leejun2005/blog/145911&#34;&gt;http://my.oschina.net/leejun2005/blog/145911&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;嵌入式等各种博客
-&lt;a href=&#34;http://blog.csdn.net/caimouse/&#34;&gt;http://blog.csdn.net/caimouse/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;flask &lt;a href=&#34;http://my.oschina.net/leejun2005/blog/145461&#34;&gt;http://my.oschina.net/leejun2005/blog/145461&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h1 id=&#34;网络编程:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;网络编程&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;socket&lt;/li&gt;
+&lt;li&gt;select&lt;/li&gt;
+&lt;li&gt;poll&lt;/li&gt;
+&lt;li&gt;epoll&lt;/li&gt;
+&lt;li&gt;greenlet&lt;/li&gt;
+&lt;li&gt;gevent&lt;/li&gt;
+&lt;li&gt;gevent是基于协程的高性能Python网络库，相比Twisted、Stackless等，gevent使用libev事件循环，因此速度很快、性能很好，使用greenlet提供高层的同步API，因此非常轻量。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.elias.cn/Python/PyConcurrency&#34;&gt;http://www.elias.cn/Python/PyConcurrency&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.csdn.net/yueguanghaidao/&#34;&gt;http://blog.csdn.net/yueguanghaidao/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;计划:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;计划&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;看完twisted&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;系统的学一下python基础&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;python库好好整理一下&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;redis&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;学习django&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;单元测试&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&amp;hellip;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;js c/c++ linux&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;嵌入式。电气工程。。。。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;go erlang &amp;hellip;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;设计模式&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;系统的学一下python基础&lt;/li&gt;
+&lt;li&gt;python库好好整理一下&lt;/li&gt;
+&lt;li&gt;redis&lt;/li&gt;
+&lt;li&gt;学习django&lt;/li&gt;
+&lt;li&gt;单元测试&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;js c/c++ linux&lt;/li&gt;
+&lt;li&gt;嵌入式。电气工程。。。。&lt;/li&gt;
+&lt;li&gt;go erlang &amp;hellip;&lt;/li&gt;
+&lt;li&gt;设计模式&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&#34;博客:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;博客：&lt;/h2&gt;
+
+&lt;p&gt;在线编译器： &lt;a href=&#34;http://www.mcqyy.com/RunCode/c/&#34;&gt;http://www.mcqyy.com/RunCode/c/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;vim教程：&lt;a href=&#34;http://coolshell.cn/articles/5426.html&#34;&gt;http://coolshell.cn/articles/5426.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ubuntu下sublime中文输入法：&lt;a href=&#34;http://bbs.chinahtml.com/t319624/&#34;&gt;http://bbs.chinahtml.com/t319624/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;linux程序包下载：&lt;a href=&#34;https://launchpad.net/ubuntu&#34;&gt;https://launchpad.net/ubuntu&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;web.py:&lt;a href=&#34;http://webpy.org/tutorial3.zh-cn&#34;&gt;http://webpy.org/tutorial3.zh-cn&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;win下用ssh。软件：putty&lt;/p&gt;
+
+&lt;p&gt;erlang gc 原理： &lt;a href=&#34;http://www.cnblogs.com/me-sa/archive/2011/11/13/erlang0014.html&#34;&gt;http://www.cnblogs.com/me-sa/archive/2011/11/13/erlang0014.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;正则表达式：&lt;a href=&#34;http://blog.jobbole.com/63398/&#34;&gt;http://blog.jobbole.com/63398/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;erlang 大牛：&lt;a href=&#34;http://blog.csdn.net/mycwq&#34;&gt;http://blog.csdn.net/mycwq&lt;/a&gt;   &lt;a href=&#34;http://www.cnblogs.com/me-sa/archive/2011/11/13/erlang0014.html&#34;&gt;http://www.cnblogs.com/me-sa/archive/2011/11/13/erlang0014.html&lt;/a&gt;
+emacs：  &lt;a href=&#34;http://emacser.com/to-emacs-beginner.htm&#34;&gt;http://emacser.com/to-emacs-beginner.htm&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;TOML： &lt;a href=&#34;http://mlworks.cn/posts/introduction-to-toml/&#34;&gt;http://mlworks.cn/posts/introduction-to-toml/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;hugo： &lt;a href=&#34;http://blog.coderzh.com/2015/08/29/hugo/&#34;&gt;http://blog.coderzh.com/2015/08/29/hugo/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;elixir语言&lt;/p&gt;
+
+&lt;p&gt;html： &lt;a href=&#34;http://www.blogjava.net/zjusuyong/articles/304788.html&#34;&gt;http://www.blogjava.net/zjusuyong/articles/304788.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;kbengine： &lt;a href=&#34;http://kbengine.org/cn/docs/build.html&#34;&gt;http://kbengine.org/cn/docs/build.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;erlang &lt;a href=&#34;http://dhq.me/erlample/&#34;&gt;http://dhq.me/erlample/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;erlang英文文档：&lt;a href=&#34;http://www.erlang.org/erldoc&#34;&gt;http://www.erlang.org/erldoc&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Erlang OTP设计原理文档：&lt;a href=&#34;http://erlang.shiningray.cn/otp-design-principles/index.html&#34;&gt;http://erlang.shiningray.cn/otp-design-principles/index.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;python网站 &lt;a href=&#34;http://www.pythontab.com/&#34;&gt;http://www.pythontab.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;因为墙，go get 这里下载：&lt;a href=&#34;http://golangtc.com/download/package&#34;&gt;http://golangtc.com/download/package&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;vim等内容大牛博客：&lt;a href=&#34;http://easwy.com&#34;&gt;http://easwy.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;嵌入式等各种博客 &lt;a href=&#34;http://blog.csdn.net/caimouse/&#34;&gt;http://blog.csdn.net/caimouse/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

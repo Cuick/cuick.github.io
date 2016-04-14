@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <title>
-    Hugo 文章配置toml // K&#39;s blog!
+    python基础-函数 // K&#39;s blog!
   </title>
 
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -16,11 +16,11 @@
 <meta name="author" content="">
 <meta name="generator" content="Hugo 0.16-DEV" />
 
-  <meta property="og:title" content="Hugo 文章配置toml" />
+  <meta property="og:title" content="python基础-函数" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="http://cuick.github.io/hugo/hugo_content_config/" />
+<meta property="og:url" content="http://cuick.github.io/python/108_fun/" />
 
 
   
@@ -136,7 +136,24 @@
 				<small class="toc-label">Contents</small>
 		   	 	<nav id="TableOfContents">
 <ul>
-<li><a href="#常用配置项:b66e25cf931c5c75968256c4152b6090">常用配置项</a></li>
+<li>
+<ul>
+<li><a href="#所有内置函数:de303522e70934a82875d78047200a03">所有内置函数</a></li>
+<li><a href="#return:de303522e70934a82875d78047200a03">return</a></li>
+<li><a href="#参数:de303522e70934a82875d78047200a03">参数</a>
+<ul>
+<li>
+<ul>
+<li><a href="#位置参数:de303522e70934a82875d78047200a03">位置参数</a></li>
+<li><a href="#默认参数:de303522e70934a82875d78047200a03">默认参数</a></li>
+<li><a href="#可变参数:de303522e70934a82875d78047200a03">可变参数</a></li>
+<li><a href="#关键字参数:de303522e70934a82875d78047200a03">关键字参数</a></li>
+<li><a href="#命名关键字参数-只有python3-x版本有:de303522e70934a82875d78047200a03">命名关键字参数(只有python3.x版本有)</a></li>
+<li><a href="#参数组合:de303522e70934a82875d78047200a03">参数组合</a></li>
+<li><a href="#总结:de303522e70934a82875d78047200a03">总结</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 </nav>
 		    </div>
@@ -144,14 +161,14 @@
 	    
   		<section class="post">
             <h1 class="post-title">
-              <a href="/hugo/hugo_content_config/">Hugo 文章配置toml</a>
+              <a href="/python/108_fun/">python基础-函数</a>
             </h1>
             <h3 class="post-subtitle">
             	
             </h3>
             
             	<span class="post-date">
-                	<span class="post-date-day"><sup>3</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Mar</span> <span class="post-date-year">2016</span>
+                	<span class="post-date-day"><sup>10</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
             	</span>
             	
             
@@ -162,7 +179,7 @@
 			
 				<div class="post-categories">
 				
-					<a class="post-category post-category-hugo" href="http://cuick.github.io/categories/hugo">Hugo</a>
+					<a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
 				
 				</div>
 			
@@ -173,32 +190,105 @@
 
             
 
-<h1 id="常用配置项:b66e25cf931c5c75968256c4152b6090">常用配置项</h1>
+<h2 id="所有内置函数:de303522e70934a82875d78047200a03">所有内置函数</h2>
+
+<p><a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></p>
+
+<h2 id="return:de303522e70934a82875d78047200a03">return</h2>
 
 <ul>
-<li>date = &ldquo;1970-01-01T00:00:01+08:00&rdquo;</li>
-<li>title = &ldquo;MENU&rdquo;</li>
-<li>文章排序等级<br />
-weight = 999</li>
-<li>series = [ &ldquo;hugo content config&rdquo; ]</li>
-<li>分类<br />
-categories = [&ldquo;VIM&rdquo;]</li>
-<li>标签
-tags = [ &ldquo;Markdown&rdquo;, &ldquo;编程语言&rdquo;, &ldquo;Hugo&rdquo;, &ldquo;command&rdquo; , &ldquo;标记语言&rdquo;]</li>
-<li>不显示写文章时间<br />
-nodate = true</li>
-<li>url里的name<br />
-slug = &ldquo;menu&rdquo;</li>
-<li>隐藏上下页<br />
-nopaging = true</li>
-<li>隐藏读取时间<br />
-noread = true</li>
-<li>显示作者<br />
-author = &ldquo;崔程凯&rdquo;</li>
-<li>隐藏作者<br />
-noauthor = true</li>
-<li>topics = [ &ldquo;Development&rdquo;, &ldquo;Go&rdquo; ]</li>
-<li>description = &ldquo;description.&rdquo;</li>
+<li>函数可以返回多个值。</li>
+<li>但其实这只是一种假象，Python函数返回的仍然是单一值,一个tuple</li>
+<li>* 在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple，但写起来更方便。</li>
+</ul>
+
+<h2 id="参数:de303522e70934a82875d78047200a03">参数</h2>
+
+<h4 id="位置参数:de303522e70934a82875d78047200a03">位置参数</h4>
+
+<pre><code>def a(x, y):
+    pass
+</code></pre>
+
+<h4 id="默认参数:de303522e70934a82875d78047200a03">默认参数</h4>
+
+<pre><code>def a(x=1):
+    pass
+</code></pre>
+
+<ul>
+<li>一定要注意默认参数的默认值不要设置为可变对象（比如 list dict 等）</li>
+<li>可以用None等代替</li>
+</ul>
+
+<h4 id="可变参数:de303522e70934a82875d78047200a03">可变参数</h4>
+
+<pre><code>def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+</code></pre>
+
+<p>在参数前面加了一个*号。在函数内部，参数numbers接收到的是一个tuple
+可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple</p>
+
+<pre><code>&gt;&gt;&gt; nums = [1, 2, 3]
+&gt;&gt;&gt; calc(*nums)
+14
+</code></pre>
+
+<p>*nums表示把nums这个list的所有元素作为可变参数传进去。</p>
+
+<h4 id="关键字参数:de303522e70934a82875d78047200a03">关键字参数</h4>
+
+<pre><code>def person(name, age, **kw):
+    print('name:', name, 'age:', age, 'other:', kw)
+</code></pre>
+
+<p>关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict。</p>
+
+<pre><code>&gt;&gt;&gt; extra = {'city': 'Beijing', 'job': 'Engineer'}
+&gt;&gt;&gt; person('Jack', 24, **extra)
+name: Jack age: 24 other: {'city': 'Beijing', 'job': 'Engineer'}
+</code></pre>
+
+<p>也可以先组装出一个dict，在传入的参数前面加**，把该dict转换为关键字参数传进去</p>
+
+<h4 id="命名关键字参数-只有python3-x版本有:de303522e70934a82875d78047200a03">命名关键字参数(只有python3.x版本有)</h4>
+
+<pre><code>def person(name, age, *, city, job):
+    print(name, age, city, job)
+</code></pre>
+
+<p>使用命名关键字参数时，要特别注意，*不是参数，而是特殊分隔符</p>
+
+<pre><code>&gt;&gt;&gt; person('Jack', 24, city='Beijing', job='Engineer')
+Jack 24 Beijing Engineer
+</code></pre>
+
+<h4 id="参数组合:de303522e70934a82875d78047200a03">参数组合</h4>
+
+<pre><code>def f1(a, b=1, *, c, **kw):
+    print(a,b,c,kw)
+
+def f2(a, b=0, *args, **kw):
+    print(a,b,args,kw)
+</code></pre>
+
+<ul>
+<li>除了可变参数无法和命名关键字参数混合,其他均可组合使用</li>
+<li>参数定义的顺序必须是：必选参数、默认参数、可变参数/命名关键字参数和关键字参数。</li>
+</ul>
+
+<h4 id="总结:de303522e70934a82875d78047200a03">总结</h4>
+
+<ul>
+<li>可变参数，函数内转为tuple，</li>
+<li>关键字参数，函数内转为dict</li>
+<li>调用时，可在变量前加*，把list或者tuple作为可变参数传入函数内</li>
+<li>调用时，可在变量前加**，把dict作为关键字参数传入函数内</li>
+<li>命名关键字参数在 &gt;3.5 的版本中才有</li>
 </ul>
 
 	
@@ -208,9 +298,7 @@ noauthor = true</li>
 				<div class="tags-list">
 					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
 					
-	                <a class="post-tag post-tag-hugo" href="http://cuick.github.io/tags/hugo">Hugo</a>,
-	                
-	                <a class="post-tag post-tag-toml" href="http://cuick.github.io/tags/toml">toml</a>,
+	                <a class="post-tag post-tag-python" href="http://cuick.github.io/tags/python">python</a>,
 	                
 				</div>
 			
@@ -221,14 +309,14 @@ noauthor = true</li>
 					
 					<div class="paging-newer">
 						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
-						<a class="paging-link" href="/django/101/">Django笔记(一)</a>
+						<a class="paging-link" href="/python/109_special/">python-特性(切片、迭代...)</a>
 		            </div>
 		            
 
 					
 					<div class="paging-older">
 						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
-			            <a class="paging-link" href="/hugo/hugo_command/">Hugo基本操作命令</a>
+			            <a class="paging-link" href="/python/111_module/">python基础-模块</a>
 		            </div>
 		            
 	            </div>
@@ -238,9 +326,9 @@ noauthor = true</li>
           	<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'kooooook';
-    var disqus_identifier = 'http:\/\/cuick.github.io\/hugo\/hugo_content_config\/';
-    var disqus_title = 'Hugo 文章配置toml';
-    var disqus_url = 'http:\/\/cuick.github.io\/hugo\/hugo_content_config\/';
+    var disqus_identifier = 'http:\/\/cuick.github.io\/python\/108_fun\/';
+    var disqus_title = 'python基础-函数';
+    var disqus_url = 'http:\/\/cuick.github.io\/python\/108_fun\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

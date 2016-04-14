@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    python-特性(切片、迭代...) // K&#39;s blog!
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.16-DEV" />
+
+  <meta property="og:title" content="python-特性(切片、迭代...)" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://cuick.github.io/python/109_special/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://cuick.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="K&#39;s blog!" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+	
+
+    <h1 class="brand-title">崔程凯</h1>
+    <h2 class="brand-tagline">Do not cut down the tree that gives you shade.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://cuick.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/django">Django</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/markdown">Markdown</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/hugo">hugo</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/linux">linux</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/python">python</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/redis">redis</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/twisted">twisted</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/vim">vim</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/windows">windows</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/zsh">zsh</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/notes">随笔</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://weibo.com/zxzxck/" target="_blank"><i class='fa fa-weibo'></i></a>
+        
+      
+        
+        <a href="http://github.com/cuick" target="_blank"><i class='fa fa-github'></i></a>
+        
+      
+        
+        <a href="http://blog.csdn.net/cuick2013" target="_blank"><i class='fa fa-link'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#切片:79290c2d83e6fde04d9f892eafcbd74d">切片</a></li>
+<li><a href="#迭代:79290c2d83e6fde04d9f892eafcbd74d">迭代</a></li>
+<li><a href="#列表生成式:79290c2d83e6fde04d9f892eafcbd74d">列表生成式</a></li>
+<li><a href="#生成器:79290c2d83e6fde04d9f892eafcbd74d">生成器</a></li>
+</ul></li>
+<li><a href="#迭代器:79290c2d83e6fde04d9f892eafcbd74d">迭代器</a></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/python/109_special/">python-特性(切片、迭代...)</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>11</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Apr</span> <span class="post-date-year">2016</span>
+            	</span>
+            	
+            
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-python" href="http://cuick.github.io/categories/python">python</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<h2 id="切片:79290c2d83e6fde04d9f892eafcbd74d">切片</h2>
+
+<p>取一个list或tuple的部分元素
+* L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。
+* 如果第一个索引是0，还可以省略L[:3]
+* 倒数第一个元素的索引是-1。L[-2:-1]
+* L[:]就可以原样复制一个list
+* tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：
+* 字符串&rsquo;xxx&rsquo;也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：
+* L[:10:2],前10个数，每两个取一个</p>
+
+<h2 id="迭代:79290c2d83e6fde04d9f892eafcbd74d">迭代</h2>
+
+<ul>
+<li>dict的存储不是按照list的方式顺序排列，所以，迭代出的结果顺序很可能不一样</li>
+
+<li><p>判断一个对象是可迭代对象用collections模块的Iterable进行判断</p>
+
+<pre><code>&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance('abc', Iterable) # str是否可迭代
+True
+&gt;&gt;&gt; isinstance([1,2,3], Iterable) # list是否可迭代
+True
+&gt;&gt;&gt; isinstance(123, Iterable) # 整数是否可迭代
+False
+</code></pre></li>
+
+<li><p>Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身</p>
+
+<pre><code>&gt;&gt;&gt; for i, value in enumerate(['A', 'B', 'C']):
+...     print(i, value)
+...
+0 A
+1 B
+2 C
+</code></pre></li>
+</ul>
+
+<h2 id="列表生成式:79290c2d83e6fde04d9f892eafcbd74d">列表生成式</h2>
+
+<ul>
+<li>range(3)  [0,1,2]</li>
+<li>[x * x for x in range(1, 11)]  生成[1*1,2*2 &hellip; 11*11]</li>
+<li>[x * x for x in range(1, 11) if x % 2 == 0] 偶数的平方的列表</li>
+
+<li><p>两层循环</p>
+
+<pre><code>&gt;&gt;&gt; [m + n for m in 'ABC' for n in 'XYZ']
+['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
+</code></pre></li>
+
+<li><p>运用列表生成式，可以快速生成list，可以通过一个list推导出另一个list，而代码却十分简洁。</p></li>
+
+<li><p>在python3.x里range生成的是一个迭代对象而不是list，要想生成list需要list(range(n))</p></li>
+</ul>
+
+<h2 id="生成器:79290c2d83e6fde04d9f892eafcbd74d">生成器</h2>
+
+<ul>
+<li><p>通过列表生成式，我们可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含100万个元素的列表，不仅占用很大的存储空间，如果我们仅仅需要访问前面几个元素，那后面绝大多数元素占用的空间都白白浪费了。</p></li>
+
+<li><p>列表元素可以按照某种算法推算出来，我们是否可以在循环的过程中不断推算出后续的元素,这样就不必创建完整的list，从而节省大量的空间。</p></li>
+
+<li><p>这种一边循环一边计算的机制，称为 <em>生成器</em> （Generator）。</p></li>
+
+<li><p>创建生成器：把一个列表生成式的[]改成()</p>
+
+<pre><code>&gt;&gt;&gt; L = [x * x for x in range(10)]
+&gt;&gt;&gt; L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+&gt;&gt;&gt; g = (x * x for x in range(10))
+&gt;&gt;&gt; g
+&lt;generator object &lt;genexpr&gt; at 0x104feab40&gt;
+</code></pre></li>
+
+<li><p>获得每个元素</p>
+
+<pre><code>&gt;&gt;&gt; g.next()
+0
+&gt;&gt;&gt; g.next()
+1
+...
+&gt;&gt;&gt; g.next()
+64
+&gt;&gt;&gt; g.next()
+81
+&gt;&gt;&gt; g.next()
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  StopIteration
+</code></pre></li>
+
+<li><p>因为generator也是可迭代对象</p>
+
+<pre><code>&gt;&gt;&gt; g = (x * x for x in range(10))
+&gt;&gt;&gt; for n in g:
+...     print n
+...
+0
+1
+4
+9
+16
+25
+36
+</code></pre>
+
+<p>创建了一个generator后，很少调用next()方法，而是通过for循环来迭代它</p></li>
+
+<li><p>如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：</p>
+
+<pre><code>def fib(max):
+    n, a, b = 0, 0, 1
+    while n &lt; max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+</code></pre>
+
+<p>generator和函数的执行流程不一样。函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。</p></li>
+</ul>
+
+<h1 id="迭代器:79290c2d83e6fde04d9f892eafcbd74d">迭代器</h1>
+
+<ul>
+<li>可作用于for循环的对象都是可迭代对象Iterable类型；</li>
+<li>可作用于next()函数的对象都是迭代器Iterator类型，它们表示一个惰性计算的序列；</li>
+<li>集合数据类型如list、dict、str等是可迭代对象Iterable但不是迭代器Iterator，不过可以通过iter()函数获得一个迭代器Iterator对象。</li>
+<li>生成器generator都是迭代器Iterator</li>
+</ul>
+
+	
+			
+
+			
+				<div class="tags-list">
+					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
+					
+	                <a class="post-tag post-tag-python" href="http://cuick.github.io/tags/python">python</a>,
+	                
+				</div>
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/python/110_fp/">python-函数式编程</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/python/108_fun/">python基础-函数</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kooooook';
+    var disqus_identifier = 'http:\/\/cuick.github.io\/python\/109_special\/';
+    var disqus_title = 'python-特性(切片、迭代...)';
+    var disqus_url = 'http:\/\/cuick.github.io\/python\/109_special\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+			<li><a href="/footer">Powered by Hugo with hugo-redlounge</a></li>
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2016. All rights reserved.</p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>
