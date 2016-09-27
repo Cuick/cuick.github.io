@@ -6,8 +6,18 @@
     <description>Recent content on K&#39;s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Apr 2016 15:07:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 02 Sep 2016 17:26:29 +0800</lastBuildDate>
     <atom:link href="http://cuick.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>git br -a 含有远端不存在分支</title>
+      <link>http://cuick.github.io/git/git/</link>
+      <pubDate>Fri, 02 Sep 2016 17:26:29 +0800</pubDate>
+      
+      <guid>http://cuick.github.io/git/git/</guid>
+      <description>&lt;p&gt;git fetch -p&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>python基础-模块</title>
@@ -134,7 +144,7 @@ print &#39;10 // 3 =&#39;, 10 // 3
 
 &lt;h3 id=&#34;访问限制:0589866b25f4e1e0a9df23909371bb14&#34;&gt;访问限制&lt;/h3&gt;
 
-&lt;p&gt;在Python中，变量名类似&lt;strong&gt;xxx&lt;/strong&gt;的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用&lt;strong&gt;name&lt;/strong&gt;、&lt;strong&gt;score&lt;/strong&gt;这样的变量名&lt;/p&gt;
+&lt;p&gt;在Python中，变量名类似 &lt;strong&gt;xxx&lt;/strong&gt; 的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用 &lt;strong&gt;name&lt;/strong&gt; 、&lt;strong&gt;score&lt;/strong&gt; 这样的变量名&lt;/p&gt;
 
 &lt;p&gt;如果要让类内部属性不被外部访问，可以把属性的名称前加上两个下划线&lt;strong&gt;，在Python中，实例的变量名如果以&lt;/strong&gt;开头，就变成了一个私有变量（private）&lt;/p&gt;
 
@@ -1525,23 +1535,6 @@ return 1
 
 &lt;p&gt;&amp;ndash;eval参数是告诉redis-cli读取并运行后面的Lua脚本，ratelimiting.lua是脚本的位置，后面跟着是传给Lua脚本的参数。其中&amp;rdquo;,&amp;ldquo;前的rate.limiting:127.0.0.1是要操作的键，可以再脚本中用KEYS[1]获取，&amp;rdquo;,&amp;ldquo;后面的10和3是参数，在脚本中能够使用ARGV[1]和ARGV[2]获得。注：&amp;rdquo;,&amp;ldquo;两边的空格不能省略，否则会出错
 结合脚本的内容可知这行命令的作用是将访问频率限制为每10秒最多3次，所以在终端中不断的运行此命令会发现当访问频率在10秒内小于或等于3次时返回1，否则返回0。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>win10专业版激活失败，弹窗提示0xc004f074</title>
-      <link>http://cuick.github.io/windows/101/</link>
-      <pubDate>Wed, 06 Apr 2016 16:44:00 +0800</pubDate>
-      
-      <guid>http://cuick.github.io/windows/101/</guid>
-      <description>&lt;p&gt;用下面激活方式激活win10专业版报错，网上好多方式都不好使，最后终于找到了原因，，，&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;slmgr /ipk  W269N-WFGWX-YVC9B-4J6C9-T83GX
-slmgr /skms kms.xspace.in
-slmgr /ato
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;kms.xspace.in关闭了，换一个激活服务器就好了，110.noip.me，自己搜一个kms服务器也行。&lt;/p&gt;
 </description>
     </item>
     

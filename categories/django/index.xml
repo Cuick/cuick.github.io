@@ -43,7 +43,7 @@ mysite
 一些项目的设置 settings.py 文件，&lt;br /&gt;
 总的urls配置文件 urls.py&lt;br /&gt;
 部署服务器时用到的 wsgi.py 文件，&lt;br /&gt;
-&lt;strong&gt;init&lt;/strong&gt;.py 是python包的目录结构必须的，与调用有关。&lt;/p&gt;
+ &lt;strong&gt;init&lt;/strong&gt; .py 是python包的目录结构必须的，与调用有关。&lt;/p&gt;
 
 &lt;h4 id=&#34;2-新建-app:e4b8a5905536b2b2540aab2195e920f5&#34;&gt;2.新建 app:&lt;/h4&gt;
 
