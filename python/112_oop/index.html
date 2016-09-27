@@ -147,7 +147,23 @@
 </ul></li>
 <li><a href="#动态添加属性:0589866b25f4e1e0a9df23909371bb14">动态添加属性</a>
 <ul>
-<li><a href="#slots:0589866b25f4e1e0a9df23909371bb14"><strong>slots</strong></a></li>
+<li><a href="#slots:0589866b25f4e1e0a9df23909371bb14"><code>__slots__</code></a></li>
+<li><a href="#property:0589866b25f4e1e0a9df23909371bb14">@property</a></li>
+</ul></li>
+<li><a href="#多重继承:0589866b25f4e1e0a9df23909371bb14">多重继承</a></li>
+<li><a href="#定制类:0589866b25f4e1e0a9df23909371bb14">定制类</a>
+<ul>
+<li><a href="#str-repr:0589866b25f4e1e0a9df23909371bb14"><strong>str</strong>() <strong>repr</strong>()</a></li>
+<li><a href="#iter:0589866b25f4e1e0a9df23909371bb14"><strong>iter</strong></a></li>
+<li><a href="#getitem:0589866b25f4e1e0a9df23909371bb14"><strong>getitem</strong></a></li>
+<li><a href="#getattr:0589866b25f4e1e0a9df23909371bb14"><strong>getattr</strong></a></li>
+<li><a href="#call:0589866b25f4e1e0a9df23909371bb14"><strong>call</strong></a></li>
+</ul></li>
+<li><a href="#枚举类:0589866b25f4e1e0a9df23909371bb14">枚举类</a></li>
+<li><a href="#元类:0589866b25f4e1e0a9df23909371bb14">元类</a>
+<ul>
+<li><a href="#type-1:0589866b25f4e1e0a9df23909371bb14">type</a></li>
+<li><a href="#metaclass:0589866b25f4e1e0a9df23909371bb14">metaclass</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -189,11 +205,11 @@
 
 <h3 id="访问限制:0589866b25f4e1e0a9df23909371bb14">访问限制</h3>
 
-<p>在Python中，变量名类似 <strong>xxx</strong> 的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用 <strong>name</strong> 、<strong>score</strong> 这样的变量名</p>
+<p>在Python中，变量名类似<code>__xxx__</code>的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用<code>__name__</code>、<code>__score__</code>这样的变量名</p>
 
-<p>如果要让类内部属性不被外部访问，可以把属性的名称前加上两个下划线<strong>，在Python中，实例的变量名如果以</strong>开头，就变成了一个私有变量（private）</p>
+<p>如果要让类内部属性不被外部访问，可以把属性的名称前加上两个下划线<code>__</code>，在Python中，实例的变量名如果以<code>__</code>开头，就变成了一个私有变量（private）</p>
 
-<p>双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问<strong>name是因为Python解释器对外把</strong>name变量改成了_Student<strong>name，所以，仍然可以通过_Student</strong>name来访问__name变量：</p>
+<p>双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问<code>__name</code>是因为Python解释器对外把<code>__name</code>变量改成了<code>_Student__name</code>，所以，仍然可以通过<code>_Student__name</code>来访问<code>__name</code>变量：</p>
 
 <pre><code>class Student(object):
 
@@ -350,9 +366,9 @@ Michael
 
 <p>动态绑定允许我们在程序运行的过程中动态给class加上功能，这在静态语言中很难实现</p>
 
-<h4 id="slots:0589866b25f4e1e0a9df23909371bb14"><strong>slots</strong></h4>
+<h4 id="slots:0589866b25f4e1e0a9df23909371bb14"><code>__slots__</code></h4>
 
-<p>Python允许在定义class的时候，定义一个特殊的<strong>slots</strong>变量，来限制该class能添加的属性</p>
+<p>Python允许在定义class的时候，定义一个特殊的<code>__slots__</code>变量，来限制该class能添加的属性</p>
 
 <pre><code>&gt;&gt;&gt; class Student(object):
 ...     __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
@@ -367,7 +383,227 @@ Traceback (most recent call last):
 AttributeError: 'Student' object has no attribute 'score'
 </code></pre>
 
-<p><strong>slots</strong>定义的属性仅对当前类起作用，对继承的子类是不起作用的</p>
+<p><code>__slots__</code>定义的属性仅对当前类起作用，对继承的子类是不起作用的</p>
+
+<p>非在子类中也定义<strong>slots</strong>，这样，子类实例允许定义的属性就是自身的<strong>slots</strong>加上父类的<strong>slots</strong>。</p>
+
+<h4 id="property:0589866b25f4e1e0a9df23909371bb14">@property</h4>
+
+<p>Python内置的@property装饰器负责把一个方法变成属性调用</p>
+
+<h3 id="多重继承:0589866b25f4e1e0a9df23909371bb14">多重继承</h3>
+
+<p>在设计类的时候，我们优先考虑通过多重继承来组合多个MixIn的功能，而不是设计多层次的复杂的继承关系。</p>
+
+<pre><code>class Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
+    pass
+</code></pre>
+
+<h3 id="定制类:0589866b25f4e1e0a9df23909371bb14">定制类</h3>
+
+<p>类似<strong>slots</strong>这种形如<strong>xxx</strong>的变量或者函数名就要注意，这些在Python中是有特殊用途的
+thon的class中还有许多这样有特殊用途的函数，可以帮助我们定制类</p>
+
+<h4 id="str-repr:0589866b25f4e1e0a9df23909371bb14"><strong>str</strong>() <strong>repr</strong>()</h4>
+
+<pre><code>&gt;&gt;&gt; class Student(object):
+...     def __init__(self, name):
+...         self.name = name
+...
+&gt;&gt;&gt; print(Student('Michael'))
+&lt;__main__.Student object at 0x109afb190&gt;
+</code></pre>
+
+<p>使用<strong>str</strong>:</p>
+
+<pre><code>&gt;&gt;&gt; class Student(object):
+...     def __init__(self, name):
+...         self.name = name
+...     def __str__(self):
+...         return 'Student object (name: %s)' % self.name
+...
+&gt;&gt;&gt; print(Student('Michael'))
+Student object (name: Michael)
+</code></pre>
+
+<p>直接敲变量不用print，打印出来的实例还是和未使用<strong>str</strong>一样
+使用 <strong>repr</strong> 后 ，直接返回 设置的内容</p>
+
+<p>两者的区别是<strong>str</strong>()返回用户看到的字符串，而<strong>repr</strong>()返回程序开发者看到的字符串，也就是说，<strong>repr</strong>()是为调试服务的</p>
+
+<h4 id="iter:0589866b25f4e1e0a9df23909371bb14"><strong>iter</strong></h4>
+
+<p>将对象实例变为迭代对象</p>
+
+<p>Python的for循环就会不断调用该迭代对象的<strong>next</strong>()方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环</p>
+
+<pre><code>class Fib(object):
+    def __init__(self):
+        self.a, self.b = 0, 1 # 初始化两个计数器a，b
+
+    def __iter__(self):
+        return self # 实例本身就是迭代对象，故返回自己
+
+    def __next__(self):
+        self.a, self.b = self.b, self.a + self.b # 计算下一个值
+        if self.a &gt; 100000: # 退出循环的条件
+            raise StopIteration();
+        return self.a # 返回下一个值
+
+&gt;&gt;&gt; for n in Fib():
+...     print(n)
+...
+1
+1
+2
+3
+</code></pre>
+
+<h4 id="getitem:0589866b25f4e1e0a9df23909371bb14"><strong>getitem</strong></h4>
+
+<p>让对象可以和list一样去取值</p>
+
+<pre><code>class Fib(object):
+    def __getitem__(self, n):
+        a, b = 1, 1
+        for x in range(n):
+            a, b = b, a + b
+        return a
+
+&gt;&gt;&gt; f = Fib()
+&gt;&gt;&gt; f[0]
+1
+&gt;&gt;&gt; f[1]
+1
+&gt;&gt;&gt; f[2]
+2
+</code></pre>
+
+<p>加入一个判断，让我们的对象实现切片的用法</p>
+
+<pre><code>class Fib(object):
+    def __getitem__(self, n):
+        if isinstance(n, int): # n是索引
+            a, b = 1, 1
+            for x in range(n):
+                a, b = b, a + b
+            return a
+        if isinstance(n, slice): # n是切片
+            start = n.start
+            stop = n.stop
+            if start is None:
+                start = 0
+            a, b = 1, 1
+            L = []
+            for x in range(stop):
+                if x &gt;= start:
+                    L.append(a)
+                a, b = b, a + b
+            return L
+
+&gt;&gt;&gt; f = Fib()
+&gt;&gt;&gt; f[0:5]
+[1, 1, 2, 3, 5]
+</code></pre>
+
+<p>另外 还可以结合<strong>setitem</strong>()方法、<strong>delitem</strong>()方法 等 去实现 dict一样的用法。</p>
+
+<p>我们自己定义的类表现得和Python自带的list、tuple、dict没什么区别，这完全归功于动态语言的“鸭子类型”，不需要强制继承某个接口</p>
+
+<p>鸭子类型：
+一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由当前方法和属性的集合决定。
+“当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。”</p>
+
+<h4 id="getattr:0589866b25f4e1e0a9df23909371bb14"><strong>getattr</strong></h4>
+
+<p>class Student(object):</p>
+
+<pre><code>def __init__(self):
+    self.name = 'Michael'
+
+def __getattr__(self, attr):
+    if attr=='score':
+        return 99
+</code></pre>
+
+<p>当调用不存在的属性时，比如score，Python解释器会试图调用<strong>getattr</strong>(self, &lsquo;score&rsquo;)来尝试获得属性，这样，我们就有机会返回score的值
+也可以返回函数</p>
+
+<p>只有在没有找到属性的情况下，才调用<strong>getattr</strong></p>
+
+<p>属性如果在getattr里不存在，默认返回是None，而不是抛出异常,如果要实现，需要自己抛出</p>
+
+<h4 id="call:0589866b25f4e1e0a9df23909371bb14"><strong>call</strong></h4>
+
+<p>实现这个函数可以通过直接调用对象来调用
+class Student(object):
+    def <strong>init</strong>(self, name):
+        self.name = name</p>
+
+<pre><code>def __call__(self):
+    print('My name is %s.' % self.name)
+</code></pre>
+
+<h3 id="枚举类:0589866b25f4e1e0a9df23909371bb14">枚举类</h3>
+
+<p>定义常量时，通常用大写变量整数来定义</p>
+
+<p>更好的方法是用枚举类型 Enum</p>
+
+<pre><code>from enum import Enum
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+</code></pre>
+
+<p>=</p>
+
+<pre><code>from enum import Enum, unique
+@unique
+class Weekday(Enum):
+    Sun = 0 # Sun的value被设定为0
+    Mon = 1
+    Tue = 2
+    Wed = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+</code></pre>
+
+<p>&hellip;. 还是学c/c++的时候在系统的学一下枚举吧。。</p>
+
+<h3 id="元类:0589866b25f4e1e0a9df23909371bb14">元类</h3>
+
+<h4 id="type-1:0589866b25f4e1e0a9df23909371bb14">type</h4>
+
+<p>type()函数既可以返回一个对象的类型，又可以创建出新的类型</p>
+
+<pre><code>&gt;&gt;&gt; def fn(self, name='world'): # 先定义函数
+...     print('Hello, %s.' % name)
+...
+&gt;&gt;&gt; Hello = type('Hello', (object,), dict(hello=fn)) # 创建Hello class
+&gt;&gt;&gt; h = Hello()
+&gt;&gt;&gt; h.hello()
+Hello, world.
+&gt;&gt;&gt; print(type(Hello))
+&lt;class 'type'&gt;
+&gt;&gt;&gt; print(type(h))
+&lt;class '__main__.Hello'&gt;
+</code></pre>
+
+<p>三个参数：</p>
+
+<ol>
+<li>class的名称；</li>
+<li>继承的父类集合，注意Python支持多重继承，如果只有一个父类，别忘了tuple的单元素写法；</li>
+<li>class的方法名称与函数绑定，这里我们把函数fn绑定到方法名hello上。</li>
+</ol>
+
+<p>动态语言本身支持运行期动态创建类，这和静态语言有非常大的不同</p>
+
+<h4 id="metaclass:0589866b25f4e1e0a9df23909371bb14">metaclass</h4>
+
+<p><a href="http://blog.jobbole.com/21351/">http://blog.jobbole.com/21351/</a></p>
+
+<p>。。。</p>
 
 	
 			
