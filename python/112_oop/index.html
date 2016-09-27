@@ -153,11 +153,11 @@
 <li><a href="#多重继承:0589866b25f4e1e0a9df23909371bb14">多重继承</a></li>
 <li><a href="#定制类:0589866b25f4e1e0a9df23909371bb14">定制类</a>
 <ul>
-<li><a href="#str-repr:0589866b25f4e1e0a9df23909371bb14"><strong>str</strong>() <strong>repr</strong>()</a></li>
-<li><a href="#iter:0589866b25f4e1e0a9df23909371bb14"><strong>iter</strong></a></li>
-<li><a href="#getitem:0589866b25f4e1e0a9df23909371bb14"><strong>getitem</strong></a></li>
-<li><a href="#getattr:0589866b25f4e1e0a9df23909371bb14"><strong>getattr</strong></a></li>
-<li><a href="#call:0589866b25f4e1e0a9df23909371bb14"><strong>call</strong></a></li>
+<li><a href="#str-repr:0589866b25f4e1e0a9df23909371bb14"><code>__str__()</code> <code>__repr__()</code></a></li>
+<li><a href="#iter:0589866b25f4e1e0a9df23909371bb14"><code>__iter__</code></a></li>
+<li><a href="#getitem:0589866b25f4e1e0a9df23909371bb14"><code>__getitem__</code></a></li>
+<li><a href="#getattr:0589866b25f4e1e0a9df23909371bb14"><code>__getattr__</code></a></li>
+<li><a href="#call:0589866b25f4e1e0a9df23909371bb14"><code>__call__</code></a></li>
 </ul></li>
 <li><a href="#枚举类:0589866b25f4e1e0a9df23909371bb14">枚举类</a></li>
 <li><a href="#元类:0589866b25f4e1e0a9df23909371bb14">元类</a>
@@ -385,7 +385,7 @@ AttributeError: 'Student' object has no attribute 'score'
 
 <p><code>__slots__</code>定义的属性仅对当前类起作用，对继承的子类是不起作用的</p>
 
-<p>非在子类中也定义<strong>slots</strong>，这样，子类实例允许定义的属性就是自身的<strong>slots</strong>加上父类的<strong>slots</strong>。</p>
+<p>非在子类中也定义<code>__slots__</code>，这样，子类实例允许定义的属性就是自身的<code>__slots__</code>加上父类的<code>__slots__</code>。</p>
 
 <h4 id="property:0589866b25f4e1e0a9df23909371bb14">@property</h4>
 
@@ -401,10 +401,10 @@ AttributeError: 'Student' object has no attribute 'score'
 
 <h3 id="定制类:0589866b25f4e1e0a9df23909371bb14">定制类</h3>
 
-<p>类似<strong>slots</strong>这种形如<strong>xxx</strong>的变量或者函数名就要注意，这些在Python中是有特殊用途的
+<p>类似<code>__slots__</code>这种形如<code>__xxx__</code>的变量或者函数名就要注意，这些在Python中是有特殊用途的
 thon的class中还有许多这样有特殊用途的函数，可以帮助我们定制类</p>
 
-<h4 id="str-repr:0589866b25f4e1e0a9df23909371bb14"><strong>str</strong>() <strong>repr</strong>()</h4>
+<h4 id="str-repr:0589866b25f4e1e0a9df23909371bb14"><code>__str__()</code> <code>__repr__()</code></h4>
 
 <pre><code>&gt;&gt;&gt; class Student(object):
 ...     def __init__(self, name):
@@ -414,7 +414,7 @@ thon的class中还有许多这样有特殊用途的函数，可以帮助我们�
 &lt;__main__.Student object at 0x109afb190&gt;
 </code></pre>
 
-<p>使用<strong>str</strong>:</p>
+<p>使用<code>__str__</code>:</p>
 
 <pre><code>&gt;&gt;&gt; class Student(object):
 ...     def __init__(self, name):
@@ -426,16 +426,16 @@ thon的class中还有许多这样有特殊用途的函数，可以帮助我们�
 Student object (name: Michael)
 </code></pre>
 
-<p>直接敲变量不用print，打印出来的实例还是和未使用<strong>str</strong>一样
-使用 <strong>repr</strong> 后 ，直接返回 设置的内容</p>
+<p>直接敲变量不用print，打印出来的实例还是和未使用<code>__str__</code>一样
+使用<code>__repr__</code>后 ，直接返回 设置的内容</p>
 
-<p>两者的区别是<strong>str</strong>()返回用户看到的字符串，而<strong>repr</strong>()返回程序开发者看到的字符串，也就是说，<strong>repr</strong>()是为调试服务的</p>
+<p>两者的区别是<code>__str__</code>()返回用户看到的字符串，而<code>__repr__()</code>返回程序开发者看到的字符串，也就是说，<code>__repr__()</code>是为调试服务的</p>
 
-<h4 id="iter:0589866b25f4e1e0a9df23909371bb14"><strong>iter</strong></h4>
+<h4 id="iter:0589866b25f4e1e0a9df23909371bb14"><code>__iter__</code></h4>
 
 <p>将对象实例变为迭代对象</p>
 
-<p>Python的for循环就会不断调用该迭代对象的<strong>next</strong>()方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环</p>
+<p>Python的for循环就会不断调用该迭代对象的<code>__next__()</code>方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环</p>
 
 <pre><code>class Fib(object):
     def __init__(self):
@@ -459,7 +459,7 @@ Student object (name: Michael)
 3
 </code></pre>
 
-<h4 id="getitem:0589866b25f4e1e0a9df23909371bb14"><strong>getitem</strong></h4>
+<h4 id="getitem:0589866b25f4e1e0a9df23909371bb14"><code>__getitem__</code></h4>
 
 <p>让对象可以和list一样去取值</p>
 
@@ -506,7 +506,7 @@ Student object (name: Michael)
 [1, 1, 2, 3, 5]
 </code></pre>
 
-<p>另外 还可以结合<strong>setitem</strong>()方法、<strong>delitem</strong>()方法 等 去实现 dict一样的用法。</p>
+<p>另外 还可以结合<code>__setitem__()</code>方法、<code>__delitem__()</code>方法 等 去实现 dict一样的用法。</p>
 
 <p>我们自己定义的类表现得和Python自带的list、tuple、dict没什么区别，这完全归功于动态语言的“鸭子类型”，不需要强制继承某个接口</p>
 
@@ -514,34 +514,35 @@ Student object (name: Michael)
 一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由当前方法和属性的集合决定。
 “当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。”</p>
 
-<h4 id="getattr:0589866b25f4e1e0a9df23909371bb14"><strong>getattr</strong></h4>
+<h4 id="getattr:0589866b25f4e1e0a9df23909371bb14"><code>__getattr__</code></h4>
 
-<p>class Student(object):</p>
+<pre><code>class Student(object):
 
-<pre><code>def __init__(self):
-    self.name = 'Michael'
+    def __init__(self):
+        self.name = 'Michael'
 
-def __getattr__(self, attr):
-    if attr=='score':
-        return 99
+    def __getattr__(self, attr):
+        if attr=='score':
+            return 99
 </code></pre>
 
-<p>当调用不存在的属性时，比如score，Python解释器会试图调用<strong>getattr</strong>(self, &lsquo;score&rsquo;)来尝试获得属性，这样，我们就有机会返回score的值
+<p>当调用不存在的属性时，比如score，Python解释器会试图调用<code>__getattr__</code>(self, &lsquo;score&rsquo;)来尝试获得属性，这样，我们就有机会返回score的值
 也可以返回函数</p>
 
-<p>只有在没有找到属性的情况下，才调用<strong>getattr</strong></p>
+<p>只有在没有找到属性的情况下，才调用<code>__getattr__</code></p>
 
 <p>属性如果在getattr里不存在，默认返回是None，而不是抛出异常,如果要实现，需要自己抛出</p>
 
-<h4 id="call:0589866b25f4e1e0a9df23909371bb14"><strong>call</strong></h4>
+<h4 id="call:0589866b25f4e1e0a9df23909371bb14"><code>__call__</code></h4>
 
-<p>实现这个函数可以通过直接调用对象来调用
-class Student(object):
-    def <strong>init</strong>(self, name):
-        self.name = name</p>
+<p>实现这个函数可以通过直接调用对象来调用</p>
 
-<pre><code>def __call__(self):
-    print('My name is %s.' % self.name)
+<pre><code>class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('My name is %s.' % self.name)
 </code></pre>
 
 <h3 id="枚举类:0589866b25f4e1e0a9df23909371bb14">枚举类</h3>

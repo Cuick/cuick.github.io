@@ -199,7 +199,7 @@ AttributeError: &#39;Student&#39; object has no attribute &#39;score&#39;
 
 &lt;p&gt;&lt;code&gt;__slots__&lt;/code&gt;定义的属性仅对当前类起作用，对继承的子类是不起作用的&lt;/p&gt;
 
-&lt;p&gt;非在子类中也定义&lt;strong&gt;slots&lt;/strong&gt;，这样，子类实例允许定义的属性就是自身的&lt;strong&gt;slots&lt;/strong&gt;加上父类的&lt;strong&gt;slots&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;非在子类中也定义&lt;code&gt;__slots__&lt;/code&gt;，这样，子类实例允许定义的属性就是自身的&lt;code&gt;__slots__&lt;/code&gt;加上父类的&lt;code&gt;__slots__&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h4 id=&#34;property:0589866b25f4e1e0a9df23909371bb14&#34;&gt;@property&lt;/h4&gt;
 
@@ -215,10 +215,10 @@ AttributeError: &#39;Student&#39; object has no attribute &#39;score&#39;
 
 &lt;h3 id=&#34;定制类:0589866b25f4e1e0a9df23909371bb14&#34;&gt;定制类&lt;/h3&gt;
 
-&lt;p&gt;类似&lt;strong&gt;slots&lt;/strong&gt;这种形如&lt;strong&gt;xxx&lt;/strong&gt;的变量或者函数名就要注意，这些在Python中是有特殊用途的
+&lt;p&gt;类似&lt;code&gt;__slots__&lt;/code&gt;这种形如&lt;code&gt;__xxx__&lt;/code&gt;的变量或者函数名就要注意，这些在Python中是有特殊用途的
 thon的class中还有许多这样有特殊用途的函数，可以帮助我们定制类&lt;/p&gt;
 
-&lt;h4 id=&#34;str-repr:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;str&lt;/strong&gt;() &lt;strong&gt;repr&lt;/strong&gt;()&lt;/h4&gt;
+&lt;h4 id=&#34;str-repr:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;code&gt;__str__()&lt;/code&gt; &lt;code&gt;__repr__()&lt;/code&gt;&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class Student(object):
 ...     def __init__(self, name):
@@ -228,7 +228,7 @@ thon的class中还有许多这样有特殊用途的函数，可以帮助我们�
 &amp;lt;__main__.Student object at 0x109afb190&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;使用&lt;strong&gt;str&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;__str__&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; class Student(object):
 ...     def __init__(self, name):
@@ -240,16 +240,16 @@ thon的class中还有许多这样有特殊用途的函数，可以帮助我们�
 Student object (name: Michael)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;直接敲变量不用print，打印出来的实例还是和未使用&lt;strong&gt;str&lt;/strong&gt;一样
-使用 &lt;strong&gt;repr&lt;/strong&gt; 后 ，直接返回 设置的内容&lt;/p&gt;
+&lt;p&gt;直接敲变量不用print，打印出来的实例还是和未使用&lt;code&gt;__str__&lt;/code&gt;一样
+使用&lt;code&gt;__repr__&lt;/code&gt;后 ，直接返回 设置的内容&lt;/p&gt;
 
-&lt;p&gt;两者的区别是&lt;strong&gt;str&lt;/strong&gt;()返回用户看到的字符串，而&lt;strong&gt;repr&lt;/strong&gt;()返回程序开发者看到的字符串，也就是说，&lt;strong&gt;repr&lt;/strong&gt;()是为调试服务的&lt;/p&gt;
+&lt;p&gt;两者的区别是&lt;code&gt;__str__&lt;/code&gt;()返回用户看到的字符串，而&lt;code&gt;__repr__()&lt;/code&gt;返回程序开发者看到的字符串，也就是说，&lt;code&gt;__repr__()&lt;/code&gt;是为调试服务的&lt;/p&gt;
 
-&lt;h4 id=&#34;iter:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;iter&lt;/strong&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;iter:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;code&gt;__iter__&lt;/code&gt;&lt;/h4&gt;
 
 &lt;p&gt;将对象实例变为迭代对象&lt;/p&gt;
 
-&lt;p&gt;Python的for循环就会不断调用该迭代对象的&lt;strong&gt;next&lt;/strong&gt;()方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环&lt;/p&gt;
+&lt;p&gt;Python的for循环就会不断调用该迭代对象的&lt;code&gt;__next__()&lt;/code&gt;方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;class Fib(object):
     def __init__(self):
@@ -273,7 +273,7 @@ Student object (name: Michael)
 3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;getitem:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;getitem&lt;/strong&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;getitem:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;code&gt;__getitem__&lt;/code&gt;&lt;/h4&gt;
 
 &lt;p&gt;让对象可以和list一样去取值&lt;/p&gt;
 
@@ -320,7 +320,7 @@ Student object (name: Michael)
 [1, 1, 2, 3, 5]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;另外 还可以结合&lt;strong&gt;setitem&lt;/strong&gt;()方法、&lt;strong&gt;delitem&lt;/strong&gt;()方法 等 去实现 dict一样的用法。&lt;/p&gt;
+&lt;p&gt;另外 还可以结合&lt;code&gt;__setitem__()&lt;/code&gt;方法、&lt;code&gt;__delitem__()&lt;/code&gt;方法 等 去实现 dict一样的用法。&lt;/p&gt;
 
 &lt;p&gt;我们自己定义的类表现得和Python自带的list、tuple、dict没什么区别，这完全归功于动态语言的“鸭子类型”，不需要强制继承某个接口&lt;/p&gt;
 
@@ -328,34 +328,35 @@ Student object (name: Michael)
 一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由当前方法和属性的集合决定。
 “当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。”&lt;/p&gt;
 
-&lt;h4 id=&#34;getattr:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;getattr&lt;/strong&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;getattr:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;code&gt;__getattr__&lt;/code&gt;&lt;/h4&gt;
 
-&lt;p&gt;class Student(object):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Student(object):
 
-&lt;pre&gt;&lt;code&gt;def __init__(self):
-    self.name = &#39;Michael&#39;
+    def __init__(self):
+        self.name = &#39;Michael&#39;
 
-def __getattr__(self, attr):
-    if attr==&#39;score&#39;:
-        return 99
+    def __getattr__(self, attr):
+        if attr==&#39;score&#39;:
+            return 99
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;当调用不存在的属性时，比如score，Python解释器会试图调用&lt;strong&gt;getattr&lt;/strong&gt;(self, &amp;lsquo;score&amp;rsquo;)来尝试获得属性，这样，我们就有机会返回score的值
+&lt;p&gt;当调用不存在的属性时，比如score，Python解释器会试图调用&lt;code&gt;__getattr__&lt;/code&gt;(self, &amp;lsquo;score&amp;rsquo;)来尝试获得属性，这样，我们就有机会返回score的值
 也可以返回函数&lt;/p&gt;
 
-&lt;p&gt;只有在没有找到属性的情况下，才调用&lt;strong&gt;getattr&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;只有在没有找到属性的情况下，才调用&lt;code&gt;__getattr__&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;属性如果在getattr里不存在，默认返回是None，而不是抛出异常,如果要实现，需要自己抛出&lt;/p&gt;
 
-&lt;h4 id=&#34;call:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;strong&gt;call&lt;/strong&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;call:0589866b25f4e1e0a9df23909371bb14&#34;&gt;&lt;code&gt;__call__&lt;/code&gt;&lt;/h4&gt;
 
-&lt;p&gt;实现这个函数可以通过直接调用对象来调用
-class Student(object):
-    def &lt;strong&gt;init&lt;/strong&gt;(self, name):
-        self.name = name&lt;/p&gt;
+&lt;p&gt;实现这个函数可以通过直接调用对象来调用&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;def __call__(self):
-    print(&#39;My name is %s.&#39; % self.name)
+&lt;pre&gt;&lt;code&gt;class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print(&#39;My name is %s.&#39; % self.name)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;枚举类:0589866b25f4e1e0a9df23909371bb14&#34;&gt;枚举类&lt;/h3&gt;
